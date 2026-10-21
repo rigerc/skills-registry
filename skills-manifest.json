@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "registryId": "rigerc/skills-registry",
+  "skills": [
+    {
+      "id": "rigerc/skills-registry/example-testing",
+      "name": "example-testing",
+      "path": "skills/example-testing/SKILL.md",
+      "description": "Example testing conventions for a React project."
+    }
+  ]
+}
