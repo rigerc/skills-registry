@@ -1,12 +1,42 @@
 {
   "schemaVersion": 1,
   "registryId": "rigerc/skills-registry",
-  "technologies": [],
+  "alwaysRecommend": ["rigerc/skills-registry/readme-crafter-skill"],
+  "technologies": [
+    {
+      "id": "knap",
+      "name": "Knap",
+      "detect": {
+        "packages": ["knap"]
+      },
+      "skills": ["rigerc/skills-registry/knap-skill"]
+    },
+    {
+      "id": "vhs",
+      "name": "VHS",
+      "detect": {
+        "fileExtensions": [".tape"]
+      },
+      "skills": ["rigerc/skills-registry/vhs-cli"]
+    }
+  ],
   "technologySkills": [
     {
-      "technologyId": "react",
+      "technologyId": "bash",
       "skills": [
-        "rigerc/skills-registry/example-testing"
+        "rigerc/skills-registry/gum-cli"
+      ]
+    },
+    {
+      "technologyId": "ink",
+      "skills": [
+        "rigerc/skills-registry/ink"
+      ]
+    },
+    {
+      "technologyId": "just",
+      "skills": [
+        "rigerc/skills-registry/justfile-expert"
       ]
     }
   ],
