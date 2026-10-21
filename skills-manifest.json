@@ -21,6 +21,12 @@
       "description": "Use when building, debugging, testing, or reviewing an Ink (React terminal CLI) application. Covers Ink 8 APIs, Node and React compatibility, components, input/paste, focus, terminal dimensions, scrolling, lifecycle, accessibility, and testing."
     },
     {
+      "id": "rigerc/skills-registry/ink-testing-library",
+      "name": "ink-testing-library",
+      "path": "skills/ink-testing-library/SKILL.md",
+      "description": "Write, improve, and debug automated tests for React-based Ink terminal/CLI components using the ink-testing-library package. Use when testing rendered terminal output, interactive keyboard input, rerenders, asynchronous UI changes, stdout/stderr frames, or teardown in Ink apps. Do not use for browser React DOM tests or when only a one-shot renderToString assertion is needed."
+    },
+    {
       "id": "rigerc/skills-registry/justfile-expert",
       "name": "justfile-expert",
       "path": "skills/justfile-expert/SKILL.md",
@@ -55,6 +61,12 @@
       "name": "vhs-cli",
       "path": "skills/vhs-cli/SKILL.md",
       "description": "Create and verify reproducible terminal recordings using Charmbracelet VHS. Use for .tape authoring, CLI/TUI demos, GIF/MP4/WebM recording, terminal screenshots, and ASCII golden fixtures. Offers simple (lint without rendering) and expanded (render, inspect, review) workflows."
+    },
+    {
+      "id": "rigerc/skills-registry/vitest-testing",
+      "name": "vitest-testing",
+      "path": "skills/vitest-testing/SKILL.md",
+      "description": "Write, configure, debug, migrate, and review JavaScript/TypeScript tests with Vitest and Vite. Use for Vitest unit tests, async assertions, mocks/spies, fake timers, DOM or Browser Mode tests, coverage, CI, workspaces, flaky tests, Jest migration, or contributions to vitest-dev/vitest."
     }
   ]
 }

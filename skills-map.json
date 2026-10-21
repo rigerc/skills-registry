@@ -1,23 +1,45 @@
 {
   "schemaVersion": 1,
   "registryId": "rigerc/skills-registry",
-  "alwaysRecommend": ["rigerc/skills-registry/readme-crafter-skill"],
+  "alwaysRecommend": [
+    "rigerc/skills-registry/readme-crafter-skill"
+  ],
   "technologies": [
+    {
+      "id": "ink-testing-library",
+      "name": "Ink Testing Library",
+      "detect": {
+        "packages": [
+          "ink-testing-library"
+        ]
+      },
+      "skills": [
+        "rigerc/skills-registry/ink-testing-library"
+      ]
+    },
     {
       "id": "knap",
       "name": "Knap",
       "detect": {
-        "packages": ["knap"]
+        "packages": [
+          "knap"
+        ]
       },
-      "skills": ["rigerc/skills-registry/knap-skill"]
+      "skills": [
+        "rigerc/skills-registry/knap-skill"
+      ]
     },
     {
       "id": "vhs",
       "name": "VHS",
       "detect": {
-        "fileExtensions": [".tape"]
+        "fileExtensions": [
+          ".tape"
+        ]
       },
-      "skills": ["rigerc/skills-registry/vhs-cli"]
+      "skills": [
+        "rigerc/skills-registry/vhs-cli"
+      ]
     }
   ],
   "technologySkills": [
@@ -37,6 +59,12 @@
       "technologyId": "just",
       "skills": [
         "rigerc/skills-registry/justfile-expert"
+      ]
+    },
+    {
+      "technologyId": "vitest",
+      "skills": [
+        "rigerc/skills-registry/vitest-testing"
       ]
     }
   ],
