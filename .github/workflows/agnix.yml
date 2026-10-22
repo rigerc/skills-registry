@@ -40,16 +40,21 @@ jobs:
       - name: Summarize findings
         if: always()
         env:
+          RESULT: ${{ steps.agnix.outputs.result }}
           ERRORS: ${{ steps.agnix.outputs.errors }}
           WARNINGS: ${{ steps.agnix.outputs.warnings }}
         run: |
           {
             echo "### agnix"
             echo ""
-            echo "| Severity | Count |"
-            echo "| --- | --- |"
-            echo "| Errors | ${ERRORS:-0} |"
-            echo "| Warnings | ${WARNINGS:-0} |"
-            echo ""
-            echo "Findings appear under the job annotations and in Security > Code scanning."
+            if [[ -z "$RESULT" || -z "$ERRORS" || -z "$WARNINGS" ]]; then
+              echo "Validation did not complete or its results are unavailable. Check the job logs."
+            else
+              echo "| Severity | Count |"
+              echo "| --- | --- |"
+              echo "| Errors | $ERRORS |"
+              echo "| Warnings | $WARNINGS |"
+              echo ""
+              echo "See the validation step for diagnostics and the SARIF upload step for code scanning status."
+            fi
           } >> "$GITHUB_STEP_SUMMARY"
