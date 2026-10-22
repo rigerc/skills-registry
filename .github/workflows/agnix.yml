@@ -1,0 +1,55 @@
+name: agnix
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  security-events: write
+
+concurrency:
+  group: agnix-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate agent configs
+        id: agnix
+        uses: agent-sh/agnix@v0
+        with:
+          path: '.'
+          format: 'sarif'
+          version: '0.59.0'
+          fail-on-error: 'true'
+
+      - name: Upload SARIF results
+        if: always() && steps.agnix.outputs.sarif-file != ''
+        uses: github/codeql-action/upload-sarif@v3
+        continue-on-error: true
+        with:
+          sarif_file: ${{ steps.agnix.outputs.sarif-file }}
+          category: agnix
+
+      - name: Summarize findings
+        if: always()
+        env:
+          ERRORS: ${{ steps.agnix.outputs.errors }}
+          WARNINGS: ${{ steps.agnix.outputs.warnings }}
+        run: |
+          {
+            echo "### agnix"
+            echo ""
+            echo "| Severity | Count |"
+            echo "| --- | --- |"
+            echo "| Errors | ${ERRORS:-0} |"
+            echo "| Warnings | ${WARNINGS:-0} |"
+            echo ""
+            echo "Findings appear under the job annotations and in Security > Code scanning."
+          } >> "$GITHUB_STEP_SUMMARY"

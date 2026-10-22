@@ -49,6 +49,22 @@ with detection rules, declare combinations, extend existing combinations with
 combinationSkills, or add frontendBonusSkills. Referenced skill IDs must appear in
 the generated manifest.
 
+## Lint skills
+
+Skills are validated with [agnix](https://github.com/agent-sh/agnix). Run it
+locally before pushing:
+
+```bash
+npm install -g agnix
+agnix .              # report errors and warnings
+agnix --fix-safe .   # apply safe fixes only
+agnix --strict .     # treat warnings as errors
+```
+
+`.github/workflows/agnix.yml` runs the same check on pushes to main, on pull
+requests and on demand. It fails the build when errors are found and uploads
+SARIF results, so findings also show up in Security > Code scanning.
+
 ## Use with Nosey
 
 Init creates the registry files; register it separately. From the project you want
