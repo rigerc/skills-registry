@@ -9,12 +9,6 @@
       "description": "Use when asked to lint, validate, troubleshoot, or improve AI coding-agent configuration files (SKILL.md, AGENTS.md, CLAUDE.md, hooks, MCP, or IDE agent rules), or to set up agnix checks in CI. Run the agnix CLI, explain its diagnostics, and apply explicitly requested safe fixes across Claude Code, Codex, Cursor, Copilot, Kiro, OpenCode, and related tools."
     },
     {
-      "id": "rigerc/skills-registry/example-testing",
-      "name": "example-testing",
-      "path": "skills/example-testing/SKILL.md",
-      "description": "Example testing conventions for a React project."
-    },
-    {
       "id": "rigerc/skills-registry/gum-cli",
       "name": "gum-cli",
       "path": "skills/gum-cli/SKILL.md",
@@ -40,7 +34,7 @@
     },
     {
       "id": "rigerc/skills-registry/knap-skill",
-      "name": "knap",
+      "name": "knap-skill",
       "path": "skills/knap-skill/SKILL.md",
       "description": "Write, explain, validate, and render Knap templates for Markdown or text output. Use for Knap variables, filters, conditions, loops, local assignments, CLI rendering, or batch generation; do not apply to unrelated Jinja, Liquid, or Mustache templates."
     },
