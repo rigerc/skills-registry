@@ -187,6 +187,9 @@ agnix --strict .     # treat warnings as errors
 `.github/workflows/agnix.yml` runs the same check on pushes to main, on pull
 requests and on demand. It fails the build when errors are found and uploads
 SARIF results, so findings also show up in Security > Code scanning.
+`.agnix.toml` promotes credential exposure, dangerous execution and permission
+escalation rules to errors, so those findings fail validation even without
+`--strict`.
 
 ## Use with Nosey
 
