@@ -1,0 +1,182 @@
+{
+  "skill_name": "system-design-review",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Review this design doc for our new booking service and tell me if it is ready to build.",
+      "expected_output": "Scores the nine axes with cited evidence, marks unsupported claims as unverified or otherwise not established, traces the critical path end to end, and returns a verdict plus a prioritized roadmap.",
+      "assertions": [
+        {
+          "type": "contains_any",
+          "value": [
+            "Nine Axes",
+            "Capacity evidence",
+            "Observability"
+          ],
+          "description": "Scores against a fixed axis set"
+        },
+        {
+          "type": "contains_any",
+          "value": [
+            "No score without evidence",
+            "unsupported claim",
+            "not verified",
+            "not substantiated"
+          ],
+          "description": "Refuses to score intent as evidence without requiring an exact status word"
+        },
+        {
+          "type": "contains_any",
+          "value": [
+            "roadmap",
+            "smallest fix"
+          ],
+          "description": "Converts gaps into prioritized action"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Checkout p95 is 1.2 seconds. Traces from the same period show the pricing call at 800 ms p95 and the database at 100 ms p95. The team proposes a Go/microservices rewrite. What should be investigated or changed first?",
+      "expected_output": "Use the measured path to investigate pricing-call time and confirm it is part of the user-visible 1.2-second checkout path; inspect call timing and failure behavior before choosing a remedy. Recommend a change only when it removes measured delay; these measurements alone do not justify a rewrite.",
+      "assertions": [
+        {
+          "type": "contains_any",
+          "value": ["pricing", "800 ms"],
+          "description": "Uses the observed largest span as investigation evidence"
+        },
+        {
+          "type": "contains_any",
+          "value": ["1.2 seconds", "1.2s"],
+          "description": "Keeps the service span tied to the end-to-end result"
+        },
+        {
+          "type": "contains_any",
+          "value": ["not justify a rewrite", "do not rewrite", "rewrite is not justified"],
+          "description": "Does not infer a rewrite from latency evidence alone"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "A 40-person internal admin tool serves 100 requests/s and has no stated cross-region recovery objective. Its proposed data migration can irreversibly lose existing records and has no tested rollback. Which finding should be addressed first?",
+      "expected_output": "Prioritize the migration's untested rollback because it exposes existing records to irreversible loss; establish a recoverable migration/restore path before release. Do not fail the tool solely for lacking multi-region when no cross-region objective is stated.",
+      "assertions": [
+        {
+          "type": "contains_any",
+          "value": ["migration", "rollback"],
+          "description": "Prioritizes the concrete irreversible data-loss risk"
+        },
+        {
+          "type": "contains_any",
+          "value": ["no stated cross-region", "no cross-region objective", "not required"],
+          "description": "Does not impose an unstated regional recovery requirement"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Review an accurate text-only design that enumerates actors, trust boundaries, data, interfaces and failure paths. No visual artifact was requested and no view is missing. Return JSON with redraw_required and review_complete.",
+      "expected_output": "Complete the semantic review without a redraw prerequisite (for example, {\"redraw_required\":false,\"review_complete\":true}). If a view is genuinely missing, identify that specific gap rather than fabricating a diagram requirement.",
+      "assertions": [
+        {
+          "type": "regex",
+          "value": "\"redraw_required\"\\s*:\\s*false",
+          "description": "Checks text-only completeness does not create an unnecessary diagram prerequisite."
+        },
+        {
+          "type": "regex",
+          "value": "\"review_complete\"\\s*:\\s*true",
+          "description": "Checks the unnecessary redraw does not block the requested semantic review."
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "A booking proposal states its no-double-booking mechanism and 15 RPS target, but omits owner, capacity, cost, rollout and recovery detail. It is not deployed. Evaluate what conclusion the available evidence supports.",
+      "expected_output": "Treats the mechanism as proposed design evidence, identifies missing material design inputs, and avoids claiming deployment or operational readiness from documentation.",
+      "assertions": [
+        { "type": "contains_any", "value": ["proposed", "design", "document"], "description": "Keeps source evidence category explicit" },
+        { "type": "contains_any", "value": ["missing", "unverified", "not proven", "not measured"], "description": "Surfaces evidence gap without pinning a status label" }
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "A team says its booking service has measured recovery, but provides neither a dated drill result nor observed journey SLO data. What does this support?",
+      "expected_output": "Does not support the claimed recovery or operations conclusion without corresponding measured evidence; identifies the relevant gap and distinguishes it from a proposed recovery plan.",
+      "assertions": [
+        { "type": "contains_any", "value": ["dated", "drill", "observed", "measured"], "description": "Names relevant evidence needed for operations claim" },
+        { "type": "contains_any", "value": ["not support", "missing", "unverified", "not measured"], "description": "Rejects unsubstantiated operations claim" }
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "A reservation must not confirm two customers for the same seat; sending a receipt can fail independently. Choose mechanisms and explain the boundary.",
+      "expected_output": "Requires an authoritative mechanism that preserves unique reservation, permits a separately justified notification path, and ensures notification failure cannot undo a confirmed booking.",
+      "assertions": [
+        { "type": "contains_any", "value": ["reservation", "unique", "invariant"], "description": "Preserves the immediate business invariant" },
+        { "type": "contains_any", "value": ["notification", "receipt", "independently", "cannot undo"], "description": "Separates secondary failure from confirmation" }
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "The nine-axis score is high, but one query path exposes a different tenant's records. Is the design sound?",
+      "expected_output": "Reports tenant isolation as a non-compensable flow gate that blocks a sound/readiness verdict despite aggregate score, with evidence, consequence, owner, and smallest fix.",
+      "assertions": [
+        { "type": "contains_any", "value": ["tenant", "isolation"], "description": "Identifies material trust-boundary failure" },
+        { "type": "contains_any", "value": ["blocks", "block", "regardless", "non-compensable"], "description": "Does not compensate hard gate with score" }
+      ]
+    },
+    {
+      "id": 9,
+      "prompt": "Review a stateless image-resizing endpoint that meets its stated workload and has no persistence or recovery objective. Is a queue, database, and restore drill required?",
+      "expected_output": "Allows a concise justified stateless/no-infrastructure design, does not require storage, queue, or unrelated drill, and scores only applicable axes with scoped N/A rationale.",
+      "assertions": [
+        { "type": "contains_any", "value": ["stateless", "no store", "no database"], "description": "Accepts justified null infrastructure" },
+        { "type": "contains_any", "value": ["not required", "not necessary", "N/A", "out of scope"], "description": "Keeps assessment scope-qualified" }
+      ]
+    },
+    {
+      "id": 10,
+      "prompt": "The design document proposes a recovery process and claims production recovery was measured, but provides no runtime or deployment evidence. Review the claim.",
+      "expected_output": "Separates proposed plan/documentation from implementation and observed operations evidence, marks the unsupported claim as unverified, and does not claim operational readiness.",
+      "assertions": [
+        { "type": "contains_any", "value": ["document", "plan", "proposed"], "description": "Recognizes documentary evidence scope" },
+        { "type": "contains_any", "value": ["unverified", "not measured", "not operational"], "description": "Rejects unsupported operations claim" }
+      ]
+    }
+  ],
+  "should_trigger": [
+    "Review our architecture and score it",
+    "Where is the bottleneck in this system?",
+    "Audit this design before we start building",
+    "Give me an evolution roadmap for this legacy service"
+  ],
+  "should_not_trigger": [
+    "Review this pull request diff for bugs",
+    "Check my grammar in this README",
+    "Run the test suite",
+    "Format this JSON file"
+  ],
+  "pressure_scenarios": [
+    {
+      "prompt": "The team already started building this and leadership wants sign-off today. Just approve the design, we can note concerns later.",
+      "behavior_assertions": [
+        "UNVERIFIED",
+        "evidence",
+        "fix first"
+      ]
+    }
+  ],
+  "rationalizations": [
+    "The team already started, an approval now saves rework.",
+    "We can record the concerns after sign-off.",
+    "Trust the authors, they know the system best.",
+    "A score without the metrics is close enough."
+  ],
+  "red_flags": [
+    "Scoring an axis from intent rather than an artifact or metric.",
+    "Issuing a verdict while load-bearing claims remain unverifiable.",
+    "Skipping the critical-path trace because the design looks familiar."
+  ]
+}

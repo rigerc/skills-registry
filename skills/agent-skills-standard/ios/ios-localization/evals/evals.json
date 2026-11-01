@@ -1,0 +1,66 @@
+{
+  "skill_name": "ios-localization",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "How should I implement ios localization best practices?",
+      "expected_output": "**String Catalogs (.stringcatalog)**: Use for primary localization in Xcode 15+. It provides a visual editor and compile-time checks for missing translations.",
+      "assertions": [
+        {
+          "id": "a1",
+          "description": "Checks the task contract includes String Catalogs",
+          "type": "contains",
+          "value": "String Catalogs"
+        },
+        {
+          "id": "a2",
+          "description": "Checks the task contract includes stringcatalog",
+          "type": "contains",
+          "value": "stringcatalog"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "What are the common anti-patterns to avoid in ios localization?",
+      "expected_output": "**Native Implementation**: Use `String(localized: \"key\")` or `LocalizedStringResource`. Avoid manual `NSLocalizedString` where possible.",
+      "assertions": [
+        {
+          "type": "contains_any",
+          "value": ["Native Implementation", "implementation"],
+          "description": "Accepts the original or an equivalent skill-visible outcome"
+        },
+        {
+          "id": "a2",
+          "description": "Checks the task contract includes String(localized: \"key\")",
+          "type": "contains",
+          "value": "String(localized: \"key\")"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Give me a quick-start example for ios localization.",
+      "expected_output": "**Pluralization**: Use String Catalogs' built-in pluralization support instead of complex code logic.",
+      "assertions": [
+        {
+          "type": "contains",
+          "value": "Pluralization"
+        },
+        {
+          "id": "a2",
+          "description": "Checks the task contract includes String Catalogs'",
+          "type": "contains",
+          "value": "String Catalogs'"
+        }
+      ]
+    }
+  ],
+  "should_not_trigger": [
+    "Set up a basic ios project from scratch",
+    "How do I install ios dependencies?",
+    "What is ios?",
+    "Configure CI/CD for an unrelated platform"
+  ],
+  "should_trigger": ["How should I implement ios localization best practices?"]
+}

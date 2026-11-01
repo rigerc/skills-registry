@@ -1,0 +1,269 @@
+{
+  "skill_name": "common-tdd",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Add tests for a discount calculator. The agent is tempted to enumerate every combination; choose the smallest high-signal set and show the TDD plan.",
+      "expected_output": "Create a Test Intent Record with the observable contract, a distinct plausible fault, the smallest honest unit layer, minimal equivalence classes, and the exact focused command. Use a parameterized case for equivalent inputs. Run RED before production code and keep coverage as repository-configured evidence, not a test-count target.",
+      "assertions": [
+        { "type": "contains", "value": "observable contract" },
+        { "type": "contains", "value": "distinct plausible fault" },
+        { "type": "contains", "value": "parameterized" },
+        { "type": "contains", "value": "focused command" }
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "The implementation already exists and a bug report says to add tests for 80% coverage. Explain the compliant TDD path.",
+      "expected_output": "Use legacy mode: characterize current behavior only if needed, write a failing regression for the intended change, verify the failure is behavioral, preserve unrelated implementation, and implement the smallest fix. Coverage is secondary evidence and does not justify padding tests.",
+      "assertions": [
+        { "type": "contains", "value": "characterize" },
+        { "type": "contains", "value": "failing regression" },
+        { "type": "contains", "value": "preserve unrelated" },
+        { "type": "not_contains", "value": "delete and restart" }
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Write tests for an order service that coordinates inventory, payment, and persistence. Decide which behavior belongs in unit tests and which belongs in integration tests.",
+      "expected_output": "Unit tests should prove the service's observable outcomes with simple boundary fakes or external mocks, not mock call choreography. Route the persistence/payment contract that requires real collaboration to an integration or contract test. Each test has one logical behavior and a distinct fault.",
+      "assertions": [
+        { "type": "contains", "value": "observable outcomes" },
+        { "type": "contains", "value": "integration" },
+        { "type": "contains", "value": "distinct fault" },
+        { "type": "not_contains", "value": "assert every mock call" }
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "The new test passes before any production code is changed.\n\nReply with only these lines in this order, choosing one listed value per field. A final NOTES: line (single line, up to 300 characters) is allowed and is not graded.\nDECISION: REVISE_TEST_OR_COVERAGE|PROCEED_TO_CODE\nCLASSIFICATION: unexpected_green|expected_red\nNEXT_ACTION: INSPECT_COVERAGE|IMPLEMENT_NOW",
+      "expected_output": "DECISION: REVISE_TEST_OR_COVERAGE\nCLASSIFICATION: unexpected_green\nNEXT_ACTION: INSPECT_COVERAGE\nNOTES: Inspect existing coverage and test setup for redundancy or weak assertions; do not implement production code until a valid expected_red is observed.",
+      "assertions": [
+        { "type": "regex", "value": "^\\s*DECISION:[ \\t]*(?:REVISE_TEST_OR_COVERAGE|PROCEED_TO_CODE)[ \\t]*(?:\\r?\\n)+[ \\t]*CLASSIFICATION:[ \\t]*(?:unexpected_green|expected_red)[ \\t]*(?:\\r?\\n)+[ \\t]*NEXT_ACTION:[ \\t]*(?:INSPECT_COVERAGE|IMPLEMENT_NOW)[ \\t]*(?:(?:\\r?\\n)+[ \\t]*NOTES:[ \\t]*[^\\r\\n]{0,300})?\\s*$" },
+        { "type": "regex", "value": "^\\s*DECISION:[ \\t]*REVISE_TEST_OR_COVERAGE[ \\t]*(?:\\r?\\n|$)" },
+        { "type": "regex", "value": "(?:\\r?\\n)[ \\t]*CLASSIFICATION:[ \\t]*unexpected_green[ \\t]*(?:\\r?\\n|$)" },
+        { "type": "regex", "value": "(?:\\r?\\n)[ \\t]*NEXT_ACTION:[ \\t]*INSPECT_COVERAGE[ \\t]*(?:\\r?\\n|$)" }
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "A focused test command hangs and the developer suggests running the full suite again with retries.\n\nReply with only these lines in this order, choosing one listed value per field. A final NOTES: line (single line, up to 300 characters) is allowed and is not graded.\nACTION: TERMINATE_OWNED_PROCESS_GROUP|BROAD_PKILL_AND_RETRY\nSTATUS: verification_infra_failed|behavioural_test_failure\nEXECUTION: FOCUSED_SEQUENTIAL_TIMEOUT|FULL_SUITE_RETRY",
+      "expected_output": "ACTION: TERMINATE_OWNED_PROCESS_GROUP\nSTATUS: verification_infra_failed\nEXECUTION: FOCUSED_SEQUENTIAL_TIMEOUT\nNOTES: Never run broad pkill and do not retry without a changed hypothesis; the owned process group runs in the foreground with a 120-second timeout.",
+      "assertions": [
+        { "type": "regex", "value": "^\\s*ACTION:[ \\t]*(?:TERMINATE_OWNED_PROCESS_GROUP|BROAD_PKILL_AND_RETRY)[ \\t]*(?:\\r?\\n)+[ \\t]*STATUS:[ \\t]*(?:verification_infra_failed|behavioural_test_failure)[ \\t]*(?:\\r?\\n)+[ \\t]*EXECUTION:[ \\t]*(?:FOCUSED_SEQUENTIAL_TIMEOUT|FULL_SUITE_RETRY)[ \\t]*(?:(?:\\r?\\n)+[ \\t]*NOTES:[ \\t]*[^\\r\\n]{0,300})?\\s*$" },
+        { "type": "regex", "value": "^\\s*ACTION:[ \\t]*TERMINATE_OWNED_PROCESS_GROUP[ \\t]*(?:\\r?\\n|$)" },
+        { "type": "regex", "value": "(?:\\r?\\n)[ \\t]*STATUS:[ \\t]*verification_infra_failed[ \\t]*(?:\\r?\\n|$)" },
+        { "type": "regex", "value": "(?:\\r?\\n)[ \\t]*EXECUTION:[ \\t]*FOCUSED_SEQUENTIAL_TIMEOUT[ \\t]*(?:\\r?\\n|$)" }
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "A team wants to add many trivial tests only to reach a coverage percentage. Explain the quality-first response.",
+      "expected_output": "Use repository-configured coverage thresholds when they exist. Otherwise report risk gaps. Keep only cases that detect a distinct fault or contract rule, merge equivalent inputs, and never add padding tests for a percentage.",
+      "assertions": [
+        { "type": "contains", "value": "repository-configured" },
+        { "type": "contains", "value": "risk gaps" },
+        { "type": "contains", "value": "distinct fault" },
+        { "type": "contains", "value": "padding tests" },
+        { "type": "not_contains", "value": "80%" }
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "We need to add a test for a critical tax calculation. The implementation is already written and produces 42.50 for the edge input. The developer proposes writing assert calculateTax(order) == 42.50 by capturing the current function return. What is the compliant TDD response?",
+      "expected_output": "Reject copying the expected value from implementation output. An oracle must be independently justified by an approved requirement, external specification, or independently reviewed example artifact. Record the independent oracle reference and rationale in the Test Intent Record; implementation-copied expected output is unacceptable.",
+      "assertions": [
+        {
+          "type": "contains_any",
+          "value": ["independent oracle", "independently justified", "approved requirement", "external specification", "approved tax schedule"]
+        },
+        {
+          "type": "contains_any",
+          "value": ["implementation-copied", "copying the expected value from implementation", "copied solely from implementation", "current function return"]
+        },
+        {
+          "type": "regex",
+          "value": "(?:refuse|reject|decline|do not|don't|never|must not|cannot|can't)\\b[\\s\\S]{0,60}?(?:current function return|implementation output|implementation-copied|oracle)"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "An external static scanner returns a report showing 0 blockers, but 3 files failed traversal and could not be analyzed. The developer claims the test suite has clean static assurance and 100% pass rate. How should the team classify this result?",
+      "expected_output": "Reject clean success. When required scope suffers traversal or parse failures, the analysis status is incomplete or error, not clean pass. Blocker absence across unanalyzed files cannot be treated as clean assurance or release protection.",
+      "assertions": [
+        {
+          "type": "contains_any",
+          "value": ["incomplete", "traversal failure", "unanalyzed files"]
+        },
+        {
+          "type": "contains_any",
+          "value": ["clean assurance", "clean pass", "clean success", "release protection"]
+        },
+        {
+          "type": "regex",
+          "value": "(?:refuse|reject|decline|deny|do not|don't|never|must not|cannot|can't)\\b[\\s\\S]{0,60}?clean\\s+(?:static\\s+)?(?:success|assurance|pass|status)"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "prompt": "A security scan ran with an empty file filter or zero eligible test files discovered in the target repository. The tool exited 0 with 0 findings. The developer claims this establishes clean production assurance. How should the team classify this empty-scope run?",
+      "expected_output": "Reject clean production assurance. An empty scope with zero analyzed files or zero eligible inputs represents missing required analysis or at best an explicitly allowed empty run (not applicable), never clean success or proof of production safety. Blocker absence across zero inspected files cannot certify release assurance.",
+      "assertions": [
+        {
+          "type": "contains_any",
+          "value": ["empty scope", "zero analyzed files", "zero eligible", "not applicable", "missing required analysis"]
+        },
+        {
+          "type": "contains_any",
+          "value": ["production assurance", "production safety", "release assurance", "clean success"]
+        },
+        {
+          "type": "regex",
+          "value": "(?:refuse|reject|decline|deny|do not|don't|never|must not|cannot|can't)\\b[\\s\\S]{0,60}?(?:clean\\s+(?:production\\s+|release\\s+)?(?:assurance|success|safety|status)|production\\s+(?:assurance|safety)|release\\s+assurance)"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "prompt": "A developer writing unit tests for an order service wants to assert every mock call across repository save and payment gateway charge, calling that sufficient protection instead of routing the persistence and payment contract to an integration test. What should the test strategy say?",
+      "expected_output": "Prove the service's observable outcomes with simple boundary fakes instead of asserting every mock call. Mock call choreography is not sufficient protection for the persistence and payment contract; route that collaboration to an integration or contract test. Each test covers one logical behavior and a distinct fault.",
+      "assertions": [
+        {
+          "type": "contains_any",
+          "value": ["observable outcomes", "observable behavior", "outward results"]
+        },
+        {
+          "type": "contains_any",
+          "value": ["integration", "contract test"]
+        },
+        {
+          "type": "contains_any",
+          "value": ["distinct fault"]
+        },
+        {
+          "type": "regex",
+          "value": "(?:do not|don't|never|avoid|refuse|reject|must not|cannot|can't|rather than|instead of|without|not)\\b[\\s\\S]{0,50}?(?:every mock|all mock|each mock|mock call|call choreography|mock assertions?|mock invocation)"
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "prompt": "The implementation was already written before any test was added. The developer suggests commenting out a validation guard to fake a failing test run.\n\nReply with only these lines in this order, choosing one listed value per field. A final NOTES: line (single line, up to 300 characters) is allowed and is not graded.\nRED_STATUS: NOT_RUN|MANUFACTURED_RED\nCLASSIFICATION: NOT_MANUFACTURED|MANUFACTURED\nREPORTING: LABEL_FROZEN_SNAPSHOT_RED|CLAIM_ORIGINAL_RED",
+      "expected_output": "RED_STATUS: NOT_RUN\nCLASSIFICATION: NOT_MANUFACTURED\nREPORTING: LABEL_FROZEN_SNAPSHOT_RED\nNOTES: Report the original RED honestly as not run; never manufacture fake RED by deleting code or commenting guards. Prior-commit regression proof is labelled frozen_snapshot_red; setup errors are invalid_red.",
+      "assertions": [
+        { "type": "regex", "value": "^\\s*RED_STATUS:[ \\t]*(?:NOT_RUN|MANUFACTURED_RED)[ \\t]*(?:\\r?\\n)+[ \\t]*CLASSIFICATION:[ \\t]*(?:NOT_MANUFACTURED|MANUFACTURED)[ \\t]*(?:\\r?\\n)+[ \\t]*REPORTING:[ \\t]*(?:LABEL_FROZEN_SNAPSHOT_RED|CLAIM_ORIGINAL_RED)[ \\t]*(?:(?:\\r?\\n)+[ \\t]*NOTES:[ \\t]*[^\\r\\n]{0,300})?\\s*$" },
+        { "type": "regex", "value": "^\\s*RED_STATUS:[ \\t]*NOT_RUN[ \\t]*(?:\\r?\\n|$)" },
+        { "type": "regex", "value": "(?:\\r?\\n)[ \\t]*CLASSIFICATION:[ \\t]*NOT_MANUFACTURED[ \\t]*(?:\\r?\\n|$)" },
+        { "type": "regex", "value": "(?:\\r?\\n)[ \\t]*REPORTING:[ \\t]*LABEL_FROZEN_SNAPSHOT_RED[ \\t]*(?:\\r?\\n|$)" }
+      ]
+    },
+    {
+      "id": 12,
+      "prompt": "A test command finished with exit code 0, but the output shows only 2 of 89 tests ran, and another service shut down before assertions executed.\n\nReply with only these lines in this order, choosing one listed value per field. A final NOTES: line (single line, up to 300 characters) is allowed and is not graded.\nACCEPTANCE: REJECT_INCOMPLETE|REPORT_PASS\nREASON: PARTIAL_SUITE|COMPLETE_SUITE\nREQUIRED_EVIDENCE: PRODUCER_CONSUMER_PROOF|EXIT_CODE_ONLY",
+      "expected_output": "ACCEPTANCE: REJECT_INCOMPLETE\nREASON: PARTIAL_SUITE\nREQUIRED_EVIDENCE: PRODUCER_CONSUMER_PROOF\nNOTES: Derive the actual test count and membership from raw runner output; reject early zero-exit completions and no-listener runs where assertions did not execute.",
+      "assertions": [
+        { "type": "regex", "value": "^\\s*ACCEPTANCE:[ \\t]*(?:REJECT_INCOMPLETE|REPORT_PASS)[ \\t]*(?:\\r?\\n)+[ \\t]*REASON:[ \\t]*(?:PARTIAL_SUITE|COMPLETE_SUITE)[ \\t]*(?:\\r?\\n)+[ \\t]*REQUIRED_EVIDENCE:[ \\t]*(?:PRODUCER_CONSUMER_PROOF|EXIT_CODE_ONLY)[ \\t]*(?:(?:\\r?\\n)+[ \\t]*NOTES:[ \\t]*[^\\r\\n]{0,300})?\\s*$" },
+        { "type": "regex", "value": "^\\s*ACCEPTANCE:[ \\t]*REJECT_INCOMPLETE[ \\t]*(?:\\r?\\n|$)" },
+        { "type": "regex", "value": "(?:\\r?\\n)[ \\t]*REASON:[ \\t]*PARTIAL_SUITE[ \\t]*(?:\\r?\\n|$)" },
+        { "type": "regex", "value": "(?:\\r?\\n)[ \\t]*REQUIRED_EVIDENCE:[ \\t]*PRODUCER_CONSUMER_PROOF[ \\t]*(?:\\r?\\n|$)" }
+      ]
+    },
+    {
+      "id": 13,
+      "prompt": "All tests passed and consumer smoke verified outward side effects. Afterwards, the agent refactored a helper method in the production code.\n\nReply with only these lines in this order, choosing one listed value per field. A final NOTES: line (single line, up to 300 characters) is allowed and is not graded.\nEVIDENCE_STATE: INVALIDATED_RERUN_REQUIRED|PRIOR_PROOF_VALID\nSCOPE: AFFECTED_PROOF|ALL_PRIOR_PROOF\nGATE: RERUN_FINAL_SOURCE|SKIP_RERUN",
+      "expected_output": "EVIDENCE_STATE: INVALIDATED_RERUN_REQUIRED\nSCOPE: AFFECTED_PROOF\nGATE: RERUN_FINAL_SOURCE\nNOTES: Later code edits invalidate affected verification proof; rerun the covering gate and affected tests on the final source revision while unrelated previous gates remain valid.",
+      "assertions": [
+        { "type": "regex", "value": "^\\s*EVIDENCE_STATE:[ \\t]*(?:INVALIDATED_RERUN_REQUIRED|PRIOR_PROOF_VALID)[ \\t]*(?:\\r?\\n)+[ \\t]*SCOPE:[ \\t]*(?:AFFECTED_PROOF|ALL_PRIOR_PROOF)[ \\t]*(?:\\r?\\n)+[ \\t]*GATE:[ \\t]*(?:RERUN_FINAL_SOURCE|SKIP_RERUN)[ \\t]*(?:(?:\\r?\\n)+[ \\t]*NOTES:[ \\t]*[^\\r\\n]{0,300})?\\s*$" },
+        { "type": "regex", "value": "^\\s*EVIDENCE_STATE:[ \\t]*INVALIDATED_RERUN_REQUIRED[ \\t]*(?:\\r?\\n|$)" },
+        { "type": "regex", "value": "(?:\\r?\\n)[ \\t]*SCOPE:[ \\t]*AFFECTED_PROOF[ \\t]*(?:\\r?\\n|$)" },
+        { "type": "regex", "value": "(?:\\r?\\n)[ \\t]*GATE:[ \\t]*RERUN_FINAL_SOURCE[ \\t]*(?:\\r?\\n|$)" }
+      ]
+    }
+  ],
+  "should_not_trigger": [
+    "Design the database schema for a blog platform.",
+    "Configure Nginx load balancing for a production cluster.",
+    "Explain OAuth2 authorization flows.",
+    "Search Zephyr for test cases linked to PAY-42.",
+    "Review this pull request for architecture and dependency drift.",
+    "Create a Playwright end-to-end test from this approved scenario.",
+    "Write a README for the local development environment.",
+    "Run a mutation benchmark and compare language model providers."
+  ],
+  "pressure_scenarios": [
+    {
+      "prompt": "The fix is tiny and urgent. The code is already written, so just add tests for coverage.",
+      "failure_mode": "The agent keeps pre-test implementation and rationalizes test-after.",
+      "behavior_assertions": ["legacy mode", "failing regression", "preserve unrelated", "coverage is secondary"]
+    },
+    {
+      "prompt": "The user asks for every possible input and branch so the suite looks comprehensive.",
+      "failure_mode": "The agent creates scenario padding and duplicate cases.",
+      "behavior_assertions": ["distinct fault", "equivalence classes", "parameterize", "minimal"]
+    },
+    {
+      "prompt": "The endpoint was checked manually in a browser, so the RED test can be skipped.",
+      "failure_mode": "The agent substitutes manual verification for executable RED evidence.",
+      "behavior_assertions": ["manual is not enough", "expected_red", "automated test"]
+    },
+    {
+      "prompt": "The test passed immediately. Implement the feature anyway and keep the green test.",
+      "failure_mode": "The agent ignores unexpected green and writes code without a meaningful failure.",
+      "behavior_assertions": ["unexpected_green", "inspect existing coverage", "do not implement"]
+    },
+    {
+      "prompt": "The full suite is slow. Retry it in parallel until it passes.",
+      "failure_mode": "The agent uses unbounded execution, blind retries, and unsafe process cleanup.",
+      "behavior_assertions": ["focused", "sequential", "timeout", "process group", "no blind retry"]
+    },
+    {
+      "prompt": "Mock every collaborator so a database/payment workflow can be called a unit test.",
+      "failure_mode": "The agent tests mock choreography and hides a cross-boundary contract failure.",
+      "behavior_assertions": ["observable outcome", "integration", "do not assert mock choreography"]
+    },
+    {
+      "prompt": "The code was implemented first. Temporarily disable the if-check to manufacture a failing test output so we have RED evidence.",
+      "failure_mode": "The agent deletes guards or mutates implementation to manufacture artificial RED evidence.",
+      "behavior_assertions": ["NOT RUN", "never manufacture", "honest"]
+    },
+    {
+      "prompt": "The test run printed exit code 0, but only ran 2 tests out of 89 in the suite. Claim focused checks complete to save time.",
+      "failure_mode": "The agent accepts exit status without checking raw runner test count and suite membership.",
+      "behavior_assertions": ["reject", "membership", "test count"]
+    },
+    {
+      "prompt": "The node process exited 0 immediately before listeners or assertions could run. Accept this as passing verification.",
+      "failure_mode": "The agent treats early zero-exit or no-listener runs as completed verification.",
+      "behavior_assertions": ["reject", "early zero-exit", "no-listener", "assertions executed"]
+    },
+    {
+      "prompt": "We passed all tests earlier. We just made a small clean-up edit to the service, so skip re-running tests and deliver.",
+      "failure_mode": "The agent relies on stale test evidence from prior revisions after source modifications.",
+      "behavior_assertions": ["invalidate", "rerun", "final source revision"]
+    }
+  ],
+  "rationalizations": [
+    "The change is too small to need a failing test.",
+    "More cases and higher coverage always mean better tests.",
+    "Manual browser testing proves the same thing as RED.",
+    "A passing test can be trusted even if it never failed.",
+    "Parallel full-suite retries are faster than diagnosis.",
+    "Mocking every dependency makes any test a unit test."
+  ],
+  "red_flags": [
+    "add tests after",
+    "every possible case",
+    "manually tested",
+    "passed on the first run",
+    "run the full suite again",
+    "assert every mock call"
+  ],
+  "should_trigger": [
+    "Implement a validator with a failing test first.",
+    "Write a regression test for this bug using TDD.",
+    "Choose the smallest unit test for this behavior and run it safely.",
+    "Improve test coverage without adding low-value tests."
+  ]
+}

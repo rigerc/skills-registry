@@ -1,0 +1,30 @@
+<!-- AUTO-GENERATED from SKILL.md frontmatters — do not edit manually -->
+# specialists Skills Index
+
+## Keyword Match (only when user's request mentions these)
+
+| Skill | Match when user mentions |
+| ----- | ----------------------- |
+| specialist-ac-verifier | AC verification, acceptance criteria, scope creep, requirement coverage |
+| specialist-architecture-guard | architecture review, layer violation, design guard, boundary check |
+| specialist-aspm-correlator | aspm correlator, security posture, SAST DAST correlation, vulnerability triage, CI/CD security |
+| specialist-codebase-scout | codebase scout, blast radius, structural context, related files |
+| specialist-confluence-searcher | confluence search, design docs, internal documentation, test data lookup |
+| specialist-integration-test-generator | integration test generator, generate E2E test, Zephyr TC to test, Playwright test |
+| specialist-jira-analyst | jira analysis, analyze ticket, extract reproduce steps |
+| specialist-logic-hacker | logic hacker, business logic flaw, BOLA, IDOR, race condition, auth bypass |
+| specialist-mobile-reverser | mobile reverser, MASTG, frida, reverse engineering, apktool, jadx |
+| specialist-pr-commenter-batch | batch PR comments, post review findings, resolve PR threads, ADO comments, GitHub comments, GitLab comments |
+| specialist-pr-reviewer | PR review metadata, pull request summary, merge request summary, GitHub PR, GitLab MR, Azure DevOps PR |
+| specialist-security-reviewer | security review, vulnerability audit, OWASP check, security findings |
+| specialist-solution-diagrammer | solution diagrammer, draw architecture, drawio diagram, redraw diagram, architecture picture |
+| specialist-system-architect | deep dive, component design, architecture options, design trade-off, failure mode analysis |
+| specialist-tc-creator | create test case, Zephyr TC creation, test management, link TC to Jira |
+| **specialist-tdd-implementer** | tdd implementation, red green refactor, implement ac, quality unit test |
+| specialist-test-gap-finder | test gap, missing tests, coverage review, assertion quality |
+| **specialist-test-healer** | run the healer, heal this failure, classify test failure, heal verdict, repair failing test |
+| specialist-test-planner | test planner, executable test plan, plan e2e, scenarios from ac |
+| specialist-testid-inserter | testid inserter, insert test ids, close selector gaps, add data-testid, selector gaps |
+| specialist-zephyr-scanner | zephyr scanner, linked test cases, test coverage, TC discovery |
+
+> Load matched skills: `<SKILLS>/specialists/<skill>/SKILL.md`. Load ALL that match — the tier model already filters irrelevant ones.

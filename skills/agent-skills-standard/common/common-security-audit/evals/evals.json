@@ -1,0 +1,67 @@
+{
+  "skill_name": "common-security-audit",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Run a security audit on our Node.js backend codebase before we go live.",
+      "expected_output": "Execute 7-step audit: (1) Scan for hardcoded secrets (grep for API_KEY, PASSWORD, SECRET). (2) Check logs for PII (grep for password/token in console.log). (3) Map injection surfaces (raw string concat in queries). (4) Measure auth coverage (total routes vs guarded routes). (5) Run npm audit --audit-level=high. (6) Audit infrastructure. (7) Check for SSRF/path traversal/BOLA. Report with scoring.",
+      "assertions": [
+        {
+          "type": "contains",
+          "value": "secrets"
+        },
+        {
+          "type": "contains",
+          "value": "npm audit"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "We found a hardcoded database password in our Go source code. How severe is this?",
+      "expected_output": "P0 finding — Hardcoded Secrets: -25 deduction. Security score capped at 40/100. Immediate actions: (1) Rotate the credential NOW. (2) Use git filter-repo to purge from history. (3) Move to environment variable or secret manager. (4) Add pre-commit hook to prevent future secrets. Treat as compromised until rotation confirmed.",
+      "assertions": [
+        {
+          "type": "contains",
+          "value": "-25"
+        },
+        {
+          "type": "contains",
+          "value": "rotate"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "I want to check if our API has any IDOR vulnerabilities.",
+      "expected_output": "Run: grep -rE 'findById\\(|findOne\\(' . | grep -viE 'tenant|owner|user_id'. Any findById without owner filter is a BOLA/IDOR vulnerability (P0, -15). Also check: SSRF via user-controlled URLs in axios/fetch calls, path traversal in path.join calls without normalization.",
+      "assertions": [
+        {
+          "type": "contains",
+          "value": "owner"
+        },
+        {
+          "type": "contains",
+          "value": "IDOR"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Audit an executable authorization benchmark, not a production service. Its verifier checks cross-tenant read/update/delete and fresh-ID creation. A supposedly passing implementation forces the caller's tenant ID but createDocument then performs documents.set(docData.id, doc) without checking an existing record. A tenant-1 editor submits the ID of a tenant-2 document, overwrites it, and still passes every oracle check. Classify the benchmark defect without mislabeling the intentionally insecure starting fixture as a production breach.",
+      "expected_output": "[MAJOR] The authorization oracle misses a create-ID collision that destructively overwrites another tenant's resource. Why: A passing benchmark result does not establish tenant isolation across mutation paths. Add an adversarial collision check requiring preservation of the foreign document and a non-destructive create outcome; implementations must authorize existing identity or use tenant-qualified IDs. This is an oracle-integrity defect, not a demonstrated production exploit.",
+      "assertions": [
+        { "type": "contains", "value": "collision" },
+        { "type": "contains", "value": "tenant" }
+      ]
+    }
+  ],
+  "should_not_trigger": [
+    "Write a CSS animation for a loading spinner",
+    "Explain React's reconciliation algorithm",
+    "Configure TypeScript strict mode"
+  ],
+  "should_trigger": [
+    "Run a security audit on our Node.js backend codebase before we go live."
+  ]
+}

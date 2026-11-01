@@ -3,6 +3,2034 @@
   "registryId": "rigerc/skills-registry",
   "skills": [
     {
+      "id": "rigerc/skills-registry/agent-skills-standard/android/android-agp-upgrade",
+      "name": "android-agp-upgrade",
+      "path": "skills/agent-skills-standard/android/android-agp-upgrade/SKILL.md",
+      "description": "Upgrade an Android project to Android Gradle Plugin (AGP) 9. Use when migrating to AGP 9, updating Gradle build files, migrating to built-in Kotlin, or adopting the new AGP DSL."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/android/android-architecture",
+      "name": "android-architecture",
+      "path": "skills/agent-skills-standard/android/android-architecture/SKILL.md",
+      "description": "Apply Clean Architecture layering, modularization, and Unidirectional Data Flow in Android projects. Use when setting up project structure, placing code in layers, configuring feature/core modules, or implementing UDF patterns; defer Compose state and ViewModel/StateFlow implementation to their specific skills."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/android/android-background-work",
+      "name": "android-background-work",
+      "path": "skills/agent-skills-standard/android/android-background-work/SKILL.md",
+      "description": "Implement WorkManager and background processing correctly on Android. Use when creating Worker classes, scheduling tasks, choosing between WorkManager and Foreground Services, or setting up Hilt in workers; defer FCM and notification delivery to android-notifications."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/android/android-compose",
+      "name": "android-compose",
+      "path": "skills/agent-skills-standard/android/android-compose/SKILL.md",
+      "description": "Build high-performance declarative UI with Jetpack Compose. Use when writing Composable functions, optimizing recomposition, hoisting state, or working with LazyColumn and side effects; defer deep-link and navigation routing to android-navigation."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/android/android-compose-migration",
+      "name": "android-compose-migration",
+      "path": "skills/agent-skills-standard/android/android-compose-migration/SKILL.md",
+      "description": "Migrate an Android XML View to Jetpack Compose following a structured 10-step workflow. Use when converting XML layouts to Compose, setting up Compose in an existing View-based project, or incrementally adopting Compose."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/android/android-concurrency",
+      "name": "android-concurrency",
+      "path": "skills/agent-skills-standard/android/android-concurrency/SKILL.md",
+      "description": "Write correct coroutine scopes, lifecycle collection, and dispatcher injection in Android production code. Use for suspend functions, coroutine scopes, and dispatcher mechanics; defer ViewModel StateFlow/LiveData architecture, Fragment lifecycle recipes, persistence/notifications, and unit-test recipes to their specific skills."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/android/android-deployment",
+      "name": "android-deployment",
+      "path": "skills/agent-skills-standard/android/android-deployment/SKILL.md",
+      "description": "Configure release signing, R8 obfuscation, and App Bundle publishing for Android. Use when setting up signing configs, enabling minification, adding ProGuard keep rules, or preparing for Play Store submission."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/android/android-design-system",
+      "name": "android-design-system",
+      "path": "skills/agent-skills-standard/android/android-design-system/SKILL.md",
+      "description": "Enforce Material Design 3 theming and design token usage in Jetpack Compose. Use when implementing M3 components, color schemes, typography, or design tokens."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/android/android-di",
+      "name": "android-di",
+      "path": "skills/agent-skills-standard/android/android-di/SKILL.md",
+      "description": "Configure Hilt dependency injection with proper scoping, modules, and constructor injection in Android. Use when changing the production Hilt graph; defer test overrides, Room wiring, navigation-specific scopes, and generic DI explanations to their specific skills."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/android/android-edge-to-edge",
+      "name": "android-edge-to-edge",
+      "path": "skills/agent-skills-standard/android/android-edge-to-edge/SKILL.md",
+      "description": "Migrate a Jetpack Compose app to edge-to-edge display and fix system bar inset issues. Use when UI components are obscured by navigation/status bars, fixing IME insets, or enabling edge-to-edge for SDK 35+."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/android/android-legacy-navigation",
+      "name": "android-legacy-navigation",
+      "path": "skills/agent-skills-standard/android/android-legacy-navigation/SKILL.md",
+      "description": "Implement Jetpack Navigation Component with XML graphs and SafeArgs for type-safe fragment navigation. Use when working with XML-based navigation or SafeArgs in legacy Android projects; defer drawer and other UI-chrome work to UI skills."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/android/android-legacy-security",
+      "name": "android-legacy-security",
+      "path": "skills/agent-skills-standard/android/android-legacy-security/SKILL.md",
+      "description": "Harden Intent handling, WebView configuration, and FileProvider access in Android apps. Use when securing Intent extras, configuring WebViews, or exposing files via FileProvider; defer manifest export flags and generic Bundle typing to focused Android security guidance."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/android/android-legacy-state",
+      "name": "android-legacy-state",
+      "path": "skills/agent-skills-standard/android/android-legacy-state/SKILL.md",
+      "description": "Integrate ViewModel state with XML Views using Coroutines and Lifecycle on Android. Use when managing state with repeatOnLifecycle or lifecycle-aware coroutines in Fragment/Activity; defer Compose state and generic Flow design to their specific skills."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/android/android-navigation",
+      "name": "android-navigation",
+      "path": "skills/agent-skills-standard/android/android-navigation/SKILL.md",
+      "description": "Implement screen routes and deep-link/App Link routing with Jetpack Compose Navigation on Android. Use when the primary task is Compose route configuration or external URL routing; defer typed-route APIs, XML/fragments, generic back-stack, and transition questions to their specific navigation skills."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/android/android-navigation-3",
+      "name": "android-navigation-3",
+      "path": "skills/agent-skills-standard/android/android-navigation-3/SKILL.md",
+      "description": "Install and migrate to Jetpack Navigation 3. Use when implementing Navigation 3 patterns including NavDisplay, NavKey routes, deep links, multiple backstacks, scenes (dialogs, bottom sheets), or migrating from Navigation 2."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/android/android-navigation-type-safe",
+      "name": "android-navigation-type-safe",
+      "path": "skills/agent-skills-standard/android/android-navigation-type-safe/SKILL.md",
+      "description": "Implement type-safe Jetpack Navigation Compose routes using Kotlin serialization. Use only when defining typed Compose destinations and arguments; defer XML navigation, deep links, animations, and generic auth or bottom-navigation work."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/android/android-networking",
+      "name": "android-networking",
+      "path": "skills/agent-skills-standard/android/android-networking/SKILL.md",
+      "description": "Integrate Retrofit, OkHttp, and Kotlinx Serialization for type-safe API communication in Android. Use when building API clients, adding interceptors, or configuring network security—not standalone MockWebServer or API-test setup."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/android/android-notifications",
+      "name": "android-notifications",
+      "path": "skills/agent-skills-standard/android/android-notifications/SKILL.md",
+      "description": "Integrate Android app notifications using Firebase Cloud Messaging and NotificationCompat. Use when setting up FCM, notification channels, or client-side notification taps; defer Flutter, server sends, WorkManager orchestration, and generic Intent handling."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/android/android-performance",
+      "name": "android-performance",
+      "path": "skills/agent-skills-standard/android/android-performance/SKILL.md",
+      "description": "Optimize Android app startup, UI rendering, frame stability, and benchmark performance with Baseline Profiles, Macrobenchmark, and lazy initialization. Use when reducing startup time, diagnosing jank, or measuring rendering; defer Compose state API and test-only questions."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/android/android-persistence",
+      "name": "android-persistence",
+      "path": "skills/agent-skills-standard/android/android-persistence/SKILL.md",
+      "description": "Implement Room schemas and DataStore preferences with proper async patterns in Android. Use when the primary task is storage schema, DAO, migration, or preference isolation; defer auth-token/security storage, any CoroutineWorker/WorkManager task, Hilt graph wiring, and cache-policy design."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/android/android-resources",
+      "name": "android-resources",
+      "path": "skills/agent-skills-standard/android/android-resources/SKILL.md",
+      "description": "Organize Android strings, drawables, fonts, themes, localization, and concrete resource-backed Compose values such as MaterialTheme colors. Use for resource declarations and their direct UI lookup; defer design-system token architecture, network image loading, lint-rule configuration, and general Compose implementation."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/android/android-security",
+      "name": "android-security",
+      "path": "skills/agent-skills-standard/android/android-security/SKILL.md",
+      "description": "Secure Android data at rest and authentication secrets. Use for auth tokens, encrypted storage, and app-data isolation; defer WebView/Intent/FileProvider to android-legacy-security and TLS/certificate pinning to android-networking."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/android/android-state",
+      "name": "android-state",
+      "path": "skills/agent-skills-standard/android/android-state/SKILL.md",
+      "description": "Configure ViewModel state emission with StateFlow, SharedFlow, and sealed UiState classes in Android. Use for state modeling and sharing policies; defer generic lifecycle collection, navigation-event plumbing, Hilt injection, test code, and configuration-change recipes to their specific skills."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/android/android-testing",
+      "name": "android-testing",
+      "path": "skills/agent-skills-standard/android/android-testing/SKILL.md",
+      "description": "Write Android unit, Compose UI, and Hilt-integrated tests. Use when designing test behavior with MockK or coroutine test utilities; defer database/WorkManager-specific recipes to the owning feature skill."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/android/android-tooling",
+      "name": "android-tooling",
+      "path": "skills/agent-skills-standard/android/android-tooling/SKILL.md",
+      "description": "Configure Android static analysis with Detekt, Ktlint, and Android Lint for CI/CD quality gates. Use for Android-specific lint and quality tooling; defer generic Java Checkstyle, SonarQube, and standalone CI configuration."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/android/android-xml-views",
+      "name": "android-xml-views",
+      "path": "skills/agent-skills-standard/android/android-xml-views/SKILL.md",
+      "description": "Implement ViewBinding, RecyclerView, and XML layouts correctly on Android. Use when changing XML view binding or RecyclerView behavior, including its item animations and layout managers; defer standalone animation or layout-manager questions unrelated to RecyclerView."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/angular/angular-architecture",
+      "name": "angular-architecture",
+      "path": "skills/agent-skills-standard/angular/angular-architecture/SKILL.md",
+      "description": "Standards for Angular project structure, feature modules, and lazy loading. Use when structuring Angular apps, defining feature modules, or configuring lazy loading."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/angular/angular-components",
+      "name": "angular-components",
+      "path": "skills/agent-skills-standard/angular/angular-components/SKILL.md",
+      "description": "Build standalone Angular components with Signals inputs, OnPush change detection, Control Flow, and Smart/Dumb patterns. Use when building standalone Angular components, implementing @if/@for control flow, applying OnPush change detection, or implementing Signals in Angular components."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/angular/angular-dependency-injection",
+      "name": "angular-dependency-injection",
+      "path": "skills/agent-skills-standard/angular/angular-dependency-injection/SKILL.md",
+      "description": "Configure DI, inject() usage, and providers in Angular. Use when configuring Angular dependency injection, using inject(), or defining providers."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/angular/angular-directives-pipes",
+      "name": "angular-directives-pipes",
+      "path": "skills/agent-skills-standard/angular/angular-directives-pipes/SKILL.md",
+      "description": "Build custom Angular attribute directives, HostDirectives, and pure pipes. Use for Angular directive or pipe implementation, including custom attribute directives; defer React/CSS middleware and unrelated framework work."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/angular/angular-forms",
+      "name": "angular-forms",
+      "path": "skills/agent-skills-standard/angular/angular-forms/SKILL.md",
+      "description": "Build typed reactive forms with strict FormGroup typing, custom validators, and nonNullable controls in Angular. Use when implementing typed reactive forms, custom validators, or form control patterns."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/angular/angular-http-client",
+      "name": "angular-http-client",
+      "path": "skills/agent-skills-standard/angular/angular-http-client/SKILL.md",
+      "description": "Integrate HttpClient, Interceptors, and API interactions in Angular. Use when integrating HttpClient, writing interceptors, or handling API calls in Angular."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/angular/angular-performance",
+      "name": "angular-performance",
+      "path": "skills/agent-skills-standard/angular/angular-performance/SKILL.md",
+      "description": "Optimization techniques including OnPush, @defer, and Image Optimization. Use when optimizing Angular rendering, deferring blocks, or improving Core Web Vitals."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/angular/angular-routing",
+      "name": "angular-routing",
+      "path": "skills/agent-skills-standard/angular/angular-routing/SKILL.md",
+      "description": "Configure Angular Router with lazy-loaded routes, functional guards, and component input binding. Use when defining routes, lazy-loading features, creating route guards, or setting up resolvers."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/angular/angular-rxjs-interop",
+      "name": "angular-rxjs-interop",
+      "path": "skills/agent-skills-standard/angular/angular-rxjs-interop/SKILL.md",
+      "description": "Bridge Observables and Signals using toSignal and toObservable in Angular. Use when converting between RxJS Observables and Angular Signals."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/angular/angular-security",
+      "name": "angular-security",
+      "path": "skills/agent-skills-standard/angular/angular-security/SKILL.md",
+      "description": "Harden Angular apps against XSS, CSP violations, and unauthorized access. Use when implementing XSS protection, Content Security Policy, or auth guards in Angular."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/angular/angular-ssr",
+      "name": "angular-ssr",
+      "path": "skills/agent-skills-standard/angular/angular-ssr/SKILL.md",
+      "description": "Implement Angular SSR with hydration, TransferState caching, and per-route render modes. Use when configuring Angular Universal SSR, client hydration, static prerendering, or preventing double-fetching."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/angular/angular-state-management",
+      "name": "angular-state-management",
+      "path": "skills/agent-skills-standard/angular/angular-state-management/SKILL.md",
+      "description": "Implement application state with Angular Signals, computed derivations, and NgRx Signal Store. Use when implementing reactive state with signal(), computed(), effect(), or @ngrx/signals in Angular."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/angular/angular-style-guide",
+      "name": "angular-style-guide",
+      "path": "skills/agent-skills-standard/angular/angular-style-guide/SKILL.md",
+      "description": "Naming conventions, file structure, and coding standards for Angular projects. Use for Angular-specific naming and organization; defer language-only TypeScript naming questions."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/angular/angular-testing",
+      "name": "angular-testing",
+      "path": "skills/agent-skills-standard/angular/angular-testing/SKILL.md",
+      "description": "Write Angular component tests using TestBed, ComponentHarness, and HttpTestingController with proper signal input handling. Use when writing component tests, mocking HTTP calls, or testing signal inputs."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/angular/angular-tooling",
+      "name": "angular-tooling",
+      "path": "skills/agent-skills-standard/angular/angular-tooling/SKILL.md",
+      "description": "Angular CLI usage, code generation, build configuration, and bundle optimization. Use for Angular CLI/build tasks; defer standalone webpack configuration and generic test-runner setup."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/common/common-accessibility",
+      "name": "common-accessibility",
+      "path": "skills/agent-skills-standard/common/common-accessibility/SKILL.md",
+      "description": "Enforce WCAG 2.2 AA compliance with semantic HTML, ARIA roles, keyboard navigation, and color contrast standards for web UIs. Use when building interactive components, adding form labels, fixing focus traps, or auditing a11y compliance."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/common/common-agent-guardrails",
+      "name": "common-agent-guardrails",
+      "path": "skills/agent-skills-standard/common/common-agent-guardrails/SKILL.md",
+      "description": "Define deterministic guardrails for agent tool calls — protected paths, test-file locks during bug fixes, post-edit formatters, production approval gates, secret deny rules. Use when writing or reviewing a hook policy, or moving an always-do-X rule out of prose into enforcement."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/common/common-api-design",
+      "name": "common-api-design",
+      "path": "skills/agent-skills-standard/common/common-api-design/SKILL.md",
+      "description": "Apply REST API conventions — HTTP semantics, status codes, versioning, pagination, and OpenAPI standards for any framework. Use when designing endpoints, choosing HTTP methods, implementing pagination, or writing OpenAPI specs."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/common/common-architecture-audit",
+      "name": "common-architecture-audit",
+      "path": "skills/agent-skills-standard/common/common-architecture-audit/SKILL.md",
+      "description": "Audit structural debt, logic leakage, and monolithic components across Web, Mobile, and Backend codebases. Use when reviewing architecture, assessing tech debt, detecting logic in wrong layers, or identifying God classes."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/common/common-architecture-diagramming",
+      "name": "common-architecture-diagramming",
+      "path": "skills/agent-skills-standard/common/common-architecture-diagramming/SKILL.md",
+      "description": "Draws architecture diagrams as editable draw.io files with a fixed house style, C4 levels, evidence-tagged shapes, and optional multi-view identity checks. Use when producing a system context, container, component, deployment, data flow, sequence, state, or ERD, or redrawing an ASCII or Mermaid one."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/common/common-best-practices",
+      "name": "common-best-practices",
+      "path": "skills/agent-skills-standard/common/common-best-practices/SKILL.md",
+      "description": "Enforce SOLID principles, guard-clause style, function size limits, and intention-revealing naming across all languages. Use when refactoring for readability, applying clean-code patterns, reviewing naming conventions, or reducing function complexity."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/common/common-book-to-skill",
+      "name": "common-book-to-skill",
+      "path": "skills/agent-skills-standard/common/common-book-to-skill/SKILL.md",
+      "description": "Turns authorized books into portable skill references with rights scoping, source mapping, synthesis, fidelity checks, and handoff. Use when asked to book to skill, book-to-skill, or convert a book to a skill."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/common/common-code-review",
+      "name": "common-code-review",
+      "path": "skills/agent-skills-standard/common/common-code-review/SKILL.md",
+      "description": "Conduct high-quality, persona-driven code reviews. Use when reviewing PRs, critiquing code quality, or analyzing changes for team feedback."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/common/common-context-optimization",
+      "name": "common-context-optimization",
+      "path": "skills/agent-skills-standard/common/common-context-optimization/SKILL.md",
+      "description": "Manage context and prompt-cache costs without losing task state. Use for context management, orchestration cost, token budgets, large tool outputs, cache misses, or long-running conversations."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/common/common-dast-tooling",
+      "name": "common-dast-tooling",
+      "path": "skills/agent-skills-standard/common/common-dast-tooling/SKILL.md",
+      "description": "Standardize dynamic application security testing for backend APIs, frontend web apps, and mobile clients. Covers ZAP, Nuclei, Nikto, sqlmap, ffuf, browser automation, mobile proxy interception, and AI-driven curl probes. Use when advising on or running dynamic security scans on local/staging environments."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/common/common-debugging",
+      "name": "common-debugging",
+      "path": "skills/agent-skills-standard/common/common-debugging/SKILL.md",
+      "description": "Troubleshoot systematically using the Scientific Method. Use when debugging crashes, tracing errors, diagnosing unexpected behavior, or investigating exceptions."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/common/common-decision-discipline",
+      "name": "common-decision-discipline",
+      "path": "skills/agent-skills-standard/common/common-decision-discipline/SKILL.md",
+      "description": "Right-size, ground, and gate SDLC decisions with SNC-sized depth, said-vs-assumed write-back, an evidence ledger, honest option cards, recorded approval, and self-review. Use when running brainstorm-feature, plan-feature, design-solution, or system-design-session."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/common/common-documentation",
+      "name": "common-documentation",
+      "path": "skills/agent-skills-standard/common/common-documentation/SKILL.md",
+      "description": "Write effective code comments, READMEs, and technical documentation following intent-first principles. Use when adding comments, writing docstrings, creating READMEs, or updating any documentation."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/common/common-error-handling",
+      "name": "common-error-handling",
+      "path": "skills/agent-skills-standard/common/common-error-handling/SKILL.md",
+      "description": "Cross-cutting standards for error design, response shapes, error codes, and boundary placement across API, domain, and infrastructure layers. Use when defining error hierarchies, wrapping exceptions, building standardized error responses, or placing error boundaries in layered architectures."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/common/common-exploit-verification",
+      "name": "common-exploit-verification",
+      "path": "skills/agent-skills-standard/common/common-exploit-verification/SKILL.md",
+      "description": "Enforce \"No Exploit, No Report\" policy with PoC construction standards, false-positive filtering, and evidence collection per vulnerability class across backend, frontend, and mobile. Use when validating security findings, constructing exploit proofs, filtering false positives, or writing pentest findings."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/common/common-family-ux",
+      "name": "common-family-ux",
+      "path": "skills/agent-skills-standard/common/common-family-ux/SKILL.md",
+      "description": "Judge and shape UI/UX for products used by parents and young children - audience fit, accessibility, safety and trust, comfort, consistency, and human feel. Use when reviewing or designing family, parenting, or kids app screens on phone or tablet."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/common/common-feedback-reporter",
+      "name": "common-feedback-reporter",
+      "path": "skills/agent-skills-standard/common/common-feedback-reporter/SKILL.md",
+      "description": "Pre-write audit for skill violations: checks planned code against loaded skill anti-patterns before any file write. Use when writing Flutter/Dart/TS code or editing SKILL.md files with active project skills. Load as composite; on auto-fixed violation, also load +common/common-learning-log."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/common/common-git-collaboration",
+      "name": "common-git-collaboration",
+      "path": "skills/agent-skills-standard/common/common-git-collaboration/SKILL.md",
+      "description": "Enforce version control best practices for commits, branching, pull requests, and repository security. Use when writing commits, creating branches, merging, or opening pull requests."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/common/common-learning-log",
+      "name": "common-learning-log",
+      "path": "skills/agent-skills-standard/common/common-learning-log/SKILL.md",
+      "description": "Append a learning entry to AGENTS_LEARNING.md when an AI agent makes a mistake. Auto-activates after a pre-write audit auto-fix, a retrospective correction loop, or a mid-session user correction. Use when: mistake, wrong, correction, my bad, agent error, learning log."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/common/common-llm-security",
+      "name": "common-llm-security",
+      "path": "skills/agent-skills-standard/common/common-llm-security/SKILL.md",
+      "description": "OWASP LLM Top 10 (2025) audit checklist for AI applications, agent tools, RAG pipelines, and prompt construction. Use when performing any security review touching LLM client code, prompt templates, agent tools, or vector stores."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/common/common-mobile-animation",
+      "name": "common-mobile-animation",
+      "path": "skills/agent-skills-standard/common/common-mobile-animation/SKILL.md",
+      "description": "Apply motion design principles for mobile apps covering timing curves, transitions, gestures, and performance-conscious animations. Use when implementing screen transitions, gesture-driven interactions, shared-element animations, or optimizing animation frame rates on iOS, Android, or Flutter."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/common/common-mobile-ux-core",
+      "name": "common-mobile-ux-core",
+      "path": "skills/agent-skills-standard/common/common-mobile-ux-core/SKILL.md",
+      "description": "Enforce universal mobile UX principles for touch-first interfaces including touch targets, safe areas, and mobile-specific interaction patterns. Use when building mobile screens, handling touch interactions, or validating safe area compliance."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/common/common-mobile-visual-testing",
+      "name": "common-mobile-visual-testing",
+      "path": "skills/agent-skills-standard/common/common-mobile-visual-testing/SKILL.md",
+      "description": "Standardizes mobile UI audits, performance/scroll checks, RTL verification, and state-specific testing on iOS/Android."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/common/common-observability",
+      "name": "common-observability",
+      "path": "skills/agent-skills-standard/common/common-observability/SKILL.md",
+      "description": "Enforce structured JSON logging, OpenTelemetry distributed tracing, and RED metrics across backend services. Use when adding request correlation, setting up tracing spans, defining SLO burn-rate alerts, or instrumenting middleware."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/common/common-operator-profile",
+      "name": "common-operator-profile",
+      "path": "skills/agent-skills-standard/common/common-operator-profile/SKILL.md",
+      "description": "Infer the requesting operator's technical fluency from message content (never ask directly) and adapt register — business, hybrid, or technical — across SDLC workflow output. Use when starting sdlc, brainstorm-feature, plan-feature, verify-work, publish-notes, or session-report, or whenever a request's phrasing signals a non-technical or cross-stack operator."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/common/common-owasp",
+      "name": "common-owasp",
+      "path": "skills/agent-skills-standard/common/common-owasp/SKILL.md",
+      "description": "OWASP Top 10 audit checklists for Web Applications (2021), APIs (2023), and Mobile (2024). Use when performing any security review, PR review, or codebase audit touching web, mobile, or API code."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/common/common-pentest-methodology",
+      "name": "common-pentest-methodology",
+      "path": "skills/agent-skills-standard/common/common-pentest-methodology/SKILL.md",
+      "description": "PTES-aligned penetration testing methodology for backend, frontend, and mobile. Provides attack taxonomy, exploit techniques per vulnerability class, and platform-specific test matrices. Use when executing pentest workflow, planning security assessments, mapping attack surfaces, or building threat models."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/common/common-performance-engineering",
+      "name": "common-performance-engineering",
+      "path": "skills/agent-skills-standard/common/common-performance-engineering/SKILL.md",
+      "description": "Enforce universal standards for high-performance development. Use when profiling bottlenecks, reducing latency, fixing memory leaks, improving throughput, or optimizing algorithm complexity in any language."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/common/common-protocol-enforcement",
+      "name": "common-protocol-enforcement",
+      "path": "skills/agent-skills-standard/common/common-protocol-enforcement/SKILL.md",
+      "description": "Enforce Red-Team verification and adversarial protocol audit. Use only when verifying completion, performing self-scans, or checking protocol violations; do not activate for ordinary implementation, configuration, or unit-test requests."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/common/common-review-policy",
+      "name": "common-review-policy",
+      "path": "skills/agent-skills-standard/common/common-review-policy/SKILL.md",
+      "description": "Define a repository review policy fixing what each review pass checks, how severities rank, which paths are skipped, the nit cap, and who approves. Use when review findings feel inconsistent or noisy, or when tuning an automated reviewer."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/common/common-sdlc-metrics",
+      "name": "common-sdlc-metrics",
+      "path": "skills/agent-skills-standard/common/common-sdlc-metrics/SKILL.md",
+      "description": "Define delivery metrics from authorized observations and labeled artifact/git proxies; use for DORA, SDLC outcomes, reporting, or control bands."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/common/common-security-audit",
+      "name": "common-security-audit",
+      "path": "skills/agent-skills-standard/common/common-security-audit/SKILL.md",
+      "description": "Probe for hardcoded secrets, injection surfaces, unguarded routes, business logic flaws, and platform-specific weaknesses across backend (Node, Go, Java, Python, Rust), frontend (React, Angular, Vue), and mobile (iOS, Android, Flutter) codebases. Use when performing security audits, vulnerability scans, secrets detection, or penetration testing."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/common/common-security-standards",
+      "name": "common-security-standards",
+      "path": "skills/agent-skills-standard/common/common-security-standards/SKILL.md",
+      "description": "Enforce universal security protocols for safe, resilient software. Use when implementing authentication, encryption, authorization, input validation, secret management, or any security-sensitive feature across any language or framework."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/common/common-session-retrospective",
+      "name": "common-session-retrospective",
+      "path": "skills/agent-skills-standard/common/common-session-retrospective/SKILL.md",
+      "description": "Review session corrections, trigger misses and recurring agent mistakes to propose targeted skill-library changes. Use for retrospective, rework or routing-gap analysis before registry edits; load +common/common-learning-log for redacted evidence."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/common/common-skill-creator",
+      "name": "common-skill-creator",
+      "path": "skills/agent-skills-standard/common/common-skill-creator/SKILL.md",
+      "description": "Standardizes the creation and evaluation of high-density Agent Skills (Claude, Cursor, Windsurf). Ensures skills achieve high Activation (specificity/completeness) and Implementation (conciseness/actionability) scores. Use when: writing or auditing SKILL.md, improving trigger accuracy, or refactoring skills to reduce redundancy and maximize token ROI."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/common/common-software-requirements",
+      "name": "common-software-requirements",
+      "path": "skills/agent-skills-standard/common/common-software-requirements/SKILL.md",
+      "description": "Standardize SRS and FRS specifications for technical behavior, interfaces, data contracts, quality constraints, and verification mapping. Use when writing SRS, functional specification, system behavior requirements, API/data contracts, or non-functional thresholds."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/common/common-stitch-design",
+      "name": "common-stitch-design",
+      "path": "skills/agent-skills-standard/common/common-stitch-design/SKILL.md",
+      "description": "Drive Google Stitch over MCP safely - read screens, write and lint DESIGN.md, create design systems, and fix designs through variants instead of overwriting. Use when reviewing, editing, or generating Stitch screens or DESIGN.md files."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/common/common-store-changelog",
+      "name": "common-store-changelog",
+      "path": "skills/agent-skills-standard/common/common-store-changelog/SKILL.md",
+      "description": "Generate user-facing release notes for the App Store and Google Play from git history (App Store <=4000 chars, Google Play <=500). Use when generating release notes, app store changelog, play store release, or \"what's new\" text for a mobile app."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/common/common-subagent-driven-development",
+      "name": "common-subagent-driven-development",
+      "path": "skills/agent-skills-standard/common/common-subagent-driven-development/SKILL.md",
+      "description": "Execute an approved implementation plan at the context boundary that preserves required independence and review. Use when implementing plans, executing multi-task PRs, choosing between main-loop and dispatched execution, or transitioning from planning to implementation."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/common/common-task-complexity-routing",
+      "name": "common-task-complexity-routing",
+      "path": "skills/agent-skills-standard/common/common-task-complexity-routing/SKILL.md",
+      "description": "Scores a task on Spread, Novelty, Centrality (0-6), routes the tier to autonomy, verification, review and model tier, and gives provider-neutral capability/effort guidance that preserves configured profiles. Use for sizing, model routing, LLM model selection, thinking level or model tier."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/common/common-tdd",
+      "name": "common-tdd",
+      "path": "skills/agent-skills-standard/common/common-tdd/SKILL.md",
+      "description": "Guides quality-first TDD for new behavior, bug fixes, and test changes. Selects the smallest test layer, proves a distinct regression risk, and runs bounded RED-GREEN-REFACTOR verification."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/common/common-telemetry",
+      "name": "common-telemetry",
+      "path": "skills/agent-skills-standard/common/common-telemetry/SKILL.md",
+      "description": "Enforce session-cost telemetry and execution-metadata reporting. Use when explicitly invoking get_session_cost, reporting token/cost usage, applying telemetry or cost guidance during a workflow handoff, or writing artifacts/session-cost.md at a workflow terminal state."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/common/common-ui-design",
+      "name": "common-ui-design",
+      "path": "skills/agent-skills-standard/common/common-ui-design/SKILL.md",
+      "description": "Design distinctive, production-grade frontend UI with bold aesthetic choices. Use when building web components, pages, interfaces, dashboards, or applications in any framework (React, Next.js, Angular, Vue, HTML/CSS)."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/common/common-web-visual-testing",
+      "name": "common-web-visual-testing",
+      "path": "skills/agent-skills-standard/common/common-web-visual-testing/SKILL.md",
+      "description": "Standardizes visual audits, responsive design, and behavioral testing for web apps. Use to verify a web UI fix or cross-browser behavior; defer backend API refactors, Playwright installation/tooling setup, and Appium/mobile automation."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/common/common-workflow-writing",
+      "name": "common-workflow-writing",
+      "path": "skills/agent-skills-standard/common/common-workflow-writing/SKILL.md",
+      "description": "Rules for writing concise, token-efficient workflow and skill files. Prevents over-building that requires costly optimization passes. Use when creating or editing workflow files, SKILL.md files, or new skill definitions."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/cybersecurity/cyber-authorization",
+      "name": "cyber-authorization",
+      "path": "skills/agent-skills-standard/cybersecurity/cyber-authorization/SKILL.md",
+      "description": "Validates cyber exercise authorization, scope, exclusions, runtime controls, expiry, stop and restart gates. Use when planning or reviewing authorized security activity, scope drift, or unsupported execution environments."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/cybersecurity/cyber-detection-engineering",
+      "name": "cyber-detection-engineering",
+      "path": "skills/agent-skills-standard/cybersecurity/cyber-detection-engineering/SKILL.md",
+      "description": "Designs and reviews detections from telemetry prerequisites, correlation logic, Sigma metadata, severity, status, and benign cases. Use for detection rules, Sigma review, analytic coverage, or tuning; not generic logging advice or live deployment."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/cybersecurity/cyber-detection-validation",
+      "name": "cyber-detection-validation",
+      "path": "skills/agent-skills-standard/cybersecurity/cyber-detection-validation/SKILL.md",
+      "description": "Validates defensive controls with paired authorized action and observation evidence, distinguishing blocked, prevented, detected, responded, and telemetry-gap outcomes. Use for purple-team validation design or offline fixture review; not unsanctioned testing or production efficacy claims."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/cybersecurity/cyber-engagement-planning",
+      "name": "cyber-engagement-planning",
+      "path": "skills/agent-skills-standard/cybersecurity/cyber-engagement-planning/SKILL.md",
+      "description": "Drafts bounded cybersecurity engagement plans with objectives, scope, exclusions, roles, authorization, runtime controls, evidence, stop criteria, and restart gates. Use when preparing an exercise or assessment plan before execution."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/cybersecurity/cyber-evidence",
+      "name": "cyber-evidence",
+      "path": "skills/agent-skills-standard/cybersecurity/cyber-evidence/SKILL.md",
+      "description": "Captures redacted, provenance-aware cybersecurity observations with shared status fields, independent ground truth, and honest limitations. Use when recording exercise evidence, findings, validation results, or security-review handoffs."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/cybersecurity/cyber-exercise-adjudication",
+      "name": "cyber-exercise-adjudication",
+      "path": "skills/agent-skills-standard/cybersecurity/cyber-exercise-adjudication/SKILL.md",
+      "description": "Adjudicates authorized exercise outcomes against independently held ground truth, redacted evidence, and explicit status boundaries. Use when comparing observations, resolving discrepancies, or preparing evidence-led security-review handoffs."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/cybersecurity/cyber-exercise-control",
+      "name": "cyber-exercise-control",
+      "path": "skills/agent-skills-standard/cybersecurity/cyber-exercise-control/SKILL.md",
+      "description": "Controls authorized cybersecurity exercises through inject scheduling, safety gates, stop and restart decisions, communications, and synthetic-data boundaries. Use when serving as exercise control or white-team coordinator, not as compliance assessor or whitehat operator."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/cybersecurity/cyber-framework-mapping",
+      "name": "cyber-framework-mapping",
+      "path": "skills/agent-skills-standard/cybersecurity/cyber-framework-mapping/SKILL.md",
+      "description": "Maintains sparse, reviewable cybersecurity framework edges with versioned IDs, relation, rationale, source, and review status. Use when mapping exercise observations or procedures to NIST, ATT&CK, or another named framework."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/cybersecurity/cyber-incident-triage",
+      "name": "cyber-incident-triage",
+      "path": "skills/agent-skills-standard/cybersecurity/cyber-incident-triage/SKILL.md",
+      "description": "NIST SP 800-61r3-aligned incident triage that preserves evidence, separates analysis from authorization, and records status. Use for incident intake, severity assessment, containment readiness, or evidence preservation; not generic debugging or unscoped response."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/cybersecurity/cyber-lab-validation",
+      "name": "cyber-lab-validation",
+      "path": "skills/agent-skills-standard/cybersecurity/cyber-lab-validation/SKILL.md",
+      "description": "Governs bounded cybersecurity validation in isolated disposable lab environments with explicit per-action gates, synthetic-data boundaries, paired evidence, and teardown verification. Use when validating authorized security claims in disposable labs; not for operational attacks or production testing."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/cybersecurity/cyber-scoped-validation",
+      "name": "cyber-scoped-validation",
+      "path": "skills/agent-skills-standard/cybersecurity/cyber-scoped-validation/SKILL.md",
+      "description": "Validates bounded cybersecurity exercise observations against approved scope, expected behavior, runtime controls, and redacted evidence. Use when performing safe offline validation or authorized runtime checks with explicit stop and status gates."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/cybersecurity/cyber-threat-hunting",
+      "name": "cyber-threat-hunting",
+      "path": "skills/agent-skills-standard/cybersecurity/cyber-threat-hunting/SKILL.md",
+      "description": "Conducts hypothesis-driven, evidence-preserving threat hunts with bounded negative conclusions and telemetry-gap handling. Use for hunt hypotheses, scoped offline analysis, or analytic follow-up; not unscoped scanning, malware execution, or generic intelligence summaries."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/dart/dart-best-practices",
+      "name": "dart-best-practices",
+      "path": "skills/agent-skills-standard/dart/dart-best-practices/SKILL.md",
+      "description": "Dart code quality conventions: naming, const/final/var hierarchy, single quotes, trailing commas, collection idioms, tear-offs, and import organization. Use only for Dart style-focused changes or reviews; never activate for configuration-only lint setup, unrelated feature work, or widget tests."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/dart/dart-language",
+      "name": "dart-language",
+      "path": "skills/agent-skills-standard/dart/dart-language/SKILL.md",
+      "description": "Dart 3.x language feature standards: null safety, records, sealed classes, switch pattern matching, extensions, and async/await. Use when using !, ?., ??, late, sealed classes, record types, switch expressions, or async patterns — and before introducing any new Dart 3.x construct to confirm the modern idiomatic approach."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/dart/dart-tooling",
+      "name": "dart-tooling",
+      "path": "skills/agent-skills-standard/dart/dart-tooling/SKILL.md",
+      "description": "Dart static analysis, linting, formatting, and code-generation standards. Use only for analysis_options.yaml, build_runner, dart format, DCM, lefthook, or analyze/format CI failures; defer Dart language, null-safety, Flutter tests, and generic CI questions."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/database/database-hana",
+      "name": "database-hana",
+      "path": "skills/agent-skills-standard/database/database-hana/SKILL.md",
+      "description": "Apply SAP HANA database standards for SQL parameterization, in-memory engine optimization, dynamic IN query chunking, column aliasing on joins, and datatype casting. Use when writing SQL for SAP HANA, optimizing HANA queries, or diagnosing HANA driver errors."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/database/database-migrations",
+      "name": "database-migrations",
+      "path": "skills/agent-skills-standard/database/database-migrations/SKILL.md",
+      "description": "Plan additive, zero-downtime schema migrations with rollout, backfill, and rollback awareness. Use when renaming columns, backfilling data, or shipping risky database changes."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/database/database-mongodb",
+      "name": "database-mongodb",
+      "path": "skills/agent-skills-standard/database/database-mongodb/SKILL.md",
+      "description": "Apply MongoDB data-modeling, indexing, and query rules from access patterns. Use when designing schemas, choosing embed vs reference, or tuning MongoDB query behavior."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/database/database-postgresql",
+      "name": "database-postgresql",
+      "path": "skills/agent-skills-standard/database/database-postgresql/SKILL.md",
+      "description": "Apply PostgreSQL standards for migrations, indexing, transactions, and ORM boundaries. Use when editing entities, Prisma schema, migrations, RLS, or query-performance work for PostgreSQL."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/database/database-query-performance",
+      "name": "database-query-performance",
+      "path": "skills/agent-skills-standard/database/database-query-performance/SKILL.md",
+      "description": "Diagnose database latency with explain plans, index ownership, and query-shape review. Use when a query is slow, an index is missing, or scans and N+1 patterns appear."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/database/database-redis",
+      "name": "database-redis",
+      "path": "skills/agent-skills-standard/database/database-redis/SKILL.md",
+      "description": "Optimize Redis as cache and coordination infrastructure with TTL, eviction, and latency-aware key design. Use when implementing Redis caching, key invalidation, or Redis performance work."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/database/database-schema-design",
+      "name": "database-schema-design",
+      "path": "skills/agent-skills-standard/database/database-schema-design/SKILL.md",
+      "description": "Design relational or document schemas from access patterns, cardinality, and lifecycle. Use when modeling entities, choosing embed vs normalize, or shaping schema boundaries before implementation."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/database/database-transactions",
+      "name": "database-transactions",
+      "path": "skills/agent-skills-standard/database/database-transactions/SKILL.md",
+      "description": "Define transaction boundaries, locking, and consistency guarantees for multi-step writes. Use when designing atomic operations, retries, idempotency, or concurrent write behavior."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/flutter/flutter-auto-route-navigation",
+      "name": "flutter-auto-route-navigation",
+      "path": "skills/agent-skills-standard/flutter/flutter-auto-route-navigation/SKILL.md",
+      "description": "Implement typed routing, nested routes, and auth guards using auto_route in Flutter. Use when the task explicitly uses auto_route or its generated router; defer generic deep-link setup and other routing libraries."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/flutter/flutter-bloc-state-management",
+      "name": "flutter-bloc-state-management",
+      "path": "skills/agent-skills-standard/flutter/flutter-bloc-state-management/SKILL.md",
+      "description": "Implement BLoC/Cubit state, events, transitions, and async concurrency in Flutter. Use for BLoC/Cubit feature logic, debounced/cancellable events, state rendering, or bloc tests—not generic widget-only work."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/flutter/flutter-cicd",
+      "name": "flutter-cicd",
+      "path": "skills/agent-skills-standard/flutter/flutter-cicd/SKILL.md",
+      "description": "Set up CI/CD pipelines for Flutter apps. Use when configuring automated testing, build, or deployment workflows with GitHub Actions or Fastlane."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/flutter/flutter-concurrency",
+      "name": "flutter-concurrency",
+      "path": "skills/agent-skills-standard/flutter/flutter-concurrency/SKILL.md",
+      "description": "Execute long-running tasks in background isolates to keep the UI responsive. Use when performing heavy computations, parsing large datasets, or choosing between async/await and isolates."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/flutter/flutter-dependency-injection",
+      "name": "flutter-dependency-injection",
+      "path": "skills/agent-skills-standard/flutter/flutter-dependency-injection/SKILL.md",
+      "description": "Configure service locator setup using injectable and get_it in Flutter. Use when wiring dependency injection with get_it or injectable."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/flutter/flutter-design-system",
+      "name": "flutter-design-system",
+      "path": "skills/agent-skills-standard/flutter/flutter-design-system/SKILL.md",
+      "description": "Enforce Design Language System adherence in Flutter. Use when implementing design tokens, preventing hardcoded colors/spacing, or building a DLS."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/flutter/flutter-error-handling",
+      "name": "flutter-error-handling",
+      "path": "skills/agent-skills-standard/flutter/flutter-error-handling/SKILL.md",
+      "description": "Implement functional repository error recovery with Either/Failure patterns in Flutter. Use when handling exceptions or dartz Either types in data flows; defer UI-only retry buttons."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/flutter/flutter-feature-based-clean-architecture",
+      "name": "flutter-feature-based-clean-architecture",
+      "path": "skills/agent-skills-standard/flutter/flutter-feature-based-clean-architecture/SKILL.md",
+      "description": "Organize Flutter apps with modular feature-based clean architecture. Use when creating features under lib/features/ with domain, data, and presentation layers. Do not use for test-only, BlocBuilder, navigation, or spinner requests."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/flutter/flutter-getx-navigation",
+      "name": "flutter-getx-navigation",
+      "path": "skills/agent-skills-standard/flutter/flutter-getx-navigation/SKILL.md",
+      "description": "Implement context-less navigation, named routes, and middleware using GetX. Use when building navigation with GetX routing in Flutter."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/flutter/flutter-getx-state-management",
+      "name": "flutter-getx-state-management",
+      "path": "skills/agent-skills-standard/flutter/flutter-getx-state-management/SKILL.md",
+      "description": "Implement reactive state with GetX controllers, bindings, and observables in Flutter. Use when managing app state with GetxController, Obx, GetBuilder, or dependency lifecycle—not unit tests for existing controllers."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/flutter/flutter-go-router-navigation",
+      "name": "flutter-go-router-navigation",
+      "path": "skills/agent-skills-standard/flutter/flutter-go-router-navigation/SKILL.md",
+      "description": "Implement typed routes, redirection, and guards using go_router in Flutter. Use when changing go_router navigation; defer widget tests that merely assert redirect behavior and defer slide/transition animation work."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/flutter/flutter-idiomatic-flutter",
+      "name": "flutter-idiomatic-flutter",
+      "path": "skills/agent-skills-standard/flutter/flutter-idiomatic-flutter/SKILL.md",
+      "description": "Compose modern Flutter layouts and widgets idiomatically. Use for widget trees, layout constraints, mounted safety, and UI composition—not BLoC state management, routing, dependency injection, or tests."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/flutter/flutter-layer-based-clean-architecture",
+      "name": "flutter-layer-based-clean-architecture",
+      "path": "skills/agent-skills-standard/flutter/flutter-layer-based-clean-architecture/SKILL.md",
+      "description": "Enforce inward dependency flow, pure domain layers, and DTO-to-entity mapping in Flutter DDD architecture. Use when structuring layers or boundaries; defer navigation-only routing and feature implementation such as notifications."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/flutter/flutter-localization",
+      "name": "flutter-localization",
+      "path": "skills/agent-skills-standard/flutter/flutter-localization/SKILL.md",
+      "description": "Add Flutter translation assets, locale initialization, localized strings, locale switching, and plurals with easy_localization and CSV or JSON files. Use for Flutter i18n work; not RTL-only layout or locale-specific date formatting."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/flutter/flutter-navigation",
+      "name": "flutter-navigation",
+      "path": "skills/agent-skills-standard/flutter/flutter-navigation/SKILL.md",
+      "description": "Implement route configuration, go_router/deep linking, and named routes in Flutter. Use for route declarations, route guards, and URL-to-screen mapping; defer transition-only animation, state-transfer/BLoC questions, auto_route-specific setup, and generic app-bar controls."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/flutter/flutter-notifications",
+      "name": "flutter-notifications",
+      "path": "skills/agent-skills-standard/flutter/flutter-notifications/SKILL.md",
+      "description": "Integrate push and local notifications using FCM and flutter_local_notifications in Flutter. Use for notification delivery or presentation; defer badge-only UI and notification-service tests."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/flutter/flutter-performance",
+      "name": "flutter-performance",
+      "path": "skills/agent-skills-standard/flutter/flutter-performance/SKILL.md",
+      "description": "Optimize Flutter widget rebuilds, memory usage, rendering, and scrolling performance. Use when diagnosing jank, reducing rebuilds, or improving list performance—not performance tests, monitoring setup, or API optimization."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/flutter/flutter-retrofit-networking",
+      "name": "flutter-retrofit-networking",
+      "path": "skills/agent-skills-standard/flutter/flutter-retrofit-networking/SKILL.md",
+      "description": "Build type-safe HTTP networking with Dio and Retrofit including auth interceptors in Flutter. Use when integrating REST APIs with Dio or Retrofit."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/flutter/flutter-riverpod-state-management",
+      "name": "flutter-riverpod-state-management",
+      "path": "skills/agent-skills-standard/flutter/flutter-riverpod-state-management/SKILL.md",
+      "description": "Implement reactive state management using Riverpod 3.x with code generation in Flutter. Use when defining providers, building AsyncNotifiers, or overriding providers in tests."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/flutter/flutter-security",
+      "name": "flutter-security",
+      "path": "skills/agent-skills-standard/flutter/flutter-security/SKILL.md",
+      "description": "Secure Flutter token/PII storage, build-time secrets, network trust, and release hardening using OWASP Mobile practices. Use for secure storage, secret injection, certificate pinning, jailbreak/root risk, or release builds—not generic form validation, API error handling, auth-provider setup, or tests of existing security services."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/flutter/flutter-testing",
+      "name": "flutter-testing",
+      "path": "skills/agent-skills-standard/flutter/flutter-testing/SKILL.md",
+      "description": "Write unit, widget, and integration tests with robot patterns, widget keys, and Patrol in Flutter. Use when implementing test behavior; defer CI-only configuration without test changes."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/flutter/flutter-widgets",
+      "name": "flutter-widgets",
+      "path": "skills/agent-skills-standard/flutter/flutter-widgets/SKILL.md",
+      "description": "Build maintainable Flutter UI components with composition and theming. Use when changing widget implementation; defer animation-only changes and widget-test authoring."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/golang/golang-api-server",
+      "name": "golang-api-server",
+      "path": "skills/agent-skills-standard/golang/golang-api-server/SKILL.md",
+      "description": "Build HTTP services, REST APIs, and middleware in Go. Use when building Go HTTP servers, REST APIs, or custom middleware."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/golang/golang-architecture",
+      "name": "golang-architecture",
+      "path": "skills/agent-skills-standard/golang/golang-architecture/SKILL.md",
+      "description": "Structure Go code with package-first boundaries, `cmd/` and `internal/`, and explicit dependency wiring. Use when shaping project layout, package ownership, or service boundaries in Go; defer Redis/cache-specific implementation recipes to database skills."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/golang/golang-concurrency",
+      "name": "golang-concurrency",
+      "path": "skills/agent-skills-standard/golang/golang-concurrency/SKILL.md",
+      "description": "Write safe concurrent Go code with goroutines, channels, and context. Use when implementing concurrency with goroutines, channels, or context in Go."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/golang/golang-configuration",
+      "name": "golang-configuration",
+      "path": "skills/agent-skills-standard/golang/golang-configuration/SKILL.md",
+      "description": "Load and validate application configuration from environment variables and config files. Use when managing Go application config with environment variables or viper."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/golang/golang-database",
+      "name": "golang-database",
+      "path": "skills/agent-skills-standard/golang/golang-database/SKILL.md",
+      "description": "Implement Go database access with context, pool tuning, transaction boundaries, and repository seams. Use when building repositories, tuning `sql.DB` or `pgx`, or reviewing DB transaction flow in Go."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/golang/golang-error-handling",
+      "name": "golang-error-handling",
+      "path": "skills/agent-skills-standard/golang/golang-error-handling/SKILL.md",
+      "description": "Standards for error wrapping, checking, and definition in Golang. Use when wrapping errors, defining sentinel errors, or handling errors idiomatically in Go."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/golang/golang-language",
+      "name": "golang-language",
+      "path": "skills/agent-skills-standard/golang/golang-language/SKILL.md",
+      "description": "Core idioms, style guides, and best practices for writing idiomatic Go code. Use when writing Go code following official style guides and idiomatic patterns."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/golang/golang-logging",
+      "name": "golang-logging",
+      "path": "skills/agent-skills-standard/golang/golang-logging/SKILL.md",
+      "description": "Standards for structured logging and observability in Golang. Use when adding structured logging or tracing to Go services."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/golang/golang-security",
+      "name": "golang-security",
+      "path": "skills/agent-skills-standard/golang/golang-security/SKILL.md",
+      "description": "Secure Go backend services against common vulnerabilities. Use when implementing input validation, crypto, or SQL injection prevention in Go."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/golang/golang-testing",
+      "name": "golang-testing",
+      "path": "skills/agent-skills-standard/golang/golang-testing/SKILL.md",
+      "description": "Write unit tests with table-driven patterns and interface mocking in Go. Use when writing Go unit tests, table-driven tests, or using mock interfaces."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/golang/golang-tooling",
+      "name": "golang-tooling",
+      "path": "skills/agent-skills-standard/golang/golang-tooling/SKILL.md",
+      "description": "Go developer toolchain — gopls LSP diagnostics, linting, formatting, and vet. Use when setting up Go tooling, running linters, or integrating gopls with Claude Code."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/ios/ios-app-lifecycle",
+      "name": "ios-app-lifecycle",
+      "path": "skills/agent-skills-standard/ios/ios-app-lifecycle/SKILL.md",
+      "description": "Configure AppDelegate, SceneDelegate, deep linking, and background tasks. Use when configuring iOS app lifecycle, deep linking, or background task scheduling."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/ios/ios-architecture",
+      "name": "ios-architecture",
+      "path": "skills/agent-skills-standard/ios/ios-architecture/SKILL.md",
+      "description": "Apply MVVM, Coordinators, and Clean Architecture (VIP/VIPER) in iOS apps. Use when applying MVVM, Coordinators, or VIP/VIPER architecture in iOS apps."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/ios/ios-dependency-injection",
+      "name": "ios-dependency-injection",
+      "path": "skills/agent-skills-standard/ios/ios-dependency-injection/SKILL.md",
+      "description": "Configure protocol-based DI with property wrappers and Factory/Swinject. Use when setting up dependency injection or factory patterns in iOS."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/ios/ios-deployment",
+      "name": "ios-deployment",
+      "path": "skills/agent-skills-standard/ios/ios-deployment/SKILL.md",
+      "description": "Automate provisioning, signing, and deployment with Fastlane. Use when provisioning iOS apps, managing code signing, or automating deployments with Fastlane."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/ios/ios-design-system",
+      "name": "ios-design-system",
+      "path": "skills/agent-skills-standard/ios/ios-design-system/SKILL.md",
+      "description": "Enforce design token usage in SwiftUI apps using iOS Human Interface Guidelines. Use when implementing design tokens, colors, or typography in SwiftUI."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/ios/ios-localization",
+      "name": "ios-localization",
+      "path": "skills/agent-skills-standard/ios/ios-localization/SKILL.md",
+      "description": "Implement String Catalogs, L10n workflows, and asset management for iOS. Use when adding multi-language support using iOS String Catalogs or L10n workflows."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/ios/ios-navigation",
+      "name": "ios-navigation",
+      "path": "skills/agent-skills-standard/ios/ios-navigation/SKILL.md",
+      "description": "SwiftUI navigation and deep linking using NavigationStack and Universal Links. Use when implementing NavigationStack or Universal Links deep linking in iOS."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/ios/ios-networking",
+      "name": "ios-networking",
+      "path": "skills/agent-skills-standard/ios/ios-networking/SKILL.md",
+      "description": "Build API clients with URLSession, Alamofire, and Codable. Use when implementing URLSession networking, Alamofire, or API clients in iOS."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/ios/ios-notifications",
+      "name": "ios-notifications",
+      "path": "skills/agent-skills-standard/ios/ios-notifications/SKILL.md",
+      "description": "Push notifications for iOS using UserNotifications framework and APNS. Use when integrating APNS push notifications in iOS applications."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/ios/ios-performance",
+      "name": "ios-performance",
+      "path": "skills/agent-skills-standard/ios/ios-performance/SKILL.md",
+      "description": "Profile and optimize iOS apps with Instruments, memory management, and rendering techniques. Use when profiling iOS apps with Instruments or optimizing memory and rendering."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/ios/ios-persistence",
+      "name": "ios-persistence",
+      "path": "skills/agent-skills-standard/ios/ios-persistence/SKILL.md",
+      "description": "Implement local persistence with SwiftData, Core Data, and secure storage. Use when setting up SwiftData models, Core Data stacks, or local persistence in iOS."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/ios/ios-security",
+      "name": "ios-security",
+      "path": "skills/agent-skills-standard/ios/ios-security/SKILL.md",
+      "description": "Secure iOS apps with secure storage, biometrics, and data protection. Use when implementing secure storage, Face ID/Touch ID, or data protection in iOS."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/ios/ios-state-management",
+      "name": "ios-state-management",
+      "path": "skills/agent-skills-standard/ios/ios-state-management/SKILL.md",
+      "description": "Implement reactive state with Combine, Observation framework, and UDF patterns. Use when implementing state management with Combine, @Observable, or reactive patterns in iOS."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/ios/ios-swiftui",
+      "name": "ios-swiftui",
+      "path": "skills/agent-skills-standard/ios/ios-swiftui/SKILL.md",
+      "description": "Build declarative UI and manage data flow with SwiftUI in iOS. Use when building declarative SwiftUI views or managing data flow with property wrappers."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/ios/ios-ui-navigation",
+      "name": "ios-ui-navigation",
+      "path": "skills/agent-skills-standard/ios/ios-ui-navigation/SKILL.md",
+      "description": "Implement UIKit navigation, Auto Layout, and Apple Human Interface Guidelines in iOS. Use when implementing UIKit navigation, Auto Layout constraints, or HIG compliance."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/java/java-best-practices",
+      "name": "java-best-practices",
+      "path": "skills/agent-skills-standard/java/java-best-practices/SKILL.md",
+      "description": "Apply core Effective Java patterns for robust, maintainable code. Use when applying SOLID principles, choosing between inheritance and composition, refactoring Java code smells, or reviewing class design."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/java/java-concurrency",
+      "name": "java-concurrency",
+      "path": "skills/agent-skills-standard/java/java-concurrency/SKILL.md",
+      "description": "Implement modern concurrency with Virtual Threads and Structured Concurrency in Java. Use when implementing Java Virtual Threads (Java 21), Structured Concurrency with StructuredTaskScope, CompletableFuture pipelines, or debugging race conditions."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/java/java-language",
+      "name": "java-language",
+      "path": "skills/agent-skills-standard/java/java-language/SKILL.md",
+      "description": "Modern Java 21+ language standards including Records, Pattern Matching, and Virtual Threads. Use for Java language constructs or Java-to-Java upgrades; defer Kotlin, tests, formatting/build tools, CompletableFuture, builder patterns, and isolated null-handling questions."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/java/java-testing",
+      "name": "java-testing",
+      "path": "skills/agent-skills-standard/java/java-testing/SKILL.md",
+      "description": "Testing standards using JUnit 5, AssertJ, Mockito, Cucumber, and Spring Boot integration tests for Java. Use when writing or reviewing Java test behavior, including parallel execution and BDD; defer Kotlin-only tests, virtual-thread test infrastructure, and coverage-report/tooling configuration."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/java/java-tooling",
+      "name": "java-tooling",
+      "path": "skills/agent-skills-standard/java/java-tooling/SKILL.md",
+      "description": "Configure Maven, Gradle, and static analysis for Java projects. Use for Java-only build and quality tooling such as Spotless, Checkstyle, SpotBugs, SonarLint, JDK versions, and Java service Dockerfiles; defer Kotlin, Android, Flutter, and GitHub Actions-specific configuration."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/javascript/javascript-best-practices",
+      "name": "javascript-best-practices",
+      "path": "skills/agent-skills-standard/javascript/javascript-best-practices/SKILL.md",
+      "description": "Idiomatic JavaScript patterns and conventions for maintainable existing code. Use when reviewing or refactoring JavaScript language patterns; defer project scaffolding, dependency setup, and tool configuration."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/javascript/javascript-language",
+      "name": "javascript-language",
+      "path": "skills/agent-skills-standard/javascript/javascript-language/SKILL.md",
+      "description": "Modern JavaScript (ES2022+) patterns for clean, maintainable code. Use when working with modern JavaScript features like optional chaining, nullish coalescing, or ESM."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/javascript/javascript-tooling",
+      "name": "javascript-tooling",
+      "path": "skills/agent-skills-standard/javascript/javascript-tooling/SKILL.md",
+      "description": "Configure development tools, linting, formatting, and test runners for existing JavaScript projects. Use for ESLint, Prettier, Jest, or equivalent tool setup; defer application implementation and generic project scaffolding."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/kotlin/kotlin-best-practices",
+      "name": "kotlin-best-practices",
+      "path": "skills/agent-skills-standard/kotlin/kotlin-best-practices/SKILL.md",
+      "description": "Core Kotlin patterns for scope functions, backing properties, and read-only collection interfaces. Use for let/apply/run/also/with choices or encapsulating mutable state; defer general language constructs, extension functions, coroutines/runCatching, Android/Room recipes, and testing/tooling setup."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/kotlin/kotlin-coroutines",
+      "name": "kotlin-coroutines",
+      "path": "skills/agent-skills-standard/kotlin/kotlin-coroutines/SKILL.md",
+      "description": "Write safe, structured concurrent code with Kotlin Coroutines. Use for suspend functions, coroutine scopes, cancellation, and coroutine leaks; defer Java Virtual Threads, Android WorkManager/Fragment lifecycle, Compose state hoisting, and Detekt/tooling configuration."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/kotlin/kotlin-language",
+      "name": "kotlin-language",
+      "path": "skills/agent-skills-standard/kotlin/kotlin-language/SKILL.md",
+      "description": "Write idiomatic Kotlin 1.9+ with null safety, sealed classes, data classes, extension functions, delegates, collections, inline/reified generics, and expression syntax. Use for Kotlin language constructs, Java-to-Kotlin migration, lazy delegates, data classes, backing properties, or inline/reified generics; keep language constructs in scope even inside response models, and defer coroutine configuration, Android Context/framework, Retrofit/OkHttp client setup, and other library-specific recipes."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/kotlin/kotlin-tooling",
+      "name": "kotlin-tooling",
+      "path": "skills/agent-skills-standard/kotlin/kotlin-tooling/SKILL.md",
+      "description": "Configure Kotlin build and quality tooling, including Gradle Kotlin DSL, Version Catalogs, KMP, ktlint, Detekt, MockK, coverage, and quality plugins. Use for Kotlin-specific build, lint, test-tool, or coverage setup; defer Java-only tooling and Spring test behavior."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/laravel/laravel-api",
+      "name": "laravel-api",
+      "path": "skills/agent-skills-standard/laravel/laravel-api/SKILL.md",
+      "description": "Build REST endpoints with API Resources, Sanctum authentication, and versioned route groups in Laravel. Use when creating JsonResource classes, adding token-based auth, or defining rate-limited API routes."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/laravel/laravel-architecture",
+      "name": "laravel-architecture",
+      "path": "skills/agent-skills-standard/laravel/laravel-architecture/SKILL.md",
+      "description": "Enforce core architectural standards for scalable Laravel applications. Use when structuring controllers, service layers, action classes, Form Requests, or Service Container bindings in Laravel projects."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/laravel/laravel-background-processing",
+      "name": "laravel-background-processing",
+      "path": "skills/agent-skills-standard/laravel/laravel-background-processing/SKILL.md",
+      "description": "Build scalable asynchronous workflows using Queues, Jobs, and Events in Laravel. Use when implementing queued jobs, event-driven workflows, or async processing in Laravel."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/laravel/laravel-clean-architecture",
+      "name": "laravel-clean-architecture",
+      "path": "skills/agent-skills-standard/laravel/laravel-clean-architecture/SKILL.md",
+      "description": "Implement Domain-Driven Design with typed DTOs, repository interfaces, and single-responsibility Action classes in Laravel. Use when creating domain folders, binding repository contracts in providers, or passing DTOs between layers."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/laravel/laravel-database-expert",
+      "name": "laravel-database-expert",
+      "path": "skills/agent-skills-standard/laravel/laravel-database-expert/SKILL.md",
+      "description": "Optimize Laravel queries with subqueries, joinSub, Redis cache-aside patterns, and read/write connection splitting. Use when writing complex joins, implementing Cache::remember with tags, or configuring database read replicas."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/laravel/laravel-eloquent",
+      "name": "laravel-eloquent",
+      "path": "skills/agent-skills-standard/laravel/laravel-eloquent/SKILL.md",
+      "description": "Write performant Eloquent queries with eager loading, reusable scopes, and strict lazy-loading prevention in Laravel. Use when defining model relationships, creating query scopes, or processing large datasets with chunk/cursor."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/laravel/laravel-security",
+      "name": "laravel-security",
+      "path": "skills/agent-skills-standard/laravel/laravel-security/SKILL.md",
+      "description": "Harden Laravel apps with Policies for model authorization, Gate-based RBAC, validated mass assignment, and CSRF protection. Use when creating authorization policies, securing env config access, or preventing mass assignment vulnerabilities."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/laravel/laravel-sessions-middleware",
+      "name": "laravel-sessions-middleware",
+      "path": "skills/agent-skills-standard/laravel/laravel-sessions-middleware/SKILL.md",
+      "description": "Configure Redis session drivers, register security-header middleware, and prevent session fixation in Laravel. Use when switching session drivers, adding HSTS/CSP headers via middleware, or regenerating sessions after login."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/laravel/laravel-testing",
+      "name": "laravel-testing",
+      "path": "skills/agent-skills-standard/laravel/laravel-testing/SKILL.md",
+      "description": "Write Pest feature tests with RefreshDatabase, mock external services, and create test data with Eloquent Factories in Laravel. Use when adding HTTP tests, configuring SQLite in-memory test database, or mocking payment services."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/laravel/laravel-tooling",
+      "name": "laravel-tooling",
+      "path": "skills/agent-skills-standard/laravel/laravel-tooling/SKILL.md",
+      "description": "Configure Laravel ecosystem with custom Artisan commands, Vite asset bundling, Pint code styling, and Horizon queue monitoring. Use when creating Artisan commands, migrating from Mix to Vite, or configuring Pint code standards."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/nestjs/nestjs-api-standards",
+      "name": "nestjs-api-standards",
+      "path": "skills/agent-skills-standard/nestjs/nestjs-api-standards/SKILL.md",
+      "description": "Create standardized API response envelopes, paginated endpoints, and error interceptors in NestJS. Use when implementing response wrappers, pagination DTOs, or global error formats."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/nestjs/nestjs-architecture",
+      "name": "nestjs-architecture",
+      "path": "skills/agent-skills-standard/nestjs/nestjs-architecture/SKILL.md",
+      "description": "Design NestJS module boundaries and provider ownership. Use only when structuring feature/core/shared modules, controller-service boundaries, or provider lifetime; defer JWT/security, caching, and unrelated request-pipeline recipes."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/nestjs/nestjs-bullmq",
+      "name": "nestjs-bullmq",
+      "path": "skills/agent-skills-standard/nestjs/nestjs-bullmq/SKILL.md",
+      "description": "Implement BullMQ job workflows in NestJS. Use when building queue processors, redis-throttler, Upstash limits, idle polling, stalled jobs, and retention policies."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/nestjs/nestjs-caching",
+      "name": "nestjs-caching",
+      "path": "skills/agent-skills-standard/nestjs/nestjs-caching/SKILL.md",
+      "description": "Implement multi-level caching, invalidation patterns, and stampede protection in NestJS. Use when adding Redis caching layers, configuring cache-manager interceptors, implementing stale-while-revalidate, or preventing cache stampedes in NestJS services."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/nestjs/nestjs-configuration",
+      "name": "nestjs-configuration",
+      "path": "skills/agent-skills-standard/nestjs/nestjs-configuration/SKILL.md",
+      "description": "Environment variables validation and ConfigModule setup. Use when validating environment variables with Joi/Zod or configuring ConfigModule in NestJS."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/nestjs/nestjs-controllers-services",
+      "name": "nestjs-controllers-services",
+      "path": "skills/agent-skills-standard/nestjs/nestjs-controllers-services/SKILL.md",
+      "description": "Separate Controllers from Services and build Custom Decorators in NestJS. Use when defining NestJS controllers, services, or custom parameter decorators."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/nestjs/nestjs-database",
+      "name": "nestjs-database",
+      "path": "skills/agent-skills-standard/nestjs/nestjs-database/SKILL.md",
+      "description": "Implement data access patterns, Scaling, Migrations, and ORM selection in NestJS. Use when implementing TypeORM/Prisma repositories, migrations, or database patterns in NestJS."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/nestjs/nestjs-deployment",
+      "name": "nestjs-deployment",
+      "path": "skills/agent-skills-standard/nestjs/nestjs-deployment/SKILL.md",
+      "description": "Containerize NestJS apps with multi-stage Docker builds, tune Node.js memory, and implement graceful shutdown hooks. Use when writing Dockerfiles, configuring K8s deployments, or adding shutdown hooks for NestJS."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/nestjs/nestjs-documentation",
+      "name": "nestjs-documentation",
+      "path": "skills/agent-skills-standard/nestjs/nestjs-documentation/SKILL.md",
+      "description": "Automate Swagger/OpenAPI documentation and standardize API response schemas in NestJS. Use when generating OpenAPI specs, documenting paginated or generic responses, configuring the Nest CLI Swagger plugin, or publishing versioned API docs."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/nestjs/nestjs-error-handling",
+      "name": "nestjs-error-handling",
+      "path": "skills/agent-skills-standard/nestjs/nestjs-error-handling/SKILL.md",
+      "description": "Implement Global Exception Filters and standard error formats in NestJS. Use when implementing global exception filters or standardizing error responses in NestJS."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/nestjs/nestjs-file-uploads",
+      "name": "nestjs-file-uploads",
+      "path": "skills/agent-skills-standard/nestjs/nestjs-file-uploads/SKILL.md",
+      "description": "Validate and stream file uploads securely with Validation and S3 streaming in NestJS. Use when implementing secure file uploads, validation, or S3 streaming in NestJS."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/nestjs/nestjs-notification",
+      "name": "nestjs-notification",
+      "path": "skills/agent-skills-standard/nestjs/nestjs-notification/SKILL.md",
+      "description": "Build dual-write notification services with database persistence and FCM push delivery in NestJS. Use when creating notification entities, sending push via FCM, or implementing in-app notification feeds."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/nestjs/nestjs-observability",
+      "name": "nestjs-observability",
+      "path": "skills/agent-skills-standard/nestjs/nestjs-observability/SKILL.md",
+      "description": "Configure structured logging with Pino, Prometheus metrics, and health checks for NestJS services. Use when adding JSON logging, request tracing with correlation IDs, Prometheus metric endpoints, or liveness/readiness health checks."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/nestjs/nestjs-performance",
+      "name": "nestjs-performance",
+      "path": "skills/agent-skills-standard/nestjs/nestjs-performance/SKILL.md",
+      "description": "Optimize NestJS throughput with Fastify adapter, singleton scope enforcement, compression, and query projections. Use when switching to Fastify, diagnosing request-scoped bottlenecks, or profiling API overhead."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/nestjs/nestjs-real-time",
+      "name": "nestjs-real-time",
+      "path": "skills/agent-skills-standard/nestjs/nestjs-real-time/SKILL.md",
+      "description": "Implement WebSocket gateways with Socket.io and Server-Sent Events endpoints in NestJS. Use when building chat features, live feeds, or choosing between WebSocket and SSE for real-time communication."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/nestjs/nestjs-scheduling",
+      "name": "nestjs-scheduling",
+      "path": "skills/agent-skills-standard/nestjs/nestjs-scheduling/SKILL.md",
+      "description": "Implement distributed cron jobs with Redis-based locking and BullMQ offloading in NestJS. Use when adding @Cron scheduled tasks, preventing duplicate runs across pods, or delegating heavy work to queue workers."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/nestjs/nestjs-search",
+      "name": "nestjs-search",
+      "path": "skills/agent-skills-standard/nestjs/nestjs-search/SKILL.md",
+      "description": "Integrate Elasticsearch and implement search index Sync patterns in NestJS. Use when integrating Elasticsearch or implementing search index sync in NestJS."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/nestjs/nestjs-security",
+      "name": "nestjs-security",
+      "path": "skills/agent-skills-standard/nestjs/nestjs-security/SKILL.md",
+      "description": "Implement JWT authentication, RBAC guards, Helmet hardening, and Argon2 hashing in NestJS. Use when adding auth strategies, role-based access control, CSRF protection, or security headers."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/nestjs/nestjs-security-isolation",
+      "name": "nestjs-security-isolation",
+      "path": "skills/agent-skills-standard/nestjs/nestjs-security-isolation/SKILL.md",
+      "description": "Enforce multi-tenant isolation and PostgreSQL Row Level Security in NestJS. Use when enforcing tenant isolation or PostgreSQL RLS in NestJS multi-tenant apps."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/nestjs/nestjs-testing",
+      "name": "nestjs-testing",
+      "path": "skills/agent-skills-standard/nestjs/nestjs-testing/SKILL.md",
+      "description": "Write Unit and E2E tests with Jest, mocking strategies, and database isolation in NestJS. Use when writing NestJS unit tests, E2E tests with supertest, or mock providers."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/nestjs/nestjs-transport",
+      "name": "nestjs-transport",
+      "path": "skills/agent-skills-standard/nestjs/nestjs-transport/SKILL.md",
+      "description": "Configure gRPC, RabbitMQ, and monorepo contract patterns for NestJS microservices. Use when setting up gRPC service-to-service calls, RabbitMQ event-driven messaging, shared contract libraries, or microservice exception handling in NestJS."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/nextjs/nextjs-app-router",
+      "name": "nextjs-app-router",
+      "path": "skills/agent-skills-standard/nextjs/nextjs-app-router/SKILL.md",
+      "description": "Configure file-system routing with nested layouts, route groups, parallel routes, and error boundaries in Next.js App Router. Use when creating page routes, adding loading/error states, or organizing routes with groups and dynamic segments."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/nextjs/nextjs-architecture",
+      "name": "nextjs-architecture",
+      "path": "skills/agent-skills-standard/nextjs/nextjs-architecture/SKILL.md",
+      "description": "Structure Next.js projects with Feature-Sliced Design layers, domain-grouped slices, and strict import hierarchy. Use when organizing features into FSD layers, enforcing slice boundaries, or keeping page.tsx thin."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/nextjs/nextjs-authentication",
+      "name": "nextjs-authentication",
+      "path": "skills/agent-skills-standard/nextjs/nextjs-authentication/SKILL.md",
+      "description": "Secure token storage (HttpOnly Cookies) and Middleware patterns. Use when implementing authentication, secure session storage, or auth middleware in Next.js."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/nextjs/nextjs-caching",
+      "name": "nextjs-caching",
+      "path": "skills/agent-skills-standard/nextjs/nextjs-caching/SKILL.md",
+      "description": "Configure Next.js cache layers, invalidation, and cache-component APIs. Use when choosing `fetch` caching, `use cache`, tags, or stale-data debugging in Next.js."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/nextjs/nextjs-data-access-layer",
+      "name": "nextjs-data-access-layer",
+      "path": "skills/agent-skills-standard/nextjs/nextjs-data-access-layer/SKILL.md",
+      "description": "Build secure, reusable data access patterns with DTOs, taint checks, and colocated authorization in Next.js. Use when centralizing database queries, transforming raw data to DTOs, adding server-only guards, or preventing sensitive data from reaching Client Components."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/nextjs/nextjs-data-fetching",
+      "name": "nextjs-data-fetching",
+      "path": "skills/agent-skills-standard/nextjs/nextjs-data-fetching/SKILL.md",
+      "description": "Implement Fetch API, Caching, and Revalidation strategies in Next.js. Use when fetching data, configuring cache behavior, or implementing revalidation in Next.js."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/nextjs/nextjs-i18n",
+      "name": "nextjs-i18n",
+      "path": "skills/agent-skills-standard/nextjs/nextjs-i18n/SKILL.md",
+      "description": "Best practices for multi-language handling, locale routing, and detection strategies across App and Pages Router. Use when adding i18n, locale routing, or language detection in Next.js."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/nextjs/nextjs-optimization",
+      "name": "nextjs-optimization",
+      "path": "skills/agent-skills-standard/nextjs/nextjs-optimization/SKILL.md",
+      "description": "Optimize images, fonts, scripts, and metadata for Next.js performance and Core Web Vitals. Use when configuring next/image for LCP, next/font for zero layout shift, next/script loading strategies, or generateMetadata for SEO."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/nextjs/nextjs-pages-router",
+      "name": "nextjs-pages-router",
+      "path": "skills/agent-skills-standard/nextjs/nextjs-pages-router/SKILL.md",
+      "description": "Implement Pages Router data fetching with getServerSideProps, getStaticProps, and API routes in Next.js legacy projects. Use when working in a pages/ directory project, adding SSR/SSG data fetching, or creating API routes."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/nextjs/nextjs-rendering",
+      "name": "nextjs-rendering",
+      "path": "skills/agent-skills-standard/nextjs/nextjs-rendering/SKILL.md",
+      "description": "Select and implement SSG, SSR, ISR, Streaming, or Partial Prerendering strategies in Next.js App Router. Use when choosing a rendering mode for a page, configuring generateStaticParams, or enabling PPR."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/nextjs/nextjs-security",
+      "name": "nextjs-security",
+      "path": "skills/agent-skills-standard/nextjs/nextjs-security/SKILL.md",
+      "description": "Secure Next.js App Router with middleware auth, Server Action validation, CSP headers, and taint APIs. Use when adding authentication middleware, validating Server Action inputs with Zod, or preventing secret leakage to client bundles."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/nextjs/nextjs-server-actions",
+      "name": "nextjs-server-actions",
+      "path": "skills/agent-skills-standard/nextjs/nextjs-server-actions/SKILL.md",
+      "description": "Implement secure Next.js Server Actions for mutations, forms, and optimistic UI. Use when building actions, form flows, auth checks, or revalidation after writes."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/nextjs/nextjs-server-components",
+      "name": "nextjs-server-components",
+      "path": "skills/agent-skills-standard/nextjs/nextjs-server-components/SKILL.md",
+      "description": "Build async React Server Components and place 'use client' boundaries at leaf nodes for interactivity in Next.js App Router. Use when deciding RSC vs Client Component, composing server data into client wrappers, or fixing hydration errors."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/nextjs/nextjs-state-management",
+      "name": "nextjs-state-management",
+      "path": "skills/agent-skills-standard/nextjs/nextjs-state-management/SKILL.md",
+      "description": "Apply best practices for managing URL, server, and client state in Next.js applications. Use when choosing between URL params, SWR/TanStack Query, Zustand, or Context for state, or when fixing hydration mismatches from localStorage."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/nextjs/nextjs-styling",
+      "name": "nextjs-styling",
+      "path": "skills/agent-skills-standard/nextjs/nextjs-styling/SKILL.md",
+      "description": "Implement zero-runtime CSS with Tailwind, CSS Modules, and the cn() utility for RSC-compatible styling in Next.js. Use when choosing a styling library, creating dynamic class utilities, or optimizing fonts with next/font."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/nextjs/nextjs-testing",
+      "name": "nextjs-testing",
+      "path": "skills/agent-skills-standard/nextjs/nextjs-testing/SKILL.md",
+      "description": "Write Jest or Vitest unit tests with React Testing Library and Playwright E2E tests for Next.js projects. Use when testing components with RTL, mocking APIs with MSW, or creating Playwright user flow tests."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/nextjs/nextjs-tooling",
+      "name": "nextjs-tooling",
+      "path": "skills/agent-skills-standard/nextjs/nextjs-tooling/SKILL.md",
+      "description": "Configure Next.js build tooling, deployment, and developer workflow. Use when setting up Turbopack, standalone Docker output, bundle analysis, CI caching, environment variable validation, or ESLint integration for Next.js projects."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/nextjs/nextjs-upgrade",
+      "name": "nextjs-upgrade",
+      "path": "skills/agent-skills-standard/nextjs/nextjs-upgrade/SKILL.md",
+      "description": "Next.js version migrations using official guides and codemods. Use when migrating a Next.js project to a new major version using codemods."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/php/php-best-practices",
+      "name": "php-best-practices",
+      "path": "skills/agent-skills-standard/php/php-best-practices/SKILL.md",
+      "description": "Write PHP following PSR coding standards, SOLID principles, and code-quality guidelines. Use for PHP style, design, refactoring, naming, and guard clauses—not Composer/PSR-4 project configuration."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/php/php-concurrency",
+      "name": "php-concurrency",
+      "path": "skills/agent-skills-standard/php/php-concurrency/SKILL.md",
+      "description": "Implement concurrency and non-blocking I/O in modern PHP. Use when implementing concurrent requests, async processing, or non-blocking I/O in PHP."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/php/php-error-handling",
+      "name": "php-error-handling",
+      "path": "skills/agent-skills-standard/php/php-error-handling/SKILL.md",
+      "description": "Implement modern PHP error and exception handling patterns. Use when implementing exception hierarchies, error handlers, or custom exceptions in PHP."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/php/php-language",
+      "name": "php-language",
+      "path": "skills/agent-skills-standard/php/php-language/SKILL.md",
+      "description": "Apply core PHP language standards and modern 8.x features. Use when working with PHP 8.x features like enums, fibers, readonly properties, or named arguments."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/php/php-security",
+      "name": "php-security",
+      "path": "skills/agent-skills-standard/php/php-security/SKILL.md",
+      "description": "PHP-only security standards for database access, password handling, and input validation. Use when securing PHP apps against SQL injection, XSS, or weak password storage; defer Laravel middleware and security questions in other languages."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/php/php-testing",
+      "name": "php-testing",
+      "path": "skills/agent-skills-standard/php/php-testing/SKILL.md",
+      "description": "Write unit and integration tests for PHP applications with PHPUnit and Pest. Use when writing PHPUnit unit tests or integration tests for PHP applications."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/php/php-tooling",
+      "name": "php-tooling",
+      "path": "skills/agent-skills-standard/php/php-tooling/SKILL.md",
+      "description": "Configure PHP ecosystem tooling, dependency management, and static analysis. Use when managing Composer dependencies, running PHPStan, or configuring PHP build tools."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/product-management/product-business-requirements",
+      "name": "product-business-requirements",
+      "path": "skills/agent-skills-standard/product-management/product-business-requirements/SKILL.md",
+      "description": "Standardize BRD and BRD-lite discovery for business goals, stakeholder impact, current-to-future state, and measurable value outcomes. Use for business analysis or elicitation results and stakeholder elicitation without requiring BRD intake."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/product-management/product-customer-discovery",
+      "name": "product-customer-discovery",
+      "path": "skills/agent-skills-standard/product-management/product-customer-discovery/SKILL.md",
+      "description": "Guide ethical customer discovery and research synthesis, distinguishing direct observations from inferences, preventing leading interview questions, and tracking quote-to-insight provenance. (triggers: `product customer discovery`, `product research synthesis`)"
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/product-management/product-evidence",
+      "name": "product-evidence",
+      "path": "skills/agent-skills-standard/product-management/product-evidence/SKILL.md",
+      "description": "Ground and validate SDLC product decisions with canonical evidence ledgers, immutable recorded decisions, typed provenance, and scoped action gates. Use when inspecting, maintaining, or validating product evidence ledgers."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/product-management/product-experimentation",
+      "name": "product-experimentation",
+      "path": "skills/agent-skills-standard/product-management/product-experimentation/SKILL.md",
+      "description": "Design and validate bounded product experiments with falsifiable hypotheses, precommitted thresholds, guardrail metrics, ethical eligibility, and stop rules; use for product hypothesis validation / product experiment design. (triggers: `product hypothesis validation`, `product experiment design`)"
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/product-management/product-investment",
+      "name": "product-investment",
+      "path": "skills/agent-skills-standard/product-management/product-investment/SKILL.md",
+      "description": "Evaluate product investment options across build, buy, partner, defer, and do-nothing paths, setting incremental accounting boundaries and cash-versus-capacity rules without fabricated ROI. Use for product investment analysis / product ROI scenario. (triggers: `product investment analysis`, `product ROI scenario`)"
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/product-management/product-market-research",
+      "name": "product-market-research",
+      "path": "skills/agent-skills-standard/product-management/product-market-research/SKILL.md",
+      "description": "Conduct evidence-backed product market research and competitive analysis with explicit provenance, substitute identification, and counterevidence tracking. Use when evaluating market dynamics, competitor positioning, direct or indirect substitutes, or buyer alternatives. (triggers: `product market research`, `product competitive analysis`)"
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/product-management/product-metrics",
+      "name": "product-metrics",
+      "path": "skills/agent-skills-standard/product-management/product-metrics/SKILL.md",
+      "description": "Define explicit outcome measurement contracts, baseline evidence, query revisions, guardrails, and post-release product value reviews without confusing correlation with causal ROI. (triggers: `product measurement contract`, `product value review`)"
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/product-management/product-requirements",
+      "name": "product-requirements",
+      "path": "skills/agent-skills-standard/product-management/product-requirements/SKILL.md",
+      "description": "Standardize PRD discovery and drafting for product scope, user outcomes, requirement IDs, and acceptance criteria. Use when creating PRD, product requirements, feature specification, or acceptance criteria plan."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/product-management/product-roadmap",
+      "name": "product-roadmap",
+      "path": "skills/agent-skills-standard/product-management/product-roadmap/SKILL.md",
+      "description": "Prioritize outcome-based product roadmaps, manage capacity and displaced work trade-offs, sequence learning milestones, and maintain portfolio coherence without dual ledgers or fake ROI. (triggers: `product roadmap prioritization`, `product portfolio trade-off`)"
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/product-management/product-strategy",
+      "name": "product-strategy",
+      "path": "skills/agent-skills-standard/product-management/product-strategy/SKILL.md",
+      "description": "Formulate coherent product strategy, synthesize opportunity frames and falsifiable hypotheses, establish non-goals and trade-offs, and bind decisions to verified strategic authority. (triggers: `product strategy decision`, `product opportunity framing`)"
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/python/python-architecture",
+      "name": "python-architecture",
+      "path": "skills/agent-skills-standard/python/python-architecture/SKILL.md",
+      "description": "Structure Python backends with explicit dependency direction, ports/adapters, and runtime boundaries. Use when shaping project layout, clean architecture, service boundaries, dependency injection, report rendering boundaries, or transport separation in Python."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/python/python-async-runtime",
+      "name": "python-async-runtime",
+      "path": "skills/agent-skills-standard/python/python-async-runtime/SKILL.md",
+      "description": "Write correct async Python runtime code with explicit blocking-I/O boundaries, cancellation, and timeout handling. Use when editing `asyncio` workflows, background loops, async services, or mixed sync/async integrations."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/python/python-best-practices",
+      "name": "python-best-practices",
+      "path": "skills/agent-skills-standard/python/python-best-practices/SKILL.md",
+      "description": "Write maintainable Python with small functions, explicit boundaries, guard clauses, and readable state flow. Use when refactoring Python services, helpers, modules, or async logic for clarity—not generic test writing, tooling setup, or database transaction implementation."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/python/python-database",
+      "name": "python-database",
+      "path": "skills/agent-skills-standard/python/python-database/SKILL.md",
+      "description": "Implement Python database access with parameterized SQL, transaction scope, connection helpers, and repository seams. Use when editing Postgres queries, repositories, transactions, pooling, or persistence boundaries in Python."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/python/python-error-handling",
+      "name": "python-error-handling",
+      "path": "skills/agent-skills-standard/python/python-error-handling/SKILL.md",
+      "description": "Design Python error paths with narrow exceptions, rollback, contextual logs, and preserved blocker truth. Use when handling retries, verifier outcomes, parser failures, or exception flow in Python services."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/python/python-language",
+      "name": "python-language",
+      "path": "skills/agent-skills-standard/python/python-language/SKILL.md",
+      "description": "Core Python 3.11+ language standards for typing, dataclasses, imports, pathlib, and stdlib-first code. Use for idiomatic language constructs in Python modules or stubs; defer pytest fixtures, database/client configuration, subprocess security, and other specialized concerns."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/python/python-security",
+      "name": "python-security",
+      "path": "skills/agent-skills-standard/python/python-security/SKILL.md",
+      "description": "Secure Python services against secret leakage, injection, unsafe subprocess calls, and dependency drift. Use when handling env vars, tokens, SQL, file paths, shell commands, auth flows, or Python security gates."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/python/python-testing",
+      "name": "python-testing",
+      "path": "skills/agent-skills-standard/python/python-testing/SKILL.md",
+      "description": "Test Python services with pytest, async coverage, monkeypatch, and boundary-focused fakes. Use when writing Python tests, fixtures, async tests, regression tests, or dependency-isolated verification."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/python/python-tooling",
+      "name": "python-tooling",
+      "path": "skills/agent-skills-standard/python/python-tooling/SKILL.md",
+      "description": "Configure Python tooling, dependency surfaces, static analysis, and verification gates. Use when editing `pyproject.toml`, `requirements.txt`, `pytest.ini`, `ruff`, `pyright`, CI, or Python release checks."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/quality-engineering/quality-engineering-api-fuzz-testing",
+      "name": "quality-engineering-api-fuzz-testing",
+      "path": "skills/agent-skills-standard/quality-engineering/quality-engineering-api-fuzz-testing/SKILL.md",
+      "description": "Author and execute structured API fuzzing, property-based robustness tests, and dynamic authorization checks. Use when fuzzing API payloads, testing schema boundaries, or verifying real-guard access controls."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/quality-engineering/quality-engineering-api-performance-testing",
+      "name": "quality-engineering-api-performance-testing",
+      "path": "skills/agent-skills-standard/quality-engineering/quality-engineering-api-performance-testing/SKILL.md",
+      "description": "Specify tool-neutral API load, stress, and recovery testing with parameterized workload models, SLO percentiles, and finite overload bounds. Use when evaluating API latency, throughput, saturation, or recovery behavior under concurrent traffic."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/quality-engineering/quality-engineering-api-testing",
+      "name": "quality-engineering-api-testing",
+      "path": "skills/agent-skills-standard/quality-engineering/quality-engineering-api-testing/SKILL.md",
+      "description": "Specify and execute API correctness testing across smoke, functional, contract, integration, and regression selection. Use when writing API test suites, validating API schemas/contracts, asserting business state, or selecting regression tests."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/quality-engineering/quality-engineering-appium-mcp",
+      "name": "quality-engineering-appium-mcp",
+      "path": "skills/agent-skills-standard/quality-engineering/quality-engineering-appium-mcp/SKILL.md",
+      "description": "Drives iOS/Android mobile devices via Appium MCP. Runs a preflight, picks local emulator/simulator/USB or a device cloud, captures screenshots/page source into a named evidence dir. Use for verifying mobile bugs, E2E tests, and navigating real device clouds (LambdaTest/BrowserStack)."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/quality-engineering/quality-engineering-automation-health",
+      "name": "quality-engineering-automation-health",
+      "path": "skills/agent-skills-standard/quality-engineering/quality-engineering-automation-health/SKILL.md",
+      "description": "Measures whether an automation suite builds release confidence via feedback-loop length, suite reliability, release cadence, and production escape rate, and emits a release_confidence verdict. Use when judging suite value, ROI, or pre-release trust; not for writing or healing tests."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/quality-engineering/quality-engineering-business-analysis",
+      "name": "quality-engineering-business-analysis",
+      "path": "skills/agent-skills-standard/quality-engineering/quality-engineering-business-analysis/SKILL.md",
+      "description": "Investigate requirements via atomic AC decomposition, actor/permission matrices, and truth-table edge cases; enforce User Story standards (scope fences, platform tags, toggles). Use when writing/reviewing Stories or AC with multi-condition logic, feature toggles, or market variants (VN/MY/SG)."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/quality-engineering/quality-engineering-flaky-triage",
+      "name": "quality-engineering-flaky-triage",
+      "path": "skills/agent-skills-standard/quality-engineering/quality-engineering-flaky-triage/SKILL.md",
+      "description": "Quarantines an intermittently failing test behind a ticket with an owner and expiry, assigns a root-cause bucket from isolated reruns, and defines when the test leaves quarantine. Use when a test is a QUARANTINE_CANDIDATE or fails without a code change; not for deterministic failures."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/quality-engineering/quality-engineering-jira-integration",
+      "name": "quality-engineering-jira-integration",
+      "path": "skills/agent-skills-standard/quality-engineering/quality-engineering-jira-integration/SKILL.md",
+      "description": "Trigger only when the user explicitly requests live Jira or Zephyr retrieval, existing-link inspection, linking authored test cases, label updates, or stale-link audits. Do not trigger for analysis-only prompts such as 'Analyze the acceptance criteria for TICK-4521', supplied acceptance criteria, test-case authoring, or AC-to-test generation."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/quality-engineering/quality-engineering-playwright-cli",
+      "name": "quality-engineering-playwright-cli",
+      "path": "skills/agent-skills-standard/quality-engineering/quality-engineering-playwright-cli/SKILL.md",
+      "description": "Standardizes token-efficient browser automation via playwright-cli, with Playwright MCP as the fallback driver. Runs a preflight, picks the driver rung, captures aria snapshots/console/screenshots into a named evidence dir. Use for web verification, navigation, and capturing snapshots/logs."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/quality-engineering/quality-engineering-playwright-pom-generation",
+      "name": "quality-engineering-playwright-pom-generation",
+      "path": "skills/agent-skills-standard/quality-engineering/quality-engineering-playwright-pom-generation/SKILL.md",
+      "description": "Generates Playwright page objects from an executable test plan, one class per screen with ladder-compliant locators and no assertions, wired into a shared fixture. Use when a web scenario needs a page object that does not exist yet, or when locators drift and the page object must be rebuilt."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/quality-engineering/quality-engineering-quality-assurance",
+      "name": "quality-engineering-quality-assurance",
+      "path": "skills/agent-skills-standard/quality-engineering/quality-engineering-quality-assurance/SKILL.md",
+      "description": "Write or review manual Zephyr test cases with 1-condition-per-TC granularity, Module_Action on Screen when Condition naming, platform prefix rules, and High/Normal/Low priority classification. Use for test-case authoring and review; defer Jira traceability, linking, and pushing cases to Zephyr."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/quality-engineering/quality-engineering-selector-stability",
+      "name": "quality-engineering-selector-stability",
+      "path": "skills/agent-skills-standard/quality-engineering/quality-engineering-selector-stability/SKILL.md",
+      "description": "Cross-stack selector and test-id policy for web and mobile automation. Use when writing or reviewing E2E/UI test locators, or adding data-testid/accessibility identifiers to components."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/quality-engineering/quality-engineering-test-healing",
+      "name": "quality-engineering-test-healing",
+      "path": "skills/agent-skills-standard/quality-engineering/quality-engineering-test-healing/SKILL.md",
+      "description": "Failure taxonomy and allowed/forbidden repairs for a failing E2E test. Use when a Playwright/Maestro/Detox/XCUITest/Espresso/Appium test fails and you must decide whether to repair the test or route to a real bug."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/quality-engineering/quality-engineering-test-plan-authoring",
+      "name": "quality-engineering-test-plan-authoring",
+      "path": "skills/agent-skills-standard/quality-engineering/quality-engineering-test-plan-authoring/SKILL.md",
+      "description": "Turn acceptance criteria into an executable test plan (scenarios, seed, selector gaps) before generating E2E code. Use when ACs exist but no runnable test plan does yet."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/quality-engineering/quality-engineering-visual-baseline",
+      "name": "quality-engineering-visual-baseline",
+      "path": "skills/agent-skills-standard/quality-engineering/quality-engineering-visual-baseline/SKILL.md",
+      "description": "Captures, masks, compares, and updates screenshot baselines for web and mobile suites, with per-region thresholds and a reviewed-diff rule for every baseline change. Use when a screenshot assertion fails, a baseline needs updating, or visual checks are being added; not for deciding what to verify."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/quality-engineering/quality-engineering-zephyr-coverage-analysis",
+      "name": "quality-engineering-zephyr-coverage-analysis",
+      "path": "skills/agent-skills-standard/quality-engineering/quality-engineering-zephyr-coverage-analysis/SKILL.md",
+      "description": "Audit test coverage health, gaps, and QE debt for Jira stories or epics. Produces coverage_analysis_report.md with AC-to-TC heatmap, risk scores, and prioritized action plan. Use when assessing coverage percentage, pre-release readiness, sprint readiness, or identifying missing test cases. Do NOT use for TC creation — use zephyr-test-generation instead."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/quality-engineering/quality-engineering-zephyr-test-generation",
+      "name": "quality-engineering-zephyr-test-generation",
+      "path": "skills/agent-skills-standard/quality-engineering/quality-engineering-zephyr-test-generation/SKILL.md",
+      "description": "Generate Zephyr test cases from Jira stories: parse acceptance criteria and business rules, impact-analyze existing TCs (update vs. create new), and draft correctly named test cases. Use for AC-to-test generation; defer post-generation Jira linking and manual test-case quality review."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/react-native/react-native-architecture",
+      "name": "react-native-architecture",
+      "path": "skills/agent-skills-standard/react-native/react-native-architecture/SKILL.md",
+      "description": "Structure React Native projects with feature-first organization and separation of concerns. Use when structuring a React Native project or applying clean architecture patterns."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/react-native/react-native-components",
+      "name": "react-native-components",
+      "path": "skills/agent-skills-standard/react-native/react-native-components/SKILL.md",
+      "description": "Build modern React Native components using function components and composition. Use when building or refactoring React Native function components and composable UI."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/react-native/react-native-deployment",
+      "name": "react-native-deployment",
+      "path": "skills/agent-skills-standard/react-native/react-native-deployment/SKILL.md",
+      "description": "OTA updates with CodePush, EAS Build, and release configurations. Use when configuring OTA updates, EAS Build, or managing release configs for React Native."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/react-native/react-native-dls",
+      "name": "react-native-dls",
+      "path": "skills/agent-skills-standard/react-native/react-native-dls/SKILL.md",
+      "description": "Enforce design token usage in React Native. Use when enforcing a design system, preventing hardcoded styles, or implementing theme tokens in React Native."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/react-native/react-native-navigation",
+      "name": "react-native-navigation",
+      "path": "skills/agent-skills-standard/react-native/react-native-navigation/SKILL.md",
+      "description": "Configure stack navigation, type-safe routes, deep linking, and URL-based routing with React Navigation in React Native. Use for React Navigation route configuration; defer unrelated performance, notification, build, and styling work."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/react-native/react-native-navigation-v6",
+      "name": "react-native-navigation-v6",
+      "path": "skills/agent-skills-standard/react-native/react-native-navigation-v6/SKILL.md",
+      "description": "Configure React Navigation 6+ stacks, tabs, and deep linking for React Native. Use when implementing React Navigation stacks, tabs, or deep linking in React Native."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/react-native/react-native-notifications",
+      "name": "react-native-notifications",
+      "path": "skills/agent-skills-standard/react-native/react-native-notifications/SKILL.md",
+      "description": "Push notifications for React Native using Firebase or Expo Notifications. Use when integrating push notifications with Firebase or Expo in React Native."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/react-native/react-native-performance",
+      "name": "react-native-performance",
+      "path": "skills/agent-skills-standard/react-native/react-native-performance/SKILL.md",
+      "description": "Optimize React Native rendering for smooth 60fps mobile experiences. Use when optimizing React Native app performance, reducing re-renders, or fixing frame drops."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/react-native/react-native-platform-specific",
+      "name": "react-native-platform-specific",
+      "path": "skills/agent-skills-standard/react-native/react-native-platform-specific/SKILL.md",
+      "description": "Resolve iOS and Android differences using Platform API and native modules in React Native. Use when platform branching or native-module integration is the primary task; defer cross-platform feature implementation such as push notifications."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/react-native/react-native-security",
+      "name": "react-native-security",
+      "path": "skills/agent-skills-standard/react-native/react-native-security/SKILL.md",
+      "description": "Secure storage, network traffic, and deep links in React Native mobile apps. Use when implementing secure storage, certificate pinning, or deep link validation in React Native."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/react-native/react-native-state-management",
+      "name": "react-native-state-management",
+      "path": "skills/agent-skills-standard/react-native/react-native-state-management/SKILL.md",
+      "description": "Implement local and global state with Context, Zustand, and Redux Toolkit in React Native. Use when choosing or implementing state management in React Native with Context, Zustand, or Redux."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/react-native/react-native-styling",
+      "name": "react-native-styling",
+      "path": "skills/agent-skills-standard/react-native/react-native-styling/SKILL.md",
+      "description": "Style React Native apps with StyleSheet API, Flexbox, theming, and responsive design. Use when implementing React Native styles, theming, Flexbox layouts, or responsive design."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/react-native/react-native-testing",
+      "name": "react-native-testing",
+      "path": "skills/agent-skills-standard/react-native/react-native-testing/SKILL.md",
+      "description": "Test React Native components with Jest and React Native Testing Library. Use when writing Jest or React Native Testing Library tests for React Native components."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/react/react-component-patterns",
+      "name": "react-component-patterns",
+      "path": "skills/agent-skills-standard/react/react-component-patterns/SKILL.md",
+      "description": "Build modern React component architecture with composition patterns. Use when designing reusable React components, applying composition patterns, or structuring component hierarchies."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/react/react-hooks",
+      "name": "react-hooks",
+      "path": "skills/agent-skills-standard/react/react-hooks/SKILL.md",
+      "description": "Write React hooks with clean effect boundaries and measured memoization. Use when working with `useEffect`, custom hooks, refs, transitions, or hook dependency problems in React."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/react/react-performance",
+      "name": "react-performance",
+      "path": "skills/agent-skills-standard/react/react-performance/SKILL.md",
+      "description": "Optimize React rendering, bundle size, and data flow with profiler-led decisions. Use when reducing re-renders, fixing waterfalls, or deciding whether memoization is warranted in React."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/react/react-security",
+      "name": "react-security",
+      "path": "skills/agent-skills-standard/react/react-security/SKILL.md",
+      "description": "Prevent XSS, secure auth flows, and harden React client-side applications. Use when preventing XSS, securing auth flows, or auditing third-party dependencies in React."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/react/react-state-management",
+      "name": "react-state-management",
+      "path": "skills/agent-skills-standard/react/react-state-management/SKILL.md",
+      "description": "Select and implement local, global, and server state patterns in React. Use when choosing or implementing state management (Context, Zustand, Redux, React Query) in React."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/react/react-testing",
+      "name": "react-testing",
+      "path": "skills/agent-skills-standard/react/react-testing/SKILL.md",
+      "description": "Test React components with RTL and Jest/Vitest. Use when writing React component tests with React Testing Library, Jest, or Vitest."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/react/react-tooling",
+      "name": "react-tooling",
+      "path": "skills/agent-skills-standard/react/react-tooling/SKILL.md",
+      "description": "Configure debugging, bundle analysis, and ecosystem tools for React applications. Use when setting up Vite/webpack build tooling, analyzing bundle size, debugging re-renders with React DevTools, or configuring ESLint and StrictMode for React projects."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/react/react-typescript",
+      "name": "react-typescript",
+      "path": "skills/agent-skills-standard/react/react-typescript/SKILL.md",
+      "description": "Type React components and hooks with TypeScript patterns. Use when typing React props, hooks, event handlers, or component generics in TypeScript."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/specialists/specialist-ac-verifier",
+      "name": "specialist-ac-verifier",
+      "path": "skills/agent-skills-standard/specialists/specialist-ac-verifier/SKILL.md",
+      "description": "Maps acceptance criteria to implementation evidence, tests, and scope creep. Use during review when a diff, PR, ticket, or story includes numbered ACs."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/specialists/specialist-architecture-guard",
+      "name": "specialist-architecture-guard",
+      "path": "skills/agent-skills-standard/specialists/specialist-architecture-guard/SKILL.md",
+      "description": "Audits PR diffs for architecture boundary violations, design simplicity, dependency drift, and established-pattern mismatches. Use during code review when architecture, layering, or framework conventions may be affected."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/specialists/specialist-aspm-correlator",
+      "name": "specialist-aspm-correlator",
+      "path": "skills/agent-skills-standard/specialists/specialist-aspm-correlator/SKILL.md",
+      "description": "Application Security Posture Management persona. Correlates findings from SAST, DAST, and SCA tools, deduplicates noise, maps vulnerabilities to specific code commits, and generates targeted remediation PRs."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/specialists/specialist-codebase-scout",
+      "name": "specialist-codebase-scout",
+      "path": "skills/agent-skills-standard/specialists/specialist-codebase-scout/SKILL.md",
+      "description": "Explores codebase structure, affected files, blast radius, related tests, and local conventions for a focused topic. Use when review or planning needs structural lookup without bloating main context."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/specialists/specialist-confluence-searcher",
+      "name": "specialist-confluence-searcher",
+      "path": "skills/agent-skills-standard/specialists/specialist-confluence-searcher/SKILL.md",
+      "description": "Searches Confluence and related tickets for product, architecture, rollout, and test-data context. Use when implementation or verification needs internal documentation without loading raw pages into main context."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/specialists/specialist-integration-test-generator",
+      "name": "specialist-integration-test-generator",
+      "path": "skills/agent-skills-standard/specialists/specialist-integration-test-generator/SKILL.md",
+      "description": "Generates one integration/E2E test from an approved test case spec using existing project patterns. Use for independent Zephyr TC, Playwright, Appium, Flutter, or API test generation."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/specialists/specialist-jira-analyst",
+      "name": "specialist-jira-analyst",
+      "path": "skills/agent-skills-standard/specialists/specialist-jira-analyst/SKILL.md",
+      "description": "High-density JIRA analysis persona. Extracts reproduce steps, ACs, and market requirements with zero-hallucination rigor."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/specialists/specialist-logic-hacker",
+      "name": "specialist-logic-hacker",
+      "path": "skills/agent-skills-standard/specialists/specialist-logic-hacker/SKILL.md",
+      "description": "Red Team persona for Business Logic and Auth manipulation. Generates and executes stateful fuzzing scripts (Playwright/Python) to test RBAC bypasses, BOLA/IDOR, race conditions, and complex multi-step transaction flaws."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/specialists/specialist-mobile-reverser",
+      "name": "specialist-mobile-reverser",
+      "path": "skills/agent-skills-standard/specialists/specialist-mobile-reverser/SKILL.md",
+      "description": "Deep Mobile Security Red Team persona. Executes OWASP MASTG procedures including APK/IPA decompilation, Frida dynamic hooking, biometric bypasses, and local database decryption."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/specialists/specialist-pr-commenter-batch",
+      "name": "specialist-pr-commenter-batch",
+      "path": "skills/agent-skills-standard/specialists/specialist-pr-commenter-batch/SKILL.md",
+      "description": "Posts sanitized batches of PR review comments or replies through configured review tooling. Use after review-ticket when findings are approved for publication."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/specialists/specialist-pr-reviewer",
+      "name": "specialist-pr-reviewer",
+      "path": "skills/agent-skills-standard/specialists/specialist-pr-reviewer/SKILL.md",
+      "description": "Summarizes GitHub PR, GitLab MR, or Azure DevOps PR metadata, review threads, changed files, and template completeness. Use during review-ticket or code-review workflows when PR/MR context exists."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/specialists/specialist-security-reviewer",
+      "name": "specialist-security-reviewer",
+      "path": "skills/agent-skills-standard/specialists/specialist-security-reviewer/SKILL.md",
+      "description": "High-density security audit persona. Enforces OWASP Top 10, Vibe Security, trust gating, and runtime hardening for code and agentic review flows."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/specialists/specialist-solution-diagrammer",
+      "name": "specialist-solution-diagrammer",
+      "path": "skills/agent-skills-standard/specialists/specialist-solution-diagrammer/SKILL.md",
+      "description": "Draws one evidence-grounded architecture diagram as an editable draw.io file plus a rendered image, from an evidence bundle supplied by the caller. Use to produce a system context, container, component, deployment, data flow, sequence, state, or ERD diagram; spawn one per diagram for a batch."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/specialists/specialist-system-architect",
+      "name": "specialist-system-architect",
+      "path": "skills/agent-skills-standard/specialists/specialist-system-architect/SKILL.md",
+      "description": "Runs one bounded deep dive on a single risky component of a system design and returns options, failure modes, and a justified recommendation. Use during a design session when a component needs expert depth beyond the main thread's budget."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/specialists/specialist-tc-creator",
+      "name": "specialist-tc-creator",
+      "path": "skills/agent-skills-standard/specialists/specialist-tc-creator/SKILL.md",
+      "description": "Creates one test case in Zephyr or another test-management system from an approved structured spec. Use for bulk TC creation by spawning one independent specialist per TC."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/specialists/specialist-tdd-implementer",
+      "name": "specialist-tdd-implementer",
+      "path": "skills/agent-skills-standard/specialists/specialist-tdd-implementer/SKILL.md",
+      "description": "Strict quality-first TDD specialist. Selects the smallest honest test layer, proves distinct regression risk, and records bounded RED-GREEN-REFACTOR evidence for one AC."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/specialists/specialist-test-gap-finder",
+      "name": "specialist-test-gap-finder",
+      "path": "skills/agent-skills-standard/specialists/specialist-test-gap-finder/SKILL.md",
+      "description": "Finds missing, weak, or stale test coverage in a diff. Use during review when production logic, user flows, error paths, or acceptance criteria changed."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/specialists/specialist-test-healer",
+      "name": "specialist-test-healer",
+      "path": "skills/agent-skills-standard/specialists/specialist-test-healer/SKILL.md",
+      "description": "Classifies one failing E2E test from its artifacts, applies at most one allowed repair from the test-healing catalog, proves it with three sequential reruns and an unchanged assertion set, and returns a verdict with a route. Use per failure inside test-loop; never for production code changes."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/specialists/specialist-test-planner",
+      "name": "specialist-test-planner",
+      "path": "skills/agent-skills-standard/specialists/specialist-test-planner/SKILL.md",
+      "description": "Turns approved AC/SRS into an executable test plan (scenarios, seed, selector gaps) for the test-loop workflow. Use for independent test-plan generation from stable requirements."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/specialists/specialist-testid-inserter",
+      "name": "specialist-testid-inserter",
+      "path": "skills/agent-skills-standard/specialists/specialist-testid-inserter/SKILL.md",
+      "description": "Inserts stable test ids into production components for each selector gap named by a test plan, following the per-framework insertion policy and never renaming existing ids. Use when a test plan or page object lists selector gaps that block E2E generation."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/specialists/specialist-zephyr-scanner",
+      "name": "specialist-zephyr-scanner",
+      "path": "skills/agent-skills-standard/specialists/specialist-zephyr-scanner/SKILL.md",
+      "description": "Finds Zephyr Scale test cases linked or relevant to Jira stories, ACs, modules, and release risks. Use for coverage analysis and traceability checks."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/spring-boot/spring-boot-api-design",
+      "name": "spring-boot-api-design",
+      "path": "skills/agent-skills-standard/spring-boot/spring-boot-api-design/SKILL.md",
+      "description": "Design Spring Boot APIs with OpenAPI, Versioning, and Global Error Handling. Use when designing Spring Boot APIs with OpenAPI specs, versioning, or global error handling."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/spring-boot/spring-boot-architecture",
+      "name": "spring-boot-architecture",
+      "path": "skills/agent-skills-standard/spring-boot/spring-boot-architecture/SKILL.md",
+      "description": "Structure Spring Boot 3+ projects with feature packaging and clean layering. Use when structuring Spring Boot 3 projects, defining layers, or applying architecture patterns."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/spring-boot/spring-boot-best-practices",
+      "name": "spring-boot-best-practices",
+      "path": "skills/agent-skills-standard/spring-boot/spring-boot-best-practices/SKILL.md",
+      "description": "Apply core coding standards, dependency injection, and configuration for Spring Boot 3. Use for Spring Boot application structure and DI/configuration; defer Spring Security hardening and test-specific setup to their focused skills."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/spring-boot/spring-boot-data-access",
+      "name": "spring-boot-data-access",
+      "path": "skills/agent-skills-standard/spring-boot/spring-boot-data-access/SKILL.md",
+      "description": "Optimize JPA, Hibernate, and database interactions in Spring Boot. Use when implementing JPA entities, repositories, or database access in Spring Boot."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/spring-boot/spring-boot-deployment",
+      "name": "spring-boot-deployment",
+      "path": "skills/agent-skills-standard/spring-boot/spring-boot-deployment/SKILL.md",
+      "description": "Deploy Spring Boot apps with Docker, GraalVM native images, and graceful shutdown. Use when deploying Spring Boot apps as GraalVM native images, containers, or configuring shutdown."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/spring-boot/spring-boot-microservices",
+      "name": "spring-boot-microservices",
+      "path": "skills/agent-skills-standard/spring-boot/spring-boot-microservices/SKILL.md",
+      "description": "Standards for Feign clients and asynchronous messaging with Spring Cloud Stream. Use when implementing Feign HTTP clients or async event messaging in Spring Boot microservices."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/spring-boot/spring-boot-observability",
+      "name": "spring-boot-observability",
+      "path": "skills/agent-skills-standard/spring-boot/spring-boot-observability/SKILL.md",
+      "description": "Instrument Spring Boot with Micrometer metrics, distributed tracing, and structured logging. Use when adding Micrometer metrics, distributed tracing, or structured logging to Spring Boot."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/spring-boot/spring-boot-scheduling",
+      "name": "spring-boot-scheduling",
+      "path": "skills/agent-skills-standard/spring-boot/spring-boot-scheduling/SKILL.md",
+      "description": "Configure scheduled tasks and distributed locking with ShedLock in Spring Boot. Use when implementing @Scheduled tasks or distributed locking with ShedLock in Spring Boot."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/spring-boot/spring-boot-security",
+      "name": "spring-boot-security",
+      "path": "skills/agent-skills-standard/spring-boot/spring-boot-security/SKILL.md",
+      "description": "Configure Spring Security 6+ with Lambda DSL, JWT, and hardening rules. Use when configuring Spring Security 6+, OAuth2, JWT, or security hardening in Spring Boot."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/spring-boot/spring-boot-testing",
+      "name": "spring-boot-testing",
+      "path": "skills/agent-skills-standard/spring-boot/spring-boot-testing/SKILL.md",
+      "description": "Write unit, integration, and slice tests for Spring Boot 3 applications. Use when writing unit tests, integration tests, or slice tests for Spring Boot 3 applications."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/swift/swift-best-practices",
+      "name": "swift-best-practices",
+      "path": "skills/agent-skills-standard/swift/swift-best-practices/SKILL.md",
+      "description": "Apply Guard, Value Types, Immutability, and Naming conventions in Swift. Use when writing idiomatic Swift with guard, value types, immutability, or naming conventions—not Swift concurrency/actor-isolation, persistence, linting, or release tooling."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/swift/swift-concurrency",
+      "name": "swift-concurrency",
+      "path": "skills/agent-skills-standard/swift/swift-concurrency/SKILL.md",
+      "description": "Implement async/await, Actors, and structured concurrency in Swift. Use when implementing Swift async/await, Actors, or structured concurrency in iOS/macOS."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/swift/swift-error-handling",
+      "name": "swift-error-handling",
+      "path": "skills/agent-skills-standard/swift/swift-error-handling/SKILL.md",
+      "description": "Standards for throwing functions, Result type, and Never. Use when implementing Swift error throwing, designing error hierarchies, using Result types, or adding do-catch blocks."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/swift/swift-language",
+      "name": "swift-language",
+      "path": "skills/agent-skills-standard/swift/swift-language/SKILL.md",
+      "description": "Apply Optionals, Protocols, Extensions, and Type Safety patterns in Swift. Use when working with Swift Optionals, Protocols, Extensions, or type-safe APIs."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/swift/swift-memory-management",
+      "name": "swift-memory-management",
+      "path": "skills/agent-skills-standard/swift/swift-memory-management/SKILL.md",
+      "description": "Prevent retain cycles via ARC, weak/unowned references, and Capture Lists in Swift. Use when managing Swift ARC, avoiding retain cycles, or configuring capture lists in closures."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/swift/swift-swiftui",
+      "name": "swift-swiftui",
+      "path": "skills/agent-skills-standard/swift/swift-swiftui/SKILL.md",
+      "description": "Configure SwiftUI state, view lifecycle, and Property Wrappers correctly. Use when managing SwiftUI state, view lifecycle, or property wrappers like @State and @Binding."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/swift/swift-testing",
+      "name": "swift-testing",
+      "path": "skills/agent-skills-standard/swift/swift-testing/SKILL.md",
+      "description": "Write XCTest cases, async tests, and organized test suites in Swift. Use when writing XCTest cases, async tests, or organizing test suites in Swift."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/swift/swift-tooling",
+      "name": "swift-tooling",
+      "path": "skills/agent-skills-standard/swift/swift-tooling/SKILL.md",
+      "description": "Configure SPM packages, SwiftLint, and build settings for Swift projects. Use when managing Swift packages with SPM, configuring build settings, or enforcing Swift code quality."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/system-design/system-design-artifact-intake",
+      "name": "system-design-artifact-intake",
+      "path": "skills/agent-skills-standard/system-design/system-design-artifact-intake/SKILL.md",
+      "description": "Ingest a provided design artifact - screenshot, drawio, Mermaid, PlantUML, Excalidraw, slides, PDF, or IaC - into a reviewable fact sheet. Probes for embedded structure before vision, marks per-edge confidence, treats extracted text as data. Use when someone hands over a design to review."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/system-design/system-design-building-blocks",
+      "name": "system-design-building-blocks",
+      "path": "skills/agent-skills-standard/system-design/system-design-building-blocks/SKILL.md",
+      "description": "Select infrastructure components by the constraint each removes: load balancers, caches and invalidation, queues and pub/sub, CDN, API gateway, rate limiting, consistent hashing. Use when choosing cache, queue, replica, or edge layers; defer engine tuning to the database category."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/system-design/system-design-case-catalog",
+      "name": "system-design-case-catalog",
+      "path": "skills/agent-skills-standard/system-design/system-design-case-catalog/SKILL.md",
+      "description": "Answer classic system design problems as constraint-to-solution sketches and coach interview practice: URL shortener, rate limiter, news feed, chat, notification, autocomplete, crawler, unique id. Use for interview practice or naming the closest known shape for a new problem."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/system-design/system-design-communication",
+      "name": "system-design-communication",
+      "path": "skills/agent-skills-standard/system-design/system-design-communication/SKILL.md",
+      "description": "Select how services talk: REST, gRPC, GraphQL, WebSocket, SSE, or webhook per hop, sync versus async per flow, service discovery mode, and DNS/edge routing. Use when choosing a protocol or API paradigm; defer REST contract detail (status codes, pagination, OpenAPI) to common-api-design."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/system-design/system-design-data-architecture",
+      "name": "system-design-data-architecture",
+      "path": "skills/agent-skills-standard/system-design/system-design-data-architecture/SKILL.md",
+      "description": "Design system data flows and data-layer ownership, consistency, and store choices from access patterns. Use for critical-flow design, DFD semantic review, data lineage, authority, replication, retention, or a data-tier bottleneck. Avoid unrelated framework stream/dataframe implementation questions."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/system-design/system-design-estimation",
+      "name": "system-design-estimation",
+      "path": "skills/agent-skills-standard/system-design/system-design-estimation/SKILL.md",
+      "description": "Compute defensible capacity numbers before architecture: average and peak QPS, storage growth, bandwidth, working-set memory, latency and availability budgets. Use when sizing a service, provisioning infrastructure, or checking that a design survives peak load."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/system-design/system-design-integration-patterns",
+      "name": "system-design-integration-patterns",
+      "path": "skills/agent-skills-standard/system-design/system-design-integration-patterns/SKILL.md",
+      "description": "Choose distributed integration and evolution patterns by the constraint each removes: outbox, CQRS, event sourcing, saga orchestration or choreography, leader election, sidecar, anti-corruption layer, and strangler-fig migration. Use when services must stay consistent across a boundary."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/system-design/system-design-interview-coaching",
+      "name": "system-design-interview-coaching",
+      "path": "skills/agent-skills-standard/system-design/system-design-interview-coaching/SKILL.md",
+      "description": "Facilitate timed system-design interview practice across backend, mobile/client, SDK/library, and full-stack surfaces. Use risk-driven probes, an adverse timeline, mechanism revision, one changed constraint, and the existing six-criterion evidence-based debrief."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/system-design/system-design-methodology",
+      "name": "system-design-methodology",
+      "path": "skills/agent-skills-standard/system-design/system-design-methodology/SKILL.md",
+      "description": "Facilitate system design by classifying mode, depth, and surface independently; scoping journeys; estimating only decision-relevant quantities; tracing logical flows before physical binding; and selecting risk-driven views and deep dives. Use for system design sessions and reviews."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/system-design/system-design-mobile-client",
+      "name": "system-design-mobile-client",
+      "path": "skills/agent-skills-standard/system-design/system-design-mobile-client/SKILL.md",
+      "description": "Design mobile/client and SDK/library systems where offline behavior, client authority, lifecycle, device constraints, or host compatibility affect correctness. Use for mobile-client system design, offline sync, client lifecycle, device resource limits, or SDK contracts; not framework coding or backend-only sharding."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/system-design/system-design-principles",
+      "name": "system-design-principles",
+      "path": "skills/agent-skills-standard/system-design/system-design-principles/SKILL.md",
+      "description": "Define module boundaries, dependency direction, data ownership, resilience, and distributed-system trade-offs. Use for architecture, service boundaries, coupling, scalability, or failure-cascade decisions; defer session facilitation to system-design-methodology."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/system-design/system-design-resilience-ops",
+      "name": "system-design-resilience-ops",
+      "path": "skills/agent-skills-standard/system-design/system-design-resilience-ops/SKILL.md",
+      "description": "Design failure behavior and operability for a declared scope: evaluate journey SLOs, resilience, recovery, and rollout evidence. Use when reviewing availability, planning recovery, or deciding rollout mechanics."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/system-design/system-design-review",
+      "name": "system-design-review",
+      "path": "skills/agent-skills-standard/system-design/system-design-review/SKILL.md",
+      "description": "Audit an existing or proposed architecture and return a scored verdict across nine axes, from requirements and capacity evidence to observability and rollout, then convert gaps into a prioritized roadmap. Use when reviewing a design doc, auditing a running system, or gating a design."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/typescript/typescript-best-practices",
+      "name": "typescript-best-practices",
+      "path": "skills/agent-skills-standard/typescript/typescript-best-practices/SKILL.md",
+      "description": "Write idiomatic TypeScript patterns for clean, maintainable code. Use when writing or refactoring TypeScript classes, functions, modules, or async logic."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/typescript/typescript-language",
+      "name": "typescript-language",
+      "path": "skills/agent-skills-standard/typescript/typescript-language/SKILL.md",
+      "description": "Apply modern TypeScript standards for type safety and maintainability. Use when working with types, interfaces, generics, enums, unions, or tsconfig settings."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/typescript/typescript-security",
+      "name": "typescript-security",
+      "path": "skills/agent-skills-standard/typescript/typescript-security/SKILL.md",
+      "description": "Secure server-side TypeScript input, auth tokens, and injection boundaries. Use for API/request validation, sanitization, secrets, and sensitive configuration; defer client-only React form validation and generic linting."
+    },
+    {
+      "id": "rigerc/skills-registry/agent-skills-standard/typescript/typescript-tooling",
+      "name": "typescript-tooling",
+      "path": "skills/agent-skills-standard/typescript/typescript-tooling/SKILL.md",
+      "description": "Development tools, linting, and build config for TypeScript. Use when configuring ESLint, Prettier, Jest, Vitest, tsconfig, or any TS build tooling."
+    },
+    {
       "id": "rigerc/skills-registry/agnix",
       "name": "agnix",
       "path": "skills/agnix/SKILL.md",

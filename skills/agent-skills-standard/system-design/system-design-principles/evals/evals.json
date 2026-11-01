@@ -1,0 +1,154 @@
+{
+  "skill_name": "system-design-principles",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I am splitting an order service into API, domain, and persistence modules. What boundaries and dependency direction should I define?",
+      "expected_output": "Separates API, domain, and persistence concerns along a clear module boundary; defines the domain as independent of framework and data adapters; identifies one owner for order state.",
+      "assertions": [
+        {
+          "type": "contains_any",
+          "value": [
+            "separation of concerns",
+            "separate concerns",
+            "module boundary",
+            "module boundaries",
+            "domain module",
+            "cohesive modules",
+            "storage concerns"
+          ],
+          "description": "Defines a boundary rather than a generic architecture slogan"
+        },
+        {
+          "type": "contains_any",
+          "value": [
+            "domain",
+            "business logic",
+            "core logic"
+          ]
+        },
+        {
+          "type": "contains_any",
+          "value": [
+            "owner",
+            "owns",
+            "source of truth",
+            "authoritative"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "A checkout service synchronously calls inventory, pricing, and email. Inventory is intermittently failing. How should I avoid cascading failure?",
+      "expected_output": "Separates the critical checkout path from non-critical email, applies explicit timeout/retry/circuit-breaker behavior, and describes degraded behavior.",
+      "assertions": [
+        {
+          "type": "contains_any",
+          "value": [
+            "timeout",
+            "circuit breaker",
+            "fail fast"
+          ]
+        },
+        {
+          "type": "contains_any",
+          "value": [
+            "degrade",
+            "fallback",
+            "non-critical"
+          ]
+        },
+        {
+          "type": "contains_any",
+          "value": [
+            "email",
+            "asynchronous",
+            "event"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Should a reporting service read the orders database directly, or consume order events? Explain the trade-off and a safe default.",
+      "expected_output": "Explains ownership and coupling; recommends an explicit integration contract such as events for an independently evolving reporting service; notes eventual consistency.",
+      "assertions": [
+        {
+          "type": "contains_any",
+          "value": [
+            "coupling",
+            "contract",
+            "boundary",
+            "bounded context",
+            "loosely coupled",
+            "service ownership"
+          ]
+        },
+        {
+          "type": "contains_any",
+          "value": [
+            "events",
+            "event-driven",
+            "direct database"
+          ]
+        },
+        {
+          "type": "contains_any",
+          "value": [
+            "eventual consistency",
+            "asynchronous",
+            "trade-off"
+          ]
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "A payment processor captures an order, but the response times out. The client retries the same checkout; explain how to avoid charging twice and how to resolve the unknown result.",
+      "expected_output": "Keeps the same operation ID for this checkout across retries, arbitrates the capture at its authoritative owner, and reconciles an unknown processor result before another capture.",
+      "assertions": [
+        { "type": "contains_any", "value": ["same operation ID", "stable operation ID", "same idempotency key"], "description": "Uses business-operation identity across transport retry" },
+        { "type": "contains_any", "value": ["reconcile", "query status", "processor report"], "description": "Resolves ambiguous commit before retrying effect" }
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "The processor does not support idempotency, and its response can be lost after a capture. Operations wants automatic retries to keep checkout moving.",
+      "expected_output": "Does not blindly repeat an external effect with unknown outcome; records the operation and reconciles authoritative provider evidence before any further capture, while returning an explicit pending or unknown result.",
+      "assertions": [
+        { "type": "regex", "value": "(?<!not\\s+)(?<!never\\s+)(?<!don't\\s+)\\b(suspend|suspends|disable|disables|withhold|withholds|defer|defers|stop|stops|avoid|avoids|prevent|prevents|prohibit|prohibits)\\b[^.;!?]{0,20}\\b(capture|charge|resubmit|retry|retries|repeat)\\b|\\b(do not|does not|don't|never)\\s+(blindly\\s+)?(capture|charge|resubmit|retry|retries|repeat)\\b", "description": "Withholds repeated capture until provider outcome is known" },
+        { "type": "contains_any", "value": ["reconcile", "authoritative status", "processor report"], "description": "Requires an outcome-resolution mechanism" }
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "During a network partition, a distributed account balance must remain linearizable. What should reads and writes do when a replica cannot reach the authority?",
+      "expected_output": "Scopes the consistency/availability choice to partition behavior, preserves linearizability by refusing or blocking operations that cannot be safely served, and does not treat CAP availability as an uptime percentage.",
+      "assertions": [
+        { "type": "contains_any", "value": ["partition", "network partition"], "description": "Scopes the trade-off to partition behavior" },
+        { "type": "contains_any", "value": ["reject", "fail", "block", "cannot serve"], "description": "Names user-visible request behavior under partition" }
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "The product now permits stale balance reads during a partition, but transfers must still never spend funds twice. Revisit the partition behavior.",
+      "expected_output": "Separates read freshness from the transfer invariant, states which reads may be stale and how transfers remain safe or unavailable during partition, and ties any convergence objective to a measurement and missed-target behavior.",
+      "assertions": [
+        { "type": "contains_any", "value": ["stale", "freshness"], "description": "Adapts read behavior to the changed constraint" },
+        { "type": "contains_any", "value": ["transfer", "spend", "invariant"], "description": "Preserves the distinct write invariant" }
+      ]
+    }
+  ],
+  "should_not_trigger": [
+    "Set up a basic project scaffold from scratch",
+    "How do I install project dependencies?",
+    "What is the npm install command?",
+    "Configure CI/CD for an unrelated platform"
+  ],
+  "should_trigger": [
+    "What module boundaries and dependency direction should this service use?",
+    "How do I stop a failing dependency from cascading through the checkout path?",
+    "Should these two microservices share a database or exchange events?"
+  ]
+}

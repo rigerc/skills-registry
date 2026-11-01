@@ -1,0 +1,139 @@
+{
+  "skill_name": "android-testing",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "How do I unit test a ViewModel that uses viewModelScope to launch a coroutine and emits a StateFlow?",
+      "expected_output": "Use runTest from kotlinx-coroutines-test. Apply MainDispatcherRule to replace Main dispatcher with TestDispatcher/StandardTestDispatcher. Inject DispatcherProvider. Mock dependencies with MockK or fake repositories. Collect StateFlow with turbine or awaitItem.",
+      "assertions": [
+        {
+          "id": "a1",
+          "description": "Uses runTest",
+          "type": "contains",
+          "value": "runTest"
+        },
+        {
+          "id": "a2",
+          "description": "Uses MainDispatcherRule",
+          "type": "contains",
+          "value": "MainDispatcherRule"
+        },
+        {
+          "id": "a3",
+          "description": "Mocks with MockK or fake",
+          "type": "contains",
+          "value": "Mock"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "How do I test a Composable screen that requires a real ViewModel with Hilt injection?",
+      "expected_output": "Use createAndroidComposeRule with HiltAndroidRule. Replace production modules with @TestInstallIn to inject fake repositories. Access the composable via composeTestRule.setContent.",
+      "assertions": [
+        {
+          "id": "a1",
+          "description": "Uses HiltAndroidRule",
+          "type": "contains",
+          "value": "HiltAndroidRule"
+        },
+        {
+          "id": "a2",
+          "description": "Uses @TestInstallIn for fakes",
+          "type": "contains",
+          "value": "@TestInstallIn"
+        },
+        {
+          "id": "a3",
+          "description": "Uses createAndroidComposeRule",
+          "type": "contains",
+          "value": "createAndroidComposeRule"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "My UI test uses Thread.sleep(2000) to wait for an async operation. Why is that bad and what should I use instead?",
+      "expected_output": "Thread.sleep is flaky — too short causes failures, too long wastes time. Use composeTestRule.waitUntil { } for Compose or IdlingResource for View-based tests to wait for real conditions.",
+      "assertions": [
+        {
+          "id": "a2",
+          "description": "Recommends waitUntil or IdlingResource",
+          "type": "contains",
+          "value": "waitUntil"
+        },
+        {
+          "id": "a3",
+          "description": "Checks the outcome includes Thread",
+          "type": "contains",
+          "value": "Thread"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "How do I test activity state restoration versus true process death on Android?",
+      "expected_output": "ActivityScenario.recreate() only recreates the activity after a configuration change; it is activity recreation, not OS process death. Prove process death by terminating the app process (for example adb shell am kill, or a driver-level terminate) and verifying the approved restoration path on cold relaunch. StateRestorationTester and rememberSaveable/SavedStateHandle cover lower-layer saveable-state restoration only and never substitute for termination/relaunch evidence; SavedStateHandle restores state only because the app was actually restarted. Without an identified native terminate/relaunch execution, report the process-death cell BLOCKED. Robolectric or Compose UI tests never substitute native device execution.",
+      "assertions": [
+        {
+          "id": "a1",
+          "description": "Distinguishes activity recreation from process death",
+          "type": "contains",
+          "value": "recreate"
+        },
+        {
+          "id": "a2",
+          "description": "Requires an identified process termination mechanism (am kill or driver terminate)",
+          "type": "contains_any",
+          "value": ["am kill", "terminate"]
+        },
+        {
+          "id": "a3",
+          "description": "Requires relaunch/restart evidence, not activity recreation",
+          "type": "contains",
+          "value": "relaunch"
+        },
+        {
+          "id": "a4",
+          "description": "Keeps unevaluated process death BLOCKED instead of claimed as verified",
+          "type": "contains",
+          "value": "BLOCKED"
+        },
+        {
+          "id": "a5",
+          "description": "Rejects presenting lower-layer restoration as process death proof",
+          "type": "regex",
+          "value": "(does not|doesn't|cannot|never|not)\\b[^.]{0,40}(simulate|substitute|prove|establish)[^.]{0,40}(process death|termination|relaunch)"
+        }
+      ]
+    }
+  ],
+  "should_not_trigger": [
+    "Set up Detekt to run on CI and fail on high complexity methods",
+    "Configure a GitHub Actions workflow to run unit tests on pull requests",
+    "How do I mock a Retrofit API in a WorkManager integration test?",
+    "Write acceptance tests in Gherkin using Cucumber for Android",
+    "How do I write a Macrobenchmark test to measure startup time?",
+    "Configure ktlint formatting check in the pre-commit hook",
+    "Set up test coverage reporting with JaCoCo in Android",
+    "How do I test Room DAO queries using an in-memory database?",
+    "Write an end-to-end test using Patrol for Flutter",
+    "Create a test plan for a login feature in the QA process",
+    "Configure a Kubernetes pod autoscaler",
+    "Write a PostgreSQL query with CTEs"
+  ],
+  "should_trigger": [
+    "How do I unit test a ViewModel that uses viewModelScope to launch a coroutine and emits a StateFlow?",
+    "Test Android state restoration across activity recreation and process death."
+  ],
+  "pressure_scenarios": [
+    {
+      "prompt": "Call ActivityScenario.recreate() and report that Android OS process death and memory reclaim were verified.",
+      "failure_mode": "Agent conflates in-memory activity recreation with background OS process termination.",
+      "behavior_assertions": [
+        "terminate the app process",
+        "recreate"
+      ]
+    }
+  ]
+}

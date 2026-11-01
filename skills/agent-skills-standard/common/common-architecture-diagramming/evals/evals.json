@@ -1,0 +1,299 @@
+{
+  "skill_name": "common-architecture-diagramming",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Plan a diagram for executives deciding whether a mobile app, API, payment provider, and database are in scope. Which C4 level and which elements should I use?",
+      "expected_output": "Uses a C4 system-context diagram for actors and external systems, labels relationships, avoids database-table detail, and includes title/legend/scope metadata.",
+      "assertions": [
+        {
+          "type": "contains_any",
+          "value": ["context", "system context", "C4"]
+        },
+        {
+          "type": "contains_any",
+          "value": ["actor", "payment provider", "relationship"]
+        },
+        { "type": "contains_any", "value": ["legend", "scope", "title"] }
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Our sequence diagram shows database columns, Kubernetes pods, and OAuth request steps together. What should we change before a design review?",
+      "expected_output": "Identifies mixed abstraction levels, recommends separate container or deployment views from a sequence diagram, and requires labeled arrows and a legend.",
+      "assertions": [
+        {
+          "type": "contains_any",
+          "value": ["mixed levels", "separate", "abstraction"]
+        },
+        {
+          "type": "contains_any",
+          "value": ["sequence", "deployment", "container"]
+        },
+        { "type": "contains_any", "value": ["label", "legend", "arrow"] }
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "I need to explain an asynchronous order-created event from checkout to fulfillment and email. What diagram should I create and what must it show?",
+      "expected_output": "Chooses a sequence or data-flow diagram, marks the event edge as async, names the participating services, and documents failure/retry behavior.",
+      "assertions": [
+        { "type": "contains_any", "value": ["event", "asynchronous", "async"] },
+        {
+          "type": "contains_any",
+          "value": ["checkout", "fulfillment", "email"]
+        },
+        { "type": "contains_any", "value": ["retry", "failure", "label"] }
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Draw the container diagram for this service as a draw.io file I can edit afterwards.",
+      "expected_output": "Writes a spec JSON, runs validate_spec.py, render_drawio.py and export_drawio.py, and commits the .drawio alongside the exported image. Never hand-writes mxGraph XML.",
+      "assertions": [
+        { "type": "contains_any", "value": ["spec", "spec.json"] },
+        {
+          "type": "contains_any",
+          "value": ["render_drawio", "validate_spec", "export_drawio"]
+        },
+        { "type": "not_contains", "value": "mxGraphModel" }
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "I'm describing the architecture from memory, there's no doc. Three of these services I'm not certain about. Draw it anyway.",
+      "expected_output": "Draws it, leaves the evidence field absent on unproven nodes so they render dashed and labelled UNVERIFIED, and lists them for confirmation instead of asserting them.",
+      "assertions": [
+        { "type": "contains", "value": "UNVERIFIED" },
+        { "type": "contains_any", "value": ["evidence", "confirm", "verify"] }
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "Our executive context diagram has grown to nineteen boxes and leadership says it's unreadable. Fix it.",
+      "expected_output": "Cites the twelve-node cap for an exec audience and splits by C4 level or by flow rather than shrinking the shapes.",
+      "assertions": [
+        { "type": "contains_any", "value": ["12", "twelve", "cap"] },
+        {
+          "type": "contains_any",
+          "value": ["split", "second diagram", "level"]
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "Draw the ERD for our Prisma schema at prisma/schema.prisma. Two models reference a Tenant model that lives in another repo.",
+      "expected_output": "Runs schema_to_spec.py on the Prisma file rather than typing entities by hand, keeps the undeclared Tenant as an UNVERIFIED entity instead of inventing its columns, and gives every relation a cardinality.",
+      "assertions": [
+        {
+          "type": "contains_any",
+          "value": ["schema_to_spec", "generate"]
+        },
+        {
+          "type": "contains_any",
+          "value": ["UNVERIFIED", "not declared", "undeclared"]
+        },
+        {
+          "type": "contains_any",
+          "value": ["cardinality", "many-to-one", "one-to-many"]
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "Deployment diagram for our AWS setup: CloudFront, an ALB, EKS, RDS, ElastiCache, SQS, with Azure AD for SSO.",
+      "expected_output": "Uses the aws:* icon kinds for the AWS services and a cloud:identity kind with 'Azure AD' in the sublabel, because no Azure stencil is verified; never invents an Azure icon.",
+      "assertions": [
+        {
+          "type": "contains_any",
+          "value": ["aws:", "aws4"]
+        },
+        {
+          "type": "contains_any",
+          "value": ["cloud:identity", "vendor-neutral", "cloud:"]
+        },
+        {
+          "type": "contains_any",
+          "value": ["sublabel", "vendor in label"]
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "prompt": "Route the same architecture for two audiences: executives need to decide whether the product boundary and payment provider are in scope, while developers need to implement inventory reservation and inspect entity relationships. Which HLD and LLD views should be separate?",
+      "expected_output": "Uses separate views: a system-context diagram for the executive HLD question and a component, sequence, or ERD view for the developer LLD question. Keeps actors and external systems out of schema/class detail, and does not force every level into one diagram.",
+      "assertions": [
+        {
+          "type": "contains_any",
+          "value": [
+            "system-context diagram",
+            "context diagram",
+            "executive HLD"
+          ],
+          "description": "Routes the executive boundary decision to an HLD context view"
+        },
+        {
+          "type": "contains_any",
+          "value": ["component view", "sequence view", "ERD", "developer LLD"],
+          "description": "Routes implementation detail to an LLD view"
+        },
+        {
+          "type": "contains_any",
+          "value": [
+            "separate diagrams",
+            "separate views",
+            "one C4 level per diagram"
+          ],
+          "description": "Preserves a single abstraction level per artifact"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "prompt": "Near-miss routing: the executive review asks whether checkout, the payment provider, and the trust boundary are in scope, but the draft diagram includes SQL columns, retry state-machine transitions, and Kubernetes pods. Should this be one HLD diagram?",
+      "expected_output": "Rejects the mixed-level draft. Uses an executive system-context HLD diagram for actors, external payment, and boundaries; moves retry states to a separate LLD state or sequence view and pods to a deployment view, without putting SQL columns in the context diagram.",
+      "assertions": [
+        {
+          "type": "contains_any",
+          "value": ["mixed-level", "mixed abstraction", "mixed levels"],
+          "description": "Identifies why the near-miss is routed away from one artifact"
+        },
+        {
+          "type": "contains_any",
+          "value": ["executive system-context HLD", "context diagram", "HLD"],
+          "description": "Chooses the correct high-level view for the stated decision"
+        },
+        {
+          "type": "contains_any",
+          "value": ["LLD state", "sequence view", "deployment view"],
+          "description": "Routes state detail and runtime topology to concrete low-level views"
+        },
+        {
+          "type": "contains_any",
+          "value": [
+            "SQL columns in the context diagram",
+            "do not put SQL columns",
+            "not in the context diagram"
+          ],
+          "description": "Excludes implementation detail from the executive artifact"
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "prompt": "A proposed fraud-check service is drawn beside an implemented checkout service, and an edge is copied from documentation but not observed in production. How should the diagram record lifecycle and evidence?",
+      "expected_output": "Labels node lifecycle separately as proposed or implemented, preserves provenance on the edge as well as the nodes, sets evidence_kind=document and evidence_confidence=documented for the documentary edge while leaving the deployment/runtime claim unproven or review-needed, and distinguishes target metrics from measured or estimated metrics.",
+      "assertions": [
+        {
+          "type": "contains_any",
+          "value": ["proposed", "implemented"],
+          "description": "Separates lifecycle status from evidence confidence"
+        },
+        {
+          "type": "contains_any",
+          "value": [
+            "edge provenance",
+            "provenance on the edge",
+            "relationship evidence"
+          ],
+          "description": "Preserves evidence for relationships, not only nodes"
+        },
+        {
+          "type": "regex",
+          "value": "\"?evidence_kind\"?\\s*[:=]\\s*\"?document\\b",
+          "description": "Smoke-checks the required documentary source-kind field, independently of confidence"
+        },
+        {
+          "type": "contains_any",
+          "value": [
+            "evidence_confidence=documented",
+            "confidence=documented",
+            "documented evidence"
+          ],
+          "description": "Records documentary evidence without changing the lifecycle enum"
+        },
+        {
+          "type": "contains_any",
+          "value": [
+            "deployment/runtime claim unproven",
+            "runtime not proven",
+            "deployment remains unproven"
+          ],
+          "description": "Keeps runtime deployment claims separate from evidence confidence"
+        },
+        {
+          "type": "contains_any",
+          "value": ["target metrics", "measured metrics", "estimated metrics"],
+          "description": "Labels metric provenance instead of presenting targets as observations"
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "prompt": "A container diagram's JSON passes validate_spec.py and render_drawio.py --strict, and the .drawio exports to PNG. At normal reading size the exported image still has overlapping arrow labels across service boxes. The review is today. Is the diagram ready to hand off, and what concrete steps come next?",
+      "expected_output": "The image is not ready for handoff despite successful validation. Inspect the PNG at normal reading size; fix the spec to remove overlaps, rerun validation and strict rendering, re-export and inspect the corrected image. Do not modify generated XML.",
+      "assertions": [
+        {
+          "type": "contains_any",
+          "value": ["not ready", "do not hand off", "cannot hand off"],
+          "description": "Rejects unreadable output despite a passing validator"
+        },
+        {
+          "type": "contains_any",
+          "value": ["normal reading size", "readable size", "actual reading size"],
+          "description": "Checks the user-visible exported image"
+        },
+        {
+          "type": "contains_any",
+          "value": ["fix the spec", "change the spec", "edit the JSON spec"],
+          "description": "Repairs the semantic source rather than generated XML"
+        },
+        {
+          "type": "contains_any",
+          "value": ["re-export", "export again", "rerun export"],
+          "description": "Verifies the corrected render"
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "prompt": "A logical DFD decomposition omits one payment input from its parent view, while a runtime browser uploads the bytes directly to object storage with a signed URL. Review both claims.",
+      "expected_output": "Requires balanced parent/child logical boundaries, and treats signed-URL direct upload as a valid physical path whose controls and scope must be described rather than forbidden by logical notation.",
+      "assertions": [
+        { "type": "contains_any", "value": ["balanced", "boundary input", "parent and child"], "description": "Checks semantic boundary balance" },
+        { "type": "contains_any", "value": ["physical", "signed URL", "direct upload"], "description": "Does not confuse logical convention with runtime ban" }
+      ]
+    },
+    {
+      "id": 14,
+      "prompt": "A dataflow view is being used to answer whether two messages are ordered and whether a client is pending or confirmed. Which views should the review use instead?",
+      "expected_output": "Uses sequence for ordering/acknowledgments and state for lifecycle, while limiting dataflow to movement, transformation, and authority.",
+      "assertions": [
+        { "type": "contains_any", "value": ["sequence", "ordering", "acknowledgment"], "description": "Routes temporal question to sequence view" },
+        { "type": "contains_any", "value": ["state", "lifecycle", "pending"], "description": "Routes lifecycle question to state view" }
+      ]
+    },
+    {
+      "id": 15,
+      "prompt": "The renderer uses house-style DFD symbols, not formal classical glyphs. What may the design review claim, and how should it treat a crossing edge?",
+      "expected_output": "Describes notation honestly as adapted/house-style, judges semantics before layout, and treats crossing edges as readability rather than proof of invalid data behavior.",
+      "assertions": [
+        { "type": "contains_any", "value": ["house-style", "adapted"], "description": "Does not claim unsupported formal notation" },
+        { "type": "contains_any", "value": ["readability", "crossing", "semantics"], "description": "Separates layout concern from semantic defect" }
+      ]
+    }
+  ],
+  "should_trigger": [
+    "Draw a C4 container diagram for this service",
+    "Redraw this ASCII architecture block as a draw.io diagram",
+    "Update the diagram in ARCHITECTURE.md",
+    "Create a system context diagram for our platform",
+    "Draw the ERD from our schema",
+    "Deployment diagram for our AWS architecture"
+  ],
+  "should_not_trigger": [
+    "Set up a basic common project from scratch",
+    "How do I install common dependencies?",
+    "Configure CI/CD for an unrelated platform"
+  ]
+}

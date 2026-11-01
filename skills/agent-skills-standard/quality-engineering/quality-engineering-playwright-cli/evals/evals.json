@@ -1,0 +1,69 @@
+{
+  "skill_name": "quality-engineering-playwright-cli",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Verify the search results on SG market using playwright-cli.",
+      "expected_output": "Sequence: 1. open with -s=verify-search, 2. snapshot --aria to verify results, 3. screenshot, 4. close session. Always use named session.",
+      "assertions": [
+        {
+          "type": "contains",
+          "value": "-s="
+        },
+        {
+          "type": "contains",
+          "value": "snapshot --aria"
+        },
+        {
+          "type": "contains",
+          "value": "close"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "I need to take a screenshot of a sticky header that only appears after scrolling.",
+      "expected_output": "Use 'hover' to scroll the header into view before calling 'screenshot'.",
+      "assertions": [
+        {
+          "type": "contains",
+          "value": "screenshot"
+        },
+        {
+          "id": "a2",
+          "description": "Checks the task contract includes hover'",
+          "type": "contains",
+          "value": "hover"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "I'm in Antigravity, there is no shell, and I need to verify the checkout page renders the discount banner.",
+      "expected_output": "Run the driver ladder: preflight is not possible without a shell, so use Playwright MCP with --isolated --headless --output-dir .playwright-cli/<session>: browser_navigate, browser_snapshot to assert the banner, browser_take_screenshot, browser_close. If no Playwright MCP is registered, ask for exported evidence; if none, return BLOCKED (driver: playwright).",
+      "assertions": [
+        {
+          "type": "contains",
+          "value": "browser_snapshot"
+        },
+        {
+          "type": "contains",
+          "value": "--isolated"
+        },
+        {
+          "type": "contains",
+          "value": "BLOCKED (driver: playwright)"
+        }
+      ]
+    }
+  ],
+  "should_not_trigger": [
+    "Write a unit test for the search component",
+    "Explain how CSS grid works",
+    "Analyze the mobile app hierarchy"
+  ],
+  "should_trigger": [
+    "Verify the search results on SG market using playwright-cli.",
+    "Use playwright mcp to check the login page and capture a browser_snapshot."
+  ]
+}

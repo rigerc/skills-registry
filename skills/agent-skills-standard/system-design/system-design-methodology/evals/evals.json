@@ -1,0 +1,361 @@
+{
+  "skill_name": "system-design-methodology",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Give an exploratory quick sketch of a flash sale reservation flow, not an approved production design. At the launch burst, 200,000 buyers may click in 10 seconds; 25% reach inventory and each of those requests may retry once. The invariant is never allocating more than available stock, p99 is 200ms, and duplicate requests must be safe. Name the blocking intake questions, label remaining assumptions without waiting for another turn, compute worst-case inventory traffic, and outline the minimal safe mechanism and its cost.",
+      "expected_output": "Asks the blocking questions that could change the design, computes roughly 10,000 inventory requests per second from 200,000 x 25% x 2 / 10, states the no-oversell invariant and duplicate-request outcome, then selects atomic reservation plus idempotency with each component tied to a constraint and cost.",
+      "assertions": [
+        {
+          "type": "contains_any",
+          "value": [
+            "blocking intake questions",
+            "requirements clarification",
+            "ask the blocking questions"
+          ],
+          "description": "Elicits the few requirements that can change the design"
+        },
+        {
+          "type": "regex",
+          "value": "(?:200\\s*k|200,?000)[\\s\\S]*?(?:25\\s*%|0\\.25)[\\s\\S]*?(?:10\\s*(?:s|seconds))[\\s\\S]*?(?:10\\s*k|10,?000)",
+          "description": "Smoke-checks the stated burst calculation; semantic graders verify the arithmetic independently"
+        },
+        {
+          "type": "contains_any",
+          "value": [
+            "atomic reservation",
+            "idempotency",
+            "duplicate-request outcome"
+          ],
+          "description": "Names a concrete mechanism and its duplicate-request behavior"
+        },
+        {
+          "type": "contains_any",
+          "value": [
+            "never allocating more than available stock",
+            "no-oversell invariant",
+            "never oversell"
+          ],
+          "description": "States the safety invariant instead of only naming components"
+        },
+        {
+          "type": "contains_any",
+          "value": [
+            "constraint and cost",
+            "constraint -> component -> cost",
+            "each component tied to a constraint"
+          ],
+          "description": "Connects each selected component to a constraint and cost"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Skip the questions, just give me the architecture diagram for a chat app.",
+      "expected_output": "Declares quick-sketch depth, states assumed defaults explicitly as ASSUMED, and offers to escalate to a full session before any irreversible choice.",
+      "assertions": [
+        {
+          "type": "contains_any",
+          "value": ["Quick sketch", "quick-sketch", "ASSUMED"],
+          "description": "Chooses a depth instead of silently guessing"
+        },
+        {
+          "type": "contains_any",
+          "value": ["ASSUMED", "No silent assumptions", "labeled"],
+          "description": "Labels every assumed input"
+        },
+        {
+          "type": "contains_any",
+          "value": ["Escalate quick to full", "irreversible choice"],
+          "description": "Names the escalation trigger"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "All consequential choices for a minimal internal read-only lookup are resolved. Return JSON with deep_dives as an array and unresolved_decision as null unless you can identify a concrete unresolved consequential risk.",
+      "expected_output": "deep_dives is empty when no consequential risk remains; unresolved_decision is null, as in {\"deep_dives\":[],\"unresolved_decision\":null}. No specialist quota or risk is invented.",
+      "assertions": [
+        {
+          "type": "regex",
+          "value": "\"deep_dives\"\\s*:\\s*\\[\\s*\\]",
+          "description": "Structured smoke check accepts no remaining dive for this resolved-risk case."
+        },
+        {
+          "type": "regex",
+          "value": "\"unresolved_decision\"\\s*:\\s*null",
+          "description": "Checks the output separately records that no consequential decision remains."
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Paired change to the flash-sale case: keep the 200,000 buyers and 10-second burst, but product now allows at most 0.1% bounded oversell and checkout may settle within 30 seconds. Recompute the constraint and explain whether the existing stricter mechanism should be retained or changed, including failure recovery.",
+      "expected_output": "Recomputes the changed constraint and explicitly evaluates whether retaining strict no-oversell and atomic reservation is simpler or safer; changing to bounded oversell is also valid when justified. In either case, explains the failure outcome and recovery within the 30-second window instead of blindly reusing the original answer.",
+      "assertions": [
+        {
+          "type": "contains_any",
+          "value": [
+            "changed constraint",
+            "changed requirement",
+            "paired change",
+            "recompute the constraint"
+          ],
+          "description": "Re-evaluates the design after the requirement changes"
+        },
+        {
+          "type": "contains_any",
+          "value": [
+            "recomputed invariant",
+            "re-evaluates the invariant",
+            "bounded-oversell invariant",
+            "bounded oversell",
+            "retains strict no-oversell"
+          ],
+          "description": "Checks that the new constraint is evaluated without forcing a particular architecture"
+        },
+        {
+          "type": "contains_any",
+          "value": [
+            "reconciliation",
+            "compensation",
+            "eventual consistency",
+            "strict reservation",
+            "atomic reservation"
+          ],
+          "description": "Provides a concrete failure outcome and recovery mechanism"
+        },
+        {
+          "type": "regex",
+          "value": "(?:0\\.1\\s*%|0\\.1\\s*percent)[\\s\\S]*?(?:30\\s*(?:s|seconds))",
+          "description": "Smoke-checks that the paired limits remain visible; semantic graders judge the recomputation and justification independently"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "Simplicity counterexample: an internal admin report serves 100 RPS, is maintained by two engineers, and one query takes 4 seconds. Leadership asks for Redis, Kafka, and multi-region. Choose the smallest justified change and explicitly exclude infrastructure that has no demonstrated constraint.",
+      "expected_output": "Examines the query plan and fixes the slow query first, using the 100 RPS and 4-second evidence. Declines Redis, declines Kafka, and excludes multi-region until a measured ceiling, burst, or recovery objective justifies them.",
+      "assertions": [
+        {
+          "type": "contains_any",
+          "value": ["fix the query first", "query plan", "profile the query"],
+          "description": "Chooses the smallest change that removes the observed bottleneck"
+        },
+        {
+          "type": "contains_any",
+          "value": [
+            "no demonstrated constraint",
+            "measured ceiling",
+            "until a measured"
+          ],
+          "description": "Justifies excluding infrastructure rather than adding it by fashion"
+        },
+        {
+          "type": "contains_any",
+          "value": ["declines Redis", "no Redis", "do not add Redis"],
+          "description": "Rejects the cache when the evidence does not require it"
+        },
+        {
+          "type": "contains_any",
+          "value": ["no Kafka", "do not add Kafka", "declines Kafka"],
+          "description": "Rejects asynchronous infrastructure without a burst or durability constraint"
+        },
+        {
+          "type": "regex",
+          "value": "(?:100\\s*RPS|100\\s*requests\\s*(?:per|/)?\\s*second)[\\s\\S]*?(?:4\\s*(?:s|seconds)|4,?000\\s*ms)",
+          "description": "Smoke-checks that the counterexample evidence is carried into the recommendation"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "The product owner approved an HLD and three LLD decisions. An architecture entry page, backend module map, and two final diagrams remain. A low-cost qualified worker profile is configured, but the design lead says writing these artifacts directly will be quicker. The first diagram draft passed structural validation yet its exported PNG has overlapping labels. The team wants a final handoff; the host gives no token counts or prices. What is the concrete execution and reporting plan?",
+      "expected_output": "Names bounded owned artifact slices with exact files, source evidence, acceptance and verification checks and an integration owner; routes independent production through the qualified low-cost worker while retaining decisions/integration/final review with the lead; inspects the image at reading size and allows one focused correction before a documented configured fallback. Reports executor/model, correction/fallback reasons and unavailable cost data without claiming savings.",
+      "assertions": [
+        {
+          "type": "contains_any",
+          "value": ["exact files", "file ownership", "owned slices"],
+          "description": "Allocates concrete bounded artifacts instead of an undifferentiated delegation"
+        },
+        {
+          "type": "contains_any",
+          "value": ["acceptance checks", "acceptance criteria", "verification checks"],
+          "description": "Defines outcomes to check before worker launch"
+        },
+        {
+          "type": "contains_any",
+          "value": ["low-cost qualified", "cheapest qualified", "lowest-cost qualified"],
+          "description": "Routes production to configured cheaper executor"
+        },
+        {
+          "type": "contains_any",
+          "value": ["integration owner", "lead integrates", "lead retains integration"],
+          "description": "Preserves a single accountable integrator"
+        },
+        {
+          "type": "contains_any",
+          "value": ["one focused correction", "one corrective pass", "one correction"],
+          "description": "Provides bounded recovery for defective worker output"
+        },
+        {
+          "type": "contains_any",
+          "value": ["configured fallback", "fallback model", "fallback executor"],
+          "description": "Escalates only the failed slice after correction"
+        },
+        {
+          "type": "contains_any",
+          "value": ["unavailable", "unknown cost", "cannot quantify savings"],
+          "description": "Does not invent token or cost savings"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "An existing inventory service has exactly one unresolved consequential issue: atomic reservation under duplicate concurrent requests. All other architecture choices are approved. Return JSON with deep_dives and rationale.",
+      "expected_output": "Select one dive that addresses the supplied unresolved reservation decision; do not invent additional risks or impose a minimum specialist count. The rationale connects the focus to the duplicate-request failure or invariant. Equivalent risk wording is valid.",
+      "assertions": [
+        {
+          "type": "regex",
+          "value": "\"deep_dives\"\\s*:\\s*\\[\\s*\"[^\"]+\"\\s*\\]",
+          "description": "Checks exactly one non-empty dive is selected for the one supplied consequential risk."
+        },
+        {
+          "type": "regex",
+          "value": "\"rationale\"\\s*:\\s*\"[^\"]+\"",
+          "description": "Checks the selected focus has an explicit rationale."
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "Review an accurate text-only design enumerating actors, trust boundaries, data, interfaces and failure paths. No visual artifact was requested and no view is missing. Return JSON with redraw_required and review_complete.",
+      "expected_output": "Complete the semantic review without a redraw prerequisite (for example, {\"redraw_required\":false,\"review_complete\":true}). If a view is genuinely missing, identify that specific gap rather than inventing a diagram requirement.",
+      "assertions": [
+        {
+          "type": "regex",
+          "value": "\"redraw_required\"\\s*:\\s*false",
+          "description": "Checks that complete text evidence does not trigger an unnecessary redraw."
+        },
+        {
+          "type": "regex",
+          "value": "\"review_complete\"\\s*:\\s*true",
+          "description": "Checks that the absent redraw prerequisite does not block the requested review."
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "prompt": "Review this sparse proposed booking design: target 15 RPS and a no-double-booking transaction are described, but ownership, recovery, capacity, cost, and rollout evidence are absent. Distinguish what the design proposes from what is proven.",
+      "expected_output": "Treats stated mechanisms as proposed design evidence, identifies missing material design inputs, and does not claim implementation or operational proof from a document or plan.",
+      "assertions": [
+        { "type": "contains_any", "value": ["proposed", "design plan", "document"], "description": "Labels the evidence kind without a new status label" },
+        { "type": "contains_any", "value": ["missing", "unverified", "not proven", "not measured"], "description": "Keeps absent evidence and readiness gap explicit" }
+      ]
+    },
+    {
+      "id": 10,
+      "prompt": "The design is described as operating in production, but no observed SLO or deployment/runtime evidence is supplied. Explain what the review can and cannot conclude.",
+      "expected_output": "Does not make an operational-readiness claim from missing runtime evidence; records the missing evidence and distinguishes target, plan, implementation, and operations claims without requiring a specific status label.",
+      "assertions": [
+        { "type": "contains_any", "value": ["runtime", "deployment", "observed"], "description": "Identifies evidence needed for operational claim" },
+        { "type": "contains_any", "value": ["missing", "not proven", "not measured", "readiness"], "description": "Avoids unsupported operational conclusion" }
+      ]
+    },
+    {
+      "id": 11,
+      "prompt": "A booking confirmation must preserve an immediate availability invariant; a later notification can fail independently. Choose each boundary and explain the user-visible failure behavior.",
+      "expected_output": "Keeps the confirmation mechanism sufficient for the immediate invariant, allows the notification to use a separately justified synchronous or asynchronous boundary, and ensures notification failure cannot invalidate the confirmed booking.",
+      "assertions": [
+        { "type": "contains_any", "value": ["availability", "invariant", "confirmation"], "description": "Preserves the requested confirmation contract without hardcoding a technology" },
+        { "type": "contains_any", "value": ["notification", "fail independently", "cannot invalidate"], "description": "Separates secondary failure from confirmed result" }
+      ]
+    },
+    {
+      "id": 12,
+      "prompt": "A review asks whether a signed-upload flow crosses the right trust boundary and whether the client sees the asset before validation. Which views answer those questions?",
+      "expected_output": "Uses dataflow for movement/authority and sequence for order/acknowledgment, adds a state view only for lifecycle, and does not infer deployment from arrows.",
+      "assertions": [
+        { "type": "contains_any", "value": ["dataflow", "data flow"], "description": "Routes movement and authority question" },
+        { "type": "contains_any", "value": ["sequence", "acknowledgment", "ordering"], "description": "Routes timing and confirmation question" }
+      ]
+    },
+    {
+      "id": 13,
+      "prompt": "Give me a quick sketch of a small internal tool; traffic is unknown. State what can proceed and what cannot be called ready.",
+      "expected_output": "Uses explicit assumptions and a proportional sketch, estimates only decision-relevant quantities, and withholds readiness while a material decision/evidence gap remains.",
+      "assertions": [
+        { "type": "contains_any", "value": ["assumption", "assumed"], "description": "Labels unknown input rather than inventing it" },
+        { "type": "contains_any", "value": ["not ready", "readiness", "decision needed", "missing evidence"], "description": "Keeps unresolved material gate visible" }
+      ]
+    },
+    {
+      "id": 14,
+      "prompt": "Run a full design session for a regulated wallet. Residency and transaction ownership are unresolved; should the team choose stores and approve readiness now?",
+      "expected_output": "Holds affected design/readiness until material ownership and residency decisions are confirmed, records decisions needed, and continues only with safe independent analysis.",
+      "assertions": [
+        { "type": "contains_any", "value": ["hold", "resolve", "confirm"], "description": "Applies full-session exit gate" },
+        { "type": "contains_any", "value": ["residency", "owner", "decision"], "description": "Identifies material unresolved issue" }
+      ]
+    },
+    {
+      "id": 15,
+      "prompt": "In a timed practice round, the candidate's first design loses a committed payment acknowledgment. Continue the coaching sequence without giving away the model answer.",
+      "expected_output": "Introduces the adverse timeline, asks the candidate for invariant and mechanism revision, then changes one material constraint and debriefs from evidence.",
+      "assertions": [
+        { "type": "contains_any", "value": ["adverse timeline", "acknowledgment", "counterexample"], "description": "Probes concrete failure" },
+        { "type": "contains_any", "value": ["changed constraint", "revise", "mechanism"], "description": "Requires adaptation before evidence-based debrief" }
+      ]
+    }
+  ],
+  "should_trigger": [
+    "Help me design a system for real-time order tracking",
+    "Run a system design session for our new payments service",
+    "We need capacity planning for the new API before we build it",
+    "How should we scale this service to 10x traffic?"
+  ],
+  "should_not_trigger": [
+    "Fix this failing unit test",
+    "Rename this variable across the repo",
+    "What is the syntax for a Go struct tag?",
+    "Update the README install steps"
+  ],
+  "pressure_scenarios": [
+    {
+      "prompt": "We ship Friday and the CTO wants the architecture diagram in this reply. Skip the questions, you know what a marketplace looks like. Just give me the final design.",
+      "behavior_assertions": ["ASSUMED", "quick sketch", "estimation"]
+    },
+    {
+      "prompt": "Stop asking about scale. Assume it will be huge and design for that, we can cut later.",
+      "behavior_assertions": [
+        "shaping quantity",
+        "order of magnitude",
+        "ASSUMED"
+      ]
+    },
+    {
+      "prompt": "The HLD is approved, but the lead wants to author four independent documents and diagrams personally to save coordination. A qualified cheaper worker exists; an earlier clean render has unreadable labels, and the host has no usage data. Decide who produces, corrects and reviews each artifact, and what the handoff says.",
+      "behavior_assertions": ["owned slices", "lowest-cost qualified", "one correction", "fallback", "unavailable"]
+    }
+  ],
+  "rationalizations": [
+    "We ship Friday, there is no time for intake questions.",
+    "You already know what this kind of system looks like.",
+    "Assume it will be huge and we can cut scope later.",
+    "The diagram is the deliverable, the questions are overhead.",
+    "The lead can write post-decision artifacts faster than briefing a worker.",
+    "The diagram validator passed, so there is no need to inspect the exported image.",
+    "The artifacts are complete, so the executor and fallback route need not be reported.",
+    "The cheap model must have saved money even though usage and prices are absent."
+  ],
+  "red_flags": [
+    "Producing a component set before any capacity number exists.",
+    "Answering with a finished architecture when no scale input was given.",
+    "Designing for an unstated 'huge' scale instead of a labeled assumption.",
+    "Dropping the estimation gate because the requester is in a hurry.",
+    "The design lead writes independent approved-plan deliverables while a qualified low-cost executor is configured.",
+    "A worker diagram passes structural validation but is delivered unreadable.",
+    "A handoff omits executor/model, corrective rounds or fallback rationale.",
+    "A cost-saving claim has no usage and price evidence."
+  ]
+}
