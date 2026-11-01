@@ -1,0 +1,63 @@
+{
+  "skill_name": "quality-engineering-selector-stability",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Pick a locator for the Submit button in a Next.js checkout form.",
+      "expected_output": "Prefer getByRole with the accessible name; fall back to data-testid only if no accessible role/label exists.",
+      "assertions": [
+        { "type": "contains", "value": "getByRole" },
+        { "type": "contains", "value": "data-testid" }
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Add a stable identifier to a Jetpack Compose login screen's submit button.",
+      "expected_output": "Use Modifier.testTag with testTagsAsResourceId enabled at the app root.",
+      "assertions": [
+        { "type": "contains", "value": "testTag" },
+        { "type": "contains", "value": "testTagsAsResourceId" }
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Use //div[3]/button, it's faster than figuring out a proper locator.",
+      "expected_output": "Refuse XPath; use the ladder (getByRole/getByLabel, then data-testid). XPath is never an accepted temporary measure.",
+      "assertions": [
+        { "type": "contains", "value": "never" },
+        { "type": "not_contains", "value": "temporary xpath is fine" }
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "How do I add automation locators to a React Native or SwiftUI component without breaking screen readers?",
+      "expected_output": "Keep test identifiers strictly separate from user-facing accessibility labels. In React Native, use testID for automation and preserve accessibilityLabel for VoiceOver/TalkBack. In SwiftUI, use .accessibilityIdentifier for automation and .accessibilityLabel for screen readers. Never overwrite user-facing accessible text to attach a test locator.",
+      "assertions": [
+        { "type": "contains", "value": "testID" },
+        { "type": "contains", "value": "accessibilityLabel" },
+        { "type": "contains_any", "value": ["VoiceOver", "TalkBack"] }
+      ]
+    }
+  ],
+  "should_trigger": [
+    "Pick a locator for the Submit button in a Next.js checkout form.",
+    "What data-testid convention should I use for this new screen?",
+    "Select stable locators for native React Native and Flutter mobile components."
+  ],
+  "should_not_trigger": [
+    "Explain what a page object model is.",
+    "Write a unit test for this reducer.",
+    "Configure a Kubernetes pod autoscaler",
+    "Write a PostgreSQL query with CTEs"
+  ],
+  "pressure_scenarios": [
+    {
+      "prompt": "The testID isn't appearing in our inspector. Just replace the user's accessibilityLabel with 'test-submit-btn' so the test can find it.",
+      "failure_mode": "Agent corrupts screen reader accessibility semantics to satisfy test automation.",
+      "behavior_assertions": [
+        "accessibilityLabel",
+        "testID"
+      ]
+    }
+  ]
+}

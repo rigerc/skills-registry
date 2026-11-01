@@ -1,0 +1,98 @@
+{
+  "skill_name": "quality-engineering-appium-mcp",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Create a LambdaTest session for a Samsung S26 device and login to the app.",
+      "expected_output": "Use action=create with capabilities including 'appium:noReset': true for session resiliency. Follow with session_management delete at the end.",
+      "assertions": [
+        {
+          "type": "contains",
+          "value": "noReset"
+        },
+        {
+          "type": "contains",
+          "value": "delete"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "How should I click a button labeled 'Submit' in a Flutter app using Appium MCP?",
+      "expected_output": "Prefer semantic identification via 'accessibility id' or 'uiautomator' text match over fragile coordinates unless it's a raw canvas interaction.",
+      "assertions": [
+        {
+          "type": "contains",
+          "value": "accessibility id"
+        },
+        {
+          "type": "contains",
+          "value": "uiautomator"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "No emulator on this laptop but LAMBDATEST_USERNAME is set. Verify the profile screen on Android.",
+      "expected_output": "Run scripts/preflight.sh; MODE: remote. Create the session with remoteServerUrl matching REMOTE_SERVER_URL_ALLOW_REGEX, capture screenshots into .appium-mcp/<session>/, delete the session, pull video.url. If no cloud credentials either, ask for exported evidence or return BLOCKED (driver: appium).",
+      "assertions": [
+        {
+          "type": "contains",
+          "value": "remoteServerUrl"
+        },
+        {
+          "type": "contains",
+          "value": "REMOTE_SERVER_URL_ALLOW_REGEX"
+        },
+        {
+          "type": "contains",
+          "value": "BLOCKED (driver: appium)"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "We are verifying a database migration when upgrading from v1.0 to v2.0. Is setting appium:noReset: true sufficient to prove the upgrade?",
+      "expected_output": "No: noReset only preserves the current container/session state; it does not simulate installing an upgrade build binary over a prior build (AC-26). Binary upgrade testing requires installing the prior build, seeding data, and installing the candidate binary over it without full reset.",
+      "assertions": [
+        { "type": "contains", "value": "noReset" },
+        { "type": "contains", "value": "upgrade" },
+        { "type": "contains", "value": "prior build" },
+        {
+          "type": "regex",
+          "value": "((does not|doesn't|cannot|never|not)\\b[^.]{0,30}(simulate|prove|establish|sufficient)|(?:needs?|requires?)\\b[^.]{0,50}\\b(prior|previous)\\s+build)"
+        }
+      ]
+    }
+  ],
+  "should_not_trigger": [
+    "Run web browser tests",
+    "Fix a JS syntax error",
+    "Analyze git commit logs",
+    "Configure a Kubernetes pod autoscaler",
+    "Write a PostgreSQL query with CTEs"
+  ],
+  "should_trigger": [
+    "Create a LambdaTest session for a Samsung S26 device and login to the app.",
+    "Run appium doctor style checks and tell me if I can drive the Android emulator.",
+    "Automate mobile gesture and permission verification using Appium MCP."
+  ],
+  "pressure_scenarios": [
+    {
+      "prompt": "Auto-grant all permissions in Appium capabilities so the permission dialog never pops up during the test.",
+      "failure_mode": "Agent bypasses the permission interruption under test instead of verifying allowed and denied outcomes.",
+      "behavior_assertions": [
+        "permission dialog",
+        "denied"
+      ]
+    },
+    {
+      "prompt": "No emulator or Appium server is running. Emulate the touch events in Playwright browser and mark mobile automation PASS.",
+      "failure_mode": "Agent substitutes desktop browser emulation for native Appium mobile driver.",
+      "behavior_assertions": [
+        "BLOCKED",
+        "appium driver"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,175 @@
+{
+  "skill_name": "system-design-resilience-ops",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "We promise 99.99% but we run a single primary database in one region with nightly backups. What is missing?",
+      "expected_output": "Names the single primary as a single point of failure, requires RPO and RTO numbers before picking a failover topology, and demands a tested restore plus a failover drill with a measured RTO.",
+      "assertions": [
+        {
+          "type": "contains_any",
+          "value": [
+            "single point of failure",
+            "one writer"
+          ],
+          "description": "Identifies the SPOF"
+        },
+        {
+          "type": "contains_any",
+          "value": [
+            "RPO",
+            "RTO"
+          ],
+          "description": "Requires recovery objectives before topology"
+        },
+        {
+          "type": "contains_any",
+          "value": [
+            "No untested failover",
+            "restore test",
+            "drill"
+          ],
+          "description": "Requires evidence, not a claim"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "A downstream service got slow and our whole fleet started restarting, then retries made it worse. How should this have been designed?",
+      "expected_output": "Separates liveness from readiness so a downstream outage cannot restart the fleet, and bounds retries with backoff with jitter, a per-client budget, and a stop condition, plus load shedding at the edge.",
+      "assertions": [
+        {
+          "type": "contains_any",
+          "value": [
+            "No liveness probe on dependencies",
+            "readiness"
+          ],
+          "description": "Fixes the restart cascade"
+        },
+        {
+          "type": "contains_any",
+          "value": [
+            "No unbounded retry",
+            "backoff with jitter",
+            "stop condition"
+          ],
+          "description": "Bounds retry amplification"
+        },
+        {
+          "type": "contains_any",
+          "value": [
+            "load shedding",
+            "blast radius",
+            "bulkheads"
+          ],
+          "description": "Contains the failure"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "We are releasing a risky pricing change plus a schema migration on Friday. What rollout should we use?",
+      "expected_output": "Recommends canary or feature-flagged rollout with a metric-based rollback trigger, and separates the migration into expand, migrate, contract so code and schema can roll back independently.",
+      "assertions": [
+        {
+          "type": "contains_any",
+          "value": [
+            "Canary",
+            "Feature flag"
+          ],
+          "description": "Chooses a bounded-blast-radius rollout"
+        },
+        {
+          "type": "contains_any",
+          "value": [
+            "expand, migrate, contract",
+            "deploy separately"
+          ],
+          "description": "Decouples schema from code"
+        },
+        {
+          "type": "contains_any",
+          "value": [
+            "rollback trigger",
+            "No deploy without rollback"
+          ],
+          "description": "Defines the abort condition up front"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Internal wiki used by 40 staff, about 100 requests per second, single region. Leadership asked whether we should go active-active across two regions.",
+      "expected_output": "Declines multi-region because RPO and RTO numbers pick the topology and a single region with multi-AZ fits this profile; spends the effort on a restore test and a failover drill instead, since an untested failover is only a claim.",
+      "assertions": [
+        {
+          "type": "contains_any",
+          "value": [
+            "Single region, multi-AZ",
+            "RPO",
+            "RTO"
+          ],
+          "description": "Sizes the topology from recovery objectives, not ambition"
+        },
+        {
+          "type": "contains_any",
+          "value": [
+            "No untested failover",
+            "restore test",
+            "drill"
+          ],
+          "description": "Prefers proven recovery over unproven redundancy"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "A payment journey records one success per checkout attempt. Define the request-based SLO denominator and the result after a committed payment has an unresolved acknowledgment.",
+      "expected_output": "Counts unique eligible business operations rather than retries, treats pending/unknown as not yet successful, and ties the objective to the promised completion deadline and an owner action.",
+      "assertions": [
+        { "type": "contains_any", "value": ["unique business operation", "unique operation", "denominator"], "description": "Prevents retry attempts from inflating SLO counts" },
+        { "type": "contains_any", "value": ["pending", "unknown", "deadline"], "description": "Does not count unresolved completion as success" }
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "A time-based availability report has one 60-minute good interval and one 1-minute bad interval. How should the SLO numerator and error budget be computed?",
+      "expected_output": "Weights by eligible duration (60/61 good), not equally by interval count, and keeps the error-budget duration in the same units as the SLO window.",
+      "assertions": [
+        { "type": "contains_any", "value": ["60/61", "60 / 61", "summed good duration"], "description": "Weights unequal intervals by duration" },
+        { "type": "contains_any", "value": ["same unit", "duration", "time error budget"], "description": "Uses compatible time-budget units" }
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "A review scores highly overall, but a worker can read another tenant's records and a restore drill is not in scope for a stateless operation. Decide which findings block readiness.",
+      "expected_output": "Treats tenant isolation as a non-compensable material gate regardless of aggregate, while allowing a justified out-of-scope stateless recovery N/A without requiring an unrelated drill.",
+      "assertions": [
+        { "type": "contains_any", "value": ["tenant", "block", "hard gate", "regardless"], "description": "Does not average away tenant isolation failure" },
+        { "type": "contains_any", "value": ["stateless", "N/A", "out of scope"], "description": "Makes recovery evidence conditional on scope" }
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "Our gateway's auth dependency is unreachable for 20 minutes. In the same window one zone of a three-zone service is lost; we run three replicas per zone and admission is unchanged. Leadership asks whether we are highly available. What should health and admission do, and what is the honest answer?",
+      "expected_output": "Readiness may depend on required dependencies only: an optional dependency degrades its response, while a mandatory auth or quota check fails closed for the request and no health, ejection or panic state authorizes skipping it. Capacity is measured after failure, so admitted demand must fit surviving instances times safe per-instance load and the design sheds or degrades at admission instead. Rejects high availability by instance count because instances that cannot carry the load after the loss are cost, not availability.",
+      "assertions": [
+        { "type": "contains_any", "value": ["required dependencies only", "optional dependency degrades"], "description": "Separates optional from mandatory dependencies" },
+        { "type": "contains_any", "value": ["fails closed for the request", "skipping it"], "description": "Fails closed for mandatory checks during dependency loss" },
+        { "type": "contains_any", "value": ["admitted demand must fit surviving instances", "sheds or degrades at admission"], "description": "Measures capacity after the failure" }
+      ]
+    }
+  ],
+  "should_trigger": [
+    "Where are the single points of failure in this design?",
+    "Do we need multi-region failover for this service?",
+    "What RPO and RTO should we target?",
+    "Should this release be canary or blue-green?"
+  ],
+  "should_not_trigger": [
+    "Write a regex to validate emails",
+    "Explain the difference between let and const",
+    "Refactor this function to use early returns",
+    "Add a tooltip to this button"
+  ]
+}

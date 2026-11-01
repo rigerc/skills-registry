@@ -1,0 +1,132 @@
+{
+  "skill_name": "system-design-communication",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Our order service synchronously calls pricing over JSON REST. Checkout has a 300 ms p95 end-to-end objective; traces show pricing at 180 ms p95 but do not separate application time from transport. The call is unary, and an order cannot be priced without its response. Should we move to gRPC? Compare the protocol tradeoff and define timeout behavior.",
+      "expected_output": "Compare REST and gRPC against the stated 300 ms end-to-end objective without assuming the protocol is the bottleneck: the 180 ms pricing span is not a transport measurement, and this unary flow has no streaming need. REST preserves the existing JSON/HTTP contract and tooling; gRPC offers a typed schema and may reduce call overhead, but adds schema/code-generation and client/proxy compatibility cost. Keep REST if representative tests show it meets the deadline; choose gRPC only if measured protocol/schema benefits justify that cost. Bound the call by the remaining deadline; on timeout, do not create an order at an unknown price, and return a retryable failure rather than waiting or retrying blindly.",
+      "assertions": [
+        {
+          "type": "contains_any",
+          "value": ["REST", "gRPC"],
+          "description": "Compares valid protocol choices rather than requiring one"
+        },
+        {
+          "type": "contains_any",
+          "value": ["transport", "measured protocol", "representative tests"],
+          "description": "Separates protocol cost from the observed service span"
+        },
+        {
+          "type": "contains_any",
+          "value": ["300 ms", "300ms"],
+          "description": "Uses the prompt's end-to-end deadline"
+        },
+        {
+          "type": "contains_any",
+          "value": ["timeout", "timed out"],
+          "description": "Defines the failure outcome for a required price"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "We need to push live order status to the customer's browser. The team wants WebSockets.",
+      "expected_output": "Chooses SSE for a server-push-only flow because it is cheaper and survives proxies better, reserves WebSocket for bidirectional needs, and names the stateful connections, LB affinity, and reconnect protocol costs it would charge.",
+      "assertions": [
+        {
+          "type": "contains_any",
+          "value": [
+            "Server push only",
+            "SSE"
+          ],
+          "description": "Picks the one-directional option for a one-directional need"
+        },
+        {
+          "type": "contains_any",
+          "value": [
+            "No WebSocket for server-push-only",
+            "cheaper and survives proxies better"
+          ],
+          "description": "Rejects the heavier option explicitly"
+        },
+        {
+          "type": "contains_any",
+          "value": [
+            "Stateful connections",
+            "LB affinity",
+            "reconnect protocol"
+          ],
+          "description": "Names the cost of the connection-based option"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "A partner wants us to notify them whenever an order ships. What do we build?",
+      "expected_output": "Specifies an outbound webhook with signature verification, a bounded retry policy with backoff, and an idempotency key, and refuses to treat any of the three as optional.",
+      "assertions": [
+        {
+          "type": "contains_any",
+          "value": [
+            "Cross-organization async callback",
+            "Webhook"
+          ],
+          "description": "Selects the cross-org paradigm"
+        },
+        {
+          "type": "contains_any",
+          "value": [
+            "No webhook without signature, retry policy, and idempotency key",
+            "signature verification"
+          ],
+          "description": "Requires all three controls"
+        },
+        {
+          "type": "contains_any",
+          "value": [
+            "Receiver retries",
+            "idempotency"
+          ],
+          "description": "Designs for duplicate delivery"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "A nightly job calls our billing service once per run to fetch a summary. Someone suggested moving it to gRPC with streaming for consistency with the rest of the stack.",
+      "expected_output": "Keeps REST for a cold, once-per-night call because the paradigm is chosen per hop from the constraint, and notes that mixing REST at the edge with gRPC internally is normal rather than an inconsistency to fix.",
+      "assertions": [
+        {
+          "type": "contains_any",
+          "value": [
+            "No one-paradigm-everywhere",
+            "per hop",
+            "Choose the paradigm per hop"
+          ],
+          "description": "Chooses per hop instead of standardizing for its own sake"
+        },
+        {
+          "type": "contains_any",
+          "value": [
+            "REST",
+            "debuggability",
+            "cold"
+          ],
+          "description": "Keeps the simpler protocol for a cold path"
+        }
+      ]
+    }
+  ],
+  "should_trigger": [
+    "Should this service call use gRPC or REST?",
+    "Do we need WebSockets or server-sent events here?",
+    "How should partners receive a webhook from us?",
+    "What service discovery should this cluster use?"
+  ],
+  "should_not_trigger": [
+    "Fix the CSS on this button",
+    "Write a unit test for the date parser",
+    "What HTTP status code should a failed validation return?",
+    "Rename this database column"
+  ]
+}

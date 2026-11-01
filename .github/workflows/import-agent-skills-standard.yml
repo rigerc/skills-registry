@@ -1,0 +1,47 @@
+name: Import agent-skills-standard snapshot
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/import-agent-skills-standard.yml'
+      - 'scripts/import-agent-skills-standard.sh'
+      - 'skills/agent-skills-standard/**'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  import:
+    # Never grant a write token to forked pull requests.
+    if: github.event_name == 'workflow_dispatch' || github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    concurrency:
+      group: import-agent-skills-standard-${{ github.event.pull_request.number || github.ref }}
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref || github.ref_name }}
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Vendor pinned upstream skills and regenerate catalog
+        run: bash scripts/import-agent-skills-standard.sh
+      - name: Check registry generators
+        run: |
+          node --test scripts/generate-*.test.mjs
+          node scripts/generate-manifest.mjs --check
+          node scripts/generate-readme.mjs --check
+      - name: Commit imported skills to this branch
+        run: |
+          git add -A -- skills/agent-skills-standard skills-manifest.json README.md
+          if git diff --cached --quiet; then
+            echo 'Vendored snapshot already current.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'feat: vendor agent-skills-standard pinned snapshot'
+          git push origin 'HEAD:${{ github.event.pull_request.head.ref || github.ref_name }}'

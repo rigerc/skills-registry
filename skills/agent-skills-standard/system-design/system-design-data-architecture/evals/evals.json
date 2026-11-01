@@ -1,0 +1,245 @@
+{
+  "skill_name": "system-design-data-architecture",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Our orders table is slow at 300 QPS. The team wants to shard it across 8 nodes. Is that right?",
+      "expected_output": "Rejects sharding at this stage, walks the scaling order from index and query fixes through read replicas and caching, and names the costs sharding would lock in: cross-shard queries, rebalancing, and a permanent partition key commitment.",
+      "assertions": [
+        {
+          "type": "contains_any",
+          "value": [
+            "No premature sharding",
+            "Shard last",
+            "Scaling Order"
+          ],
+          "description": "Applies the scaling order before sharding"
+        },
+        {
+          "type": "contains_any",
+          "value": [
+            "index and query fixes",
+            "read replicas",
+            "caching"
+          ],
+          "description": "Names cheaper steps first"
+        },
+        {
+          "type": "contains_any",
+          "value": [
+            "cross-shard queries",
+            "permanent partition key commitment",
+            "rebalancing"
+          ],
+          "description": "States the cost of sharding"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Should the reporting service read the orders database directly, and should we move product search to Elasticsearch?",
+      "expected_output": "Holds that one writer owns each entity and applies no shared database between services, routing reporting through an API or event stream; accepts a search index for text and facets only as a derived view that can be rebuilt, noting every additional store adds sync lag.",
+      "assertions": [
+        {
+          "type": "contains_any",
+          "value": [
+            "No shared database between services",
+            "One writer owns each entity"
+          ],
+          "description": "Enforces single ownership"
+        },
+        {
+          "type": "contains_any",
+          "value": [
+            "event stream",
+            "API"
+          ],
+          "description": "Gives an explicit integration contract"
+        },
+        {
+          "type": "contains_any",
+          "value": [
+            "search index for text and facets",
+            "Every additional store adds sync lag"
+          ],
+          "description": "Treats the search index as a derived, justified store"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "We shard user activity by user_id, but one influencer account is saturating a single node. What do we do?",
+      "expected_output": "Identifies a celebrity key and offers salting the key, replicating the record, or a dedicated cache, noting a partition key must be high-cardinality and evenly distributed yet still spreads placement rather than popularity.",
+      "assertions": [
+        {
+          "type": "contains_any",
+          "value": [
+            "celebrity key",
+            "hot partition"
+          ],
+          "description": "Names the skew failure mode"
+        },
+        {
+          "type": "contains_any",
+          "value": [
+            "salting the key",
+            "replicating the record",
+            "dedicated cache"
+          ],
+          "description": "Gives a concrete mitigation"
+        },
+        {
+          "type": "contains_any",
+          "value": [
+            "high-cardinality",
+            "evenly distributed"
+          ],
+          "description": "Ties the problem back to partition key choice"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Our reporting table has 2 million rows and one query takes 8 seconds at about 20 queries per second. The team wants to shard it across 6 nodes this sprint.",
+      "expected_output": "Applies no premature sharding because an unindexed query at this rate is not a sharding problem, and walks the scaling order starting from index and query fixes before read replicas or caching.",
+      "assertions": [
+        {
+          "type": "contains_any",
+          "value": [
+            "No premature sharding",
+            "not a sharding problem"
+          ],
+          "description": "Refuses sharding at this scale"
+        },
+        {
+          "type": "contains_any",
+          "value": [
+            "index and query fixes",
+            "Scaling Order",
+            "scaling order"
+          ],
+          "description": "Starts at the cheapest step"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "A processor commits a payment but its acknowledgment is lost. Trace the order/payment flow and state what the customer sees while the outcome is unknown.",
+      "expected_output": "Names the authoritative operation and ledger owners, reuses one stable business-operation identity across retries, shows a pending/queryable outcome, reconciles the provider result, and verifies one observable effect.",
+      "assertions": [
+        { "type": "regex", "value": "(?<!not )(?<!never )(?<!don't )(?<!do not )\\b(reuse|reuses|reused|preserve|preserves|keep|keeps|carry|carries)\\b[^.;!?]{0,80}\\b(operation|business-operation|checkout)\\b[^.;!?]{0,35}\\b(identity|key|ID)\\b", "description": "Reuses one operation identity across retry" },
+        { "type": "contains_any", "value": ["pending", "unknown", "reconcile", "query"], "description": "Resolves lost acknowledgment safely" }
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "The processor has no deduplication contract, and a peak increase makes blind retries tempting. What changes in the payment flow?",
+      "expected_output": "Keeps the logical flow and local effect owner explicit, prohibits blind retries without processor deduplication, and requires authoritative reconciliation before another capture.",
+      "assertions": [
+        { "type": "regex", "value": "(?<!not\\s+)(?<!never\\s+)(?<!don't\\s+)\\b(suspend|suspends|disable|disables|withhold|withholds|defer|defers|stop|stops|avoid|avoids|prevent|prevents|prohibit|prohibits)\\b[^.;!?]{0,20}\\b(capture|charge|resubmit|retry|retries|repeat)\\b|\\b(do not|does not|don't|never)\\s+(blindly\\s+)?(capture|charge|resubmit|retry|retries|repeat)\\b", "description": "Withholds capture while processor outcome is unknown" },
+        { "type": "contains_any", "value": ["owner", "authoritative", "operation"], "description": "Names the state/effect authority" }
+      ]
+    },
+    {
+      "id": 7,
+      "prompt": "A search index is being backfilled while CDC continues from the source database. Explain how to prevent a stale backfill row from overwriting a newer indexed update.",
+      "expected_output": "Keeps the source authoritative, fences writes with source version/LSN or equivalent compare-and-set, and verifies parity/lag before cutover.",
+      "assertions": [
+        { "type": "contains_any", "value": ["version", "LSN", "compare-and-set", "fence"], "description": "Prevents stale backfill overwrite" },
+        { "type": "contains_any", "value": ["source", "authoritative"], "description": "Distinguishes source from derived projection" }
+      ]
+    },
+    {
+      "id": 8,
+      "prompt": "Backfill throughput is reduced and the parity gate fails while new CDC writes arrive. Decide whether to cut over and how to recover.",
+      "expected_output": "Holds cutover, preserves source reads, stops or replays from the authoritative log, and bases recovery on parity and lag evidence.",
+      "assertions": [
+        { "type": "contains_any", "value": ["do not cut over", "hold cutover", "stop"], "description": "Adapts to failed migration gate" },
+        { "type": "contains_any", "value": ["source reads", "replay", "parity", "lag"], "description": "Names rollback/recovery evidence" }
+      ]
+    },
+    {
+      "id": 9,
+      "prompt": "A tenant requests deletion while cached and queued copies exist. Trace the deletion boundary and prevent other tenants' data from being affected.",
+      "expected_output": "Enforces tenant scope at every copy and worker, propagates deletion through authoritative and derived state, blocks replay/resurrection, and verifies isolation.",
+      "assertions": [
+        { "type": "contains_any", "value": ["tenant", "scope", "tenant-scoped"], "description": "Carries tenant boundary through the flow" },
+        { "type": "contains_any", "value": ["deletion", "delete", "tombstone"], "description": "Propagates deletion to retained copies" }
+      ]
+    },
+    {
+      "id": 10,
+      "prompt": "A cleanup worker is retried after a tenant deletion, and one queued job lacks the original tenant claim. What must happen before the next run?",
+      "expected_output": "Fails closed on missing tenant authorization, prevents stale work from resurrecting deleted data, and verifies scoped copies and replay behavior.",
+      "assertions": [
+        { "type": "regex", "value": "(?<!not\\s+)(?<!never\\s+)(?<!don't\\s+)\\b(reject|rejects|stop|stops|discard|discards|quarantine|quarantines|block|blocks)\\b[^.;!?]{0,20}\\b(job|work|run)\\b[^.;!?]{0,20}\\b(without|missing|lacks|no)\\b[^.;!?]{0,15}\\b(tenant|claim|authorization)\\b|(?<!not\\s+)(?<!never\\s+)(?<!don't\\s+)\\bfails? closed on missing tenant authorization\\b", "description": "Rejects work without tenant authorization" },
+        { "type": "regex", "value": "(?<!not\\s+)(?<!never\\s+)(?<!don't\\s+)\\b(prevent|prevents|block|blocks|stop|stops|reject|rejects|suppress|suppresses)\\b[^.;!?]{0,20}\\b(replay|resurrect|resurrecting|recreate|recreating)\\b[^.;!?]{0,20}\\b(deleted|tombstone)\\b", "description": "Prevents deleted data from returning" }
+      ]
+    },
+    {
+      "id": 11,
+      "prompt": "A mobile note is edited offline on two devices; one device logs out before reconnecting. Describe the sync flow and user-visible state.",
+      "expected_output": "Separates pending local edits from server authority, detects stale-base conflict, binds queued operation to account, and prevents replay under another account.",
+      "assertions": [
+        { "type": "contains_any", "value": ["pending", "confirmed", "server"], "description": "Distinguishes local state from authority" },
+        { "type": "contains_any", "value": ["account", "logout", "conflict"], "description": "Handles lifecycle and concurrent edit" }
+      ]
+    },
+    {
+      "id": 12,
+      "prompt": "The account deletion request arrives while a device remains offline with a queued edit. How should reconnect behave?",
+      "expected_output": "Applies deletion to server and material local copies, prevents offline replay from resurrecting data, and exposes pending/deletion limitations without claiming local confirmation.",
+      "assertions": [
+        { "type": "contains_any", "value": ["deletion", "deleted", "tombstone"], "description": "Preserves deletion across offline lifecycle" },
+        { "type": "contains_any", "value": ["replay", "resurrect", "account"], "description": "Prevents stale queued write from returning" }
+      ]
+    },
+    {
+      "id": 13,
+      "prompt": "A logical DFD parent/child decomposition drops an order input at the child boundary. In the physical design, a browser uploads bytes directly to object storage through a signed URL. Review both without confusing notation and deployment.",
+      "expected_output": "Requires balanced logical boundary flows and plausible process inputs/outputs, while treating signed-URL upload as a valid physical path whose trust controls are explicit.",
+      "assertions": [
+        { "type": "contains_any", "value": ["physical", "signed URL", "object storage"], "description": "Recognizes valid physical direct upload" },
+        { "type": "contains_any", "value": ["logical", "balanced", "boundary"], "description": "Checks logical decomposition semantics" }
+      ]
+    },
+    {
+      "id": 14,
+      "prompt": "A write-only audit projection records accepted changes and deliberately has no read path. A separate stateless transform computes a response without persistence. Review both flows.",
+      "expected_output": "Allows an explicitly filtered write-only store view and a justified stateless/no-store path; does not invent reads, a database, or a queue.",
+      "assertions": [
+        { "type": "contains_any", "value": ["write-only", "filtered view", "omit reads"], "description": "Accepts filtered store omission when explicit" },
+        { "type": "contains_any", "value": ["stateless", "no store", "without a database"], "description": "Keeps infrastructure conditional" }
+      ]
+    },
+    {
+      "id": 15,
+      "prompt": "Support search embeds ticket text, reranks results, caches answers and runs an enrichment job; 1,800 workspaces share one index and one cache. A stale re-index mapped a workspace B document into workspace A's derived field, and a customer then asks for deletion while embeddings, the cache and a six-hour warehouse snapshot still hold the content. What must each stage guarantee, and what may analytics read after the deletion?",
+      "expected_output": "Carries authenticated tenant scope from source reads through lexical and vector retrieval, reranking, caches, async jobs and outputs, and denies when scope is missing. Names the deny path rather than a degraded answer: ranking relevance never grants access and a derived label is not authority, so a stale or corrupt attribution quarantines the entry. Separates revocation from erasure: revoked content is denied at every serving path immediately, including exports and snapshots, while physical erasure completes within a stated propagation bound and a tombstone or epoch blocks replay and restore.",
+      "assertions": [
+        { "type": "contains_any", "value": ["authenticated tenant scope", "denies when scope is missing"], "description": "Binds authority through every derived stage" },
+        { "type": "contains_any", "value": ["ranking relevance never grants access", "derived label is not authority"], "description": "Rejects relevance and copied labels as authorization" },
+        { "type": "contains_any", "value": ["separates revocation from erasure", "denied at every serving path immediately"], "description": "Denies serving before physical erasure completes" },
+        { "type": "contains_any", "value": ["propagation bound", "tombstone or epoch"], "description": "Bounds erasure and fences replay or restore" }
+      ]
+    }
+  ],
+  "should_trigger": [
+    "Should we use SQL or NoSQL for this workload?",
+    "What partition key should we shard on?",
+    "How do we scale reads on this database?",
+    "One partition is running hot, what now?",
+    "Trace a payment transaction through a lost acknowledgment and retry.",
+    "How should offline client edits respect account deletion and server authority?"
+  ],
+  "should_not_trigger": [
+    "Write a Prisma schema for a blog post model",
+    "Fix this failing integration test",
+    "What is the syntax for a LEFT JOIN?",
+    "Set up eslint for this repo",
+    "How do I transform this pandas dataframe?",
+    "Write a framework Flow pipeline in Kotlin",
+    "Draw a deployment diagram only; no data movement or flow design question is in scope.",
+    "Create an ERD only from these tables; do not review a data flow."
+  ]
+}

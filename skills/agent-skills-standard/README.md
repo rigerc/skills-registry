@@ -1,0 +1,531 @@
+# Agent Skills Registry
+
+This directory contains the source of truth for all AI agent skills. Skills are organized by **Category** (Language or Framework) and then by **Domain**.
+
+## 📂 Structure
+
+Each skill must follow the standard directory structure:
+`skills/{category}/{skill-name}/SKILL.md`
+
+## 🛠 Active Categories
+
+<!-- SKILLS_INDEX_START -->
+### 🌐 Common (Universal)
+
+Cross-framework standards and best practices applicable to all development.
+
+- [**Best Practices**](common/common-best-practices/SKILL.md) (P0) - Enforce SOLID principles, guard-clause style, function size limits, and intention-revealing naming across all languages. Use when refactoring for readability, applying clean-code patterns, reviewing naming conventions, or reducing function complexity.
+- [**Decision Discipline**](common/common-decision-discipline/SKILL.md) (P0) - Right-size, ground, and gate SDLC decisions with SNC-sized depth, said-vs-assumed write-back, an evidence ledger, honest option cards, recorded approval, and self-review. Use when running brainstorm-feature, plan-feature, design-solution, or system-design-session.
+- [**Exploit Verification**](common/common-exploit-verification/SKILL.md) (P0) - Enforce "No Exploit, No Report" policy with PoC construction standards, false-positive filtering, and evidence collection per vulnerability class across backend, frontend, and mobile. Use when validating security findings, constructing exploit proofs, filtering false positives, or writing pentest findings.
+- [**Feedback Reporter**](common/common-feedback-reporter/SKILL.md) (P0) - Pre-write audit for skill violations: checks planned code against loaded skill anti-patterns before any file write. Use when writing Flutter/Dart/TS code or editing SKILL.md files with active project skills. Load as composite; on auto-fixed violation, also load +common/common-learning-log.
+- [**Git Collaboration**](common/common-git-collaboration/SKILL.md) (P0) - Enforce version control best practices for commits, branching, pull requests, and repository security. Use when writing commits, creating branches, merging, or opening pull requests.
+- [**Llm Security**](common/common-llm-security/SKILL.md) (P0) - OWASP LLM Top 10 (2025) audit checklist for AI applications, agent tools, RAG pipelines, and prompt construction. Use when performing any security review touching LLM client code, prompt templates, agent tools, or vector stores.
+- [**Mobile Ux Core**](common/common-mobile-ux-core/SKILL.md) (P0) - Enforce universal mobile UX principles for touch-first interfaces including touch targets, safe areas, and mobile-specific interaction patterns. Use when building mobile screens, handling touch interactions, or validating safe area compliance.
+- [**Operator Profile**](common/common-operator-profile/SKILL.md) (P0) - Infer the requesting operator's technical fluency from message content (never ask directly) and adapt register — business, hybrid, or technical — across SDLC workflow output. Use when starting sdlc, brainstorm-feature, plan-feature, verify-work, publish-notes, or session-report, or whenever a request's phrasing signals a non-technical or cross-stack operator.
+- [**Owasp**](common/common-owasp/SKILL.md) (P0) - OWASP Top 10 audit checklists for Web Applications (2021), APIs (2023), and Mobile (2024). Use when performing any security review, PR review, or codebase audit touching web, mobile, or API code.
+- [**Pentest Methodology**](common/common-pentest-methodology/SKILL.md) (P0) - PTES-aligned penetration testing methodology for backend, frontend, and mobile. Provides attack taxonomy, exploit techniques per vulnerability class, and platform-specific test matrices. Use when executing pentest workflow, planning security assessments, mapping attack surfaces, or building threat models.
+- [**Performance Engineering**](common/common-performance-engineering/SKILL.md) (P0) - Enforce universal standards for high-performance development. Use when profiling bottlenecks, reducing latency, fixing memory leaks, improving throughput, or optimizing algorithm complexity in any language.
+- [**Protocol Enforcement**](common/common-protocol-enforcement/SKILL.md) (P0) - Enforce Red-Team verification and adversarial protocol audit. Use only when verifying completion, performing self-scans, or checking protocol violations; do not activate for ordinary implementation, configuration, or unit-test requests.
+- [**Security Audit**](common/common-security-audit/SKILL.md) (P0) - Probe for hardcoded secrets, injection surfaces, unguarded routes, business logic flaws, and platform-specific weaknesses across backend (Node, Go, Java, Python, Rust), frontend (React, Angular, Vue), and mobile (iOS, Android, Flutter) codebases. Use when performing security audits, vulnerability scans, secrets detection, or penetration testing.
+- [**Security Standards**](common/common-security-standards/SKILL.md) (P0) - Enforce universal security protocols for safe, resilient software. Use when implementing authentication, encryption, authorization, input validation, secret management, or any security-sensitive feature across any language or framework.
+- [**Skill Creator**](common/common-skill-creator/SKILL.md) (P0) - Standardizes the creation and evaluation of high-density Agent Skills (Claude, Cursor, Windsurf). Ensures skills achieve high Activation (specificity/completeness) and Implementation (conciseness/actionability) scores. Use when: writing or auditing SKILL.md, improving trigger accuracy, or refactoring skills to reduce redundancy and maximize token ROI.
+- [**Software Requirements**](common/common-software-requirements/SKILL.md) (P0) - Standardize SRS and FRS specifications for technical behavior, interfaces, data contracts, quality constraints, and verification mapping. Use when writing SRS, functional specification, system behavior requirements, API/data contracts, or non-functional thresholds.
+- [**Tdd**](common/common-tdd/SKILL.md) (P0) - Guides quality-first TDD for new behavior, bug fixes, and test changes. Selects the smallest test layer, proves a distinct regression risk, and runs bounded RED-GREEN-REFACTOR verification.
+- [**Ui Design**](common/common-ui-design/SKILL.md) (P0) - Design distinctive, production-grade frontend UI with bold aesthetic choices. Use when building web components, pages, interfaces, dashboards, or applications in any framework (React, Next.js, Angular, Vue, HTML/CSS).
+- [**Workflow Writing**](common/common-workflow-writing/SKILL.md) (P0) - Rules for writing concise, token-efficient workflow and skill files. Prevents over-building that requires costly optimization passes. Use when creating or editing workflow files, SKILL.md files, or new skill definitions.
+- [**Accessibility**](common/common-accessibility/SKILL.md) (P1) - Enforce WCAG 2.2 AA compliance with semantic HTML, ARIA roles, keyboard navigation, and color contrast standards for web UIs. Use when building interactive components, adding form labels, fixing focus traps, or auditing a11y compliance.
+- [**Agent Guardrails**](common/common-agent-guardrails/SKILL.md) (P1) - Define deterministic guardrails for agent tool calls — protected paths, test-file locks during bug fixes, post-edit formatters, production approval gates, secret deny rules. Use when writing or reviewing a hook policy, or moving an always-do-X rule out of prose into enforcement.
+- [**Api Design**](common/common-api-design/SKILL.md) (P1) - Apply REST API conventions — HTTP semantics, status codes, versioning, pagination, and OpenAPI standards for any framework. Use when designing endpoints, choosing HTTP methods, implementing pagination, or writing OpenAPI specs.
+- [**Architecture Audit**](common/common-architecture-audit/SKILL.md) (P1) - Audit structural debt, logic leakage, and monolithic components across Web, Mobile, and Backend codebases. Use when reviewing architecture, assessing tech debt, detecting logic in wrong layers, or identifying God classes.
+- [**Architecture Diagramming**](common/common-architecture-diagramming/SKILL.md) (P1) - Draws architecture diagrams as editable draw.io files with a fixed house style, C4 levels, evidence-tagged shapes, and optional multi-view identity checks. Use when producing a system context, container, component, deployment, data flow, sequence, state, or ERD, or redrawing an ASCII or Mermaid one.
+- [**Book To Skill**](common/common-book-to-skill/SKILL.md) (P1) - Turns authorized books into portable skill references with rights scoping, source mapping, synthesis, fidelity checks, and handoff. Use when asked to book to skill, book-to-skill, or convert a book to a skill.
+- [**Code Review**](common/common-code-review/SKILL.md) (P1) - Conduct high-quality, persona-driven code reviews. Use when reviewing PRs, critiquing code quality, or analyzing changes for team feedback.
+- [**Context Optimization**](common/common-context-optimization/SKILL.md) (P1) - Manage context and prompt-cache costs without losing task state. Use for context management, orchestration cost, token budgets, large tool outputs, cache misses, or long-running conversations.
+- [**Dast Tooling**](common/common-dast-tooling/SKILL.md) (P1) - Standardize dynamic application security testing for backend APIs, frontend web apps, and mobile clients. Covers ZAP, Nuclei, Nikto, sqlmap, ffuf, browser automation, mobile proxy interception, and AI-driven curl probes. Use when advising on or running dynamic security scans on local/staging environments.
+- [**Debugging**](common/common-debugging/SKILL.md) (P1) - Troubleshoot systematically using the Scientific Method. Use when debugging crashes, tracing errors, diagnosing unexpected behavior, or investigating exceptions.
+- [**Error Handling**](common/common-error-handling/SKILL.md) (P1) - Cross-cutting standards for error design, response shapes, error codes, and boundary placement across API, domain, and infrastructure layers. Use when defining error hierarchies, wrapping exceptions, building standardized error responses, or placing error boundaries in layered architectures.
+- [**Family Ux**](common/common-family-ux/SKILL.md) (P1) - Judge and shape UI/UX for products used by parents and young children - audience fit, accessibility, safety and trust, comfort, consistency, and human feel. Use when reviewing or designing family, parenting, or kids app screens on phone or tablet.
+- [**Learning Log**](common/common-learning-log/SKILL.md) (P1) - Append a learning entry to AGENTS_LEARNING.md when an AI agent makes a mistake. Auto-activates after a pre-write audit auto-fix, a retrospective correction loop, or a mid-session user correction. Use when: mistake, wrong, correction, my bad, agent error, learning log.
+- [**Mobile Animation**](common/common-mobile-animation/SKILL.md) (P1) - Apply motion design principles for mobile apps covering timing curves, transitions, gestures, and performance-conscious animations. Use when implementing screen transitions, gesture-driven interactions, shared-element animations, or optimizing animation frame rates on iOS, Android, or Flutter.
+- [**Mobile Visual Testing**](common/common-mobile-visual-testing/SKILL.md) (P1) - Standardizes mobile UI audits, performance/scroll checks, RTL verification, and state-specific testing on iOS/Android.
+- [**Observability**](common/common-observability/SKILL.md) (P1) - Enforce structured JSON logging, OpenTelemetry distributed tracing, and RED metrics across backend services. Use when adding request correlation, setting up tracing spans, defining SLO burn-rate alerts, or instrumenting middleware.
+- [**Review Policy**](common/common-review-policy/SKILL.md) (P1) - Define a repository review policy fixing what each review pass checks, how severities rank, which paths are skipped, the nit cap, and who approves. Use when review findings feel inconsistent or noisy, or when tuning an automated reviewer.
+- [**Session Retrospective**](common/common-session-retrospective/SKILL.md) (P1) - Review session corrections, trigger misses and recurring agent mistakes to propose targeted skill-library changes. Use for retrospective, rework or routing-gap analysis before registry edits; load +common/common-learning-log for redacted evidence.
+- [**Stitch Design**](common/common-stitch-design/SKILL.md) (P1) - Drive Google Stitch over MCP safely - read screens, write and lint DESIGN.md, create design systems, and fix designs through variants instead of overwriting. Use when reviewing, editing, or generating Stitch screens or DESIGN.md files.
+- [**Store Changelog**](common/common-store-changelog/SKILL.md) (P1) - Generate user-facing release notes for the App Store and Google Play from git history (App Store <=4000 chars, Google Play <=500). Use when generating release notes, app store changelog, play store release, or "what's new" text for a mobile app.
+- [**Subagent Driven Development**](common/common-subagent-driven-development/SKILL.md) (P1) - Execute an approved implementation plan at the context boundary that preserves required independence and review. Use when implementing plans, executing multi-task PRs, choosing between main-loop and dispatched execution, or transitioning from planning to implementation.
+- [**Task Complexity Routing**](common/common-task-complexity-routing/SKILL.md) (P1) - Scores a task on Spread, Novelty, Centrality (0-6), routes the tier to autonomy, verification, review and model tier, and gives provider-neutral capability/effort guidance that preserves configured profiles. Use for sizing, model routing, LLM model selection, thinking level or model tier.
+- [**Web Visual Testing**](common/common-web-visual-testing/SKILL.md) (P1) - Standardizes visual audits, responsive design, and behavioral testing for web apps. Use to verify a web UI fix or cross-browser behavior; defer backend API refactors, Playwright installation/tooling setup, and Appium/mobile automation.
+- [**Documentation**](common/common-documentation/SKILL.md) (P2) - Write effective code comments, READMEs, and technical documentation following intent-first principles. Use when adding comments, writing docstrings, creating READMEs, or updating any documentation.
+- [**Sdlc Metrics**](common/common-sdlc-metrics/SKILL.md) (P2) - Define delivery metrics from authorized observations and labeled artifact/git proxies; use for DORA, SDLC outcomes, reporting, or control bands.
+- [**Telemetry**](common/common-telemetry/SKILL.md) (P2) - Enforce session-cost telemetry and execution-metadata reporting. Use when explicitly invoking get_session_cost, reporting token/cost usage, applying telemetry or cost guidance during a workflow handoff, or writing artifacts/session-cost.md at a workflow terminal state.
+
+### 🎯 Flutter (Framework)
+
+High-density standards for modern Flutter development.
+
+- [**Bloc State Management**](flutter/flutter-bloc-state-management/SKILL.md) (P0) - Implement BLoC/Cubit state, events, transitions, and async concurrency in Flutter. Use for BLoC/Cubit feature logic, debounced/cancellable events, state rendering, or bloc tests—not generic widget-only work.
+- [**Design System**](flutter/flutter-design-system/SKILL.md) (P0) - Enforce Design Language System adherence in Flutter. Use when implementing design tokens, preventing hardcoded colors/spacing, or building a DLS.
+- [**Feature Based Clean Architecture**](flutter/flutter-feature-based-clean-architecture/SKILL.md) (P0) - Organize Flutter apps with modular feature-based clean architecture. Use when creating features under lib/features/ with domain, data, and presentation layers. Do not use for test-only, BlocBuilder, navigation, or spinner requests.
+- [**Getx Navigation**](flutter/flutter-getx-navigation/SKILL.md) (P0) - Implement context-less navigation, named routes, and middleware using GetX. Use when building navigation with GetX routing in Flutter.
+- [**Getx State Management**](flutter/flutter-getx-state-management/SKILL.md) (P0) - Implement reactive state with GetX controllers, bindings, and observables in Flutter. Use when managing app state with GetxController, Obx, GetBuilder, or dependency lifecycle—not unit tests for existing controllers.
+- [**Go Router Navigation**](flutter/flutter-go-router-navigation/SKILL.md) (P0) - Implement typed routes, redirection, and guards using go_router in Flutter. Use when changing go_router navigation; defer widget tests that merely assert redirect behavior and defer slide/transition animation work.
+- [**Layer Based Clean Architecture**](flutter/flutter-layer-based-clean-architecture/SKILL.md) (P0) - Enforce inward dependency flow, pure domain layers, and DTO-to-entity mapping in Flutter DDD architecture. Use when structuring layers or boundaries; defer navigation-only routing and feature implementation such as notifications.
+- [**Retrofit Networking**](flutter/flutter-retrofit-networking/SKILL.md) (P0) - Build type-safe HTTP networking with Dio and Retrofit including auth interceptors in Flutter. Use when integrating REST APIs with Dio or Retrofit.
+- [**Riverpod State Management**](flutter/flutter-riverpod-state-management/SKILL.md) (P0) - Implement reactive state management using Riverpod 3.x with code generation in Flutter. Use when defining providers, building AsyncNotifiers, or overriding providers in tests.
+- [**Security**](flutter/flutter-security/SKILL.md) (P0) - Secure Flutter token/PII storage, build-time secrets, network trust, and release hardening using OWASP Mobile practices. Use for secure storage, secret injection, certificate pinning, jailbreak/root risk, or release builds—not generic form validation, API error handling, auth-provider setup, or tests of existing security services.
+- [**Testing**](flutter/flutter-testing/SKILL.md) (P0) - Write unit, widget, and integration tests with robot patterns, widget keys, and Patrol in Flutter. Use when implementing test behavior; defer CI-only configuration without test changes.
+- [**Auto Route Navigation**](flutter/flutter-auto-route-navigation/SKILL.md) (P1) - Implement typed routing, nested routes, and auth guards using auto_route in Flutter. Use when the task explicitly uses auto_route or its generated router; defer generic deep-link setup and other routing libraries.
+- [**Cicd**](flutter/flutter-cicd/SKILL.md) (P1) - Set up CI/CD pipelines for Flutter apps. Use when configuring automated testing, build, or deployment workflows with GitHub Actions or Fastlane.
+- [**Concurrency**](flutter/flutter-concurrency/SKILL.md) (P1) - Execute long-running tasks in background isolates to keep the UI responsive. Use when performing heavy computations, parsing large datasets, or choosing between async/await and isolates.
+- [**Dependency Injection**](flutter/flutter-dependency-injection/SKILL.md) (P1) - Configure service locator setup using injectable and get_it in Flutter. Use when wiring dependency injection with get_it or injectable.
+- [**Error Handling**](flutter/flutter-error-handling/SKILL.md) (P1) - Implement functional repository error recovery with Either/Failure patterns in Flutter. Use when handling exceptions or dartz Either types in data flows; defer UI-only retry buttons.
+- [**Idiomatic Flutter**](flutter/flutter-idiomatic-flutter/SKILL.md) (P1) - Compose modern Flutter layouts and widgets idiomatically. Use for widget trees, layout constraints, mounted safety, and UI composition—not BLoC state management, routing, dependency injection, or tests.
+- [**Localization**](flutter/flutter-localization/SKILL.md) (P1) - Add Flutter translation assets, locale initialization, localized strings, locale switching, and plurals with easy_localization and CSV or JSON files. Use for Flutter i18n work; not RTL-only layout or locale-specific date formatting.
+- [**Navigation**](flutter/flutter-navigation/SKILL.md) (P1) - Implement route configuration, go_router/deep linking, and named routes in Flutter. Use for route declarations, route guards, and URL-to-screen mapping; defer transition-only animation, state-transfer/BLoC questions, auto_route-specific setup, and generic app-bar controls.
+- [**Notifications**](flutter/flutter-notifications/SKILL.md) (P1) - Integrate push and local notifications using FCM and flutter_local_notifications in Flutter. Use for notification delivery or presentation; defer badge-only UI and notification-service tests.
+- [**Performance**](flutter/flutter-performance/SKILL.md) (P1) - Optimize Flutter widget rebuilds, memory usage, rendering, and scrolling performance. Use when diagnosing jank, reducing rebuilds, or improving list performance—not performance tests, monitoring setup, or API optimization.
+- [**Widgets**](flutter/flutter-widgets/SKILL.md) (P1) - Build maintainable Flutter UI components with composition and theming. Use when changing widget implementation; defer animation-only changes and widget-test authoring.
+
+### 🤖 Android (Framework)
+
+Modern Android development with Jetpack Compose and Hilt.
+
+- [**Architecture**](android/android-architecture/SKILL.md) (P0) - Apply Clean Architecture layering, modularization, and Unidirectional Data Flow in Android projects. Use when setting up project structure, placing code in layers, configuring feature/core modules, or implementing UDF patterns; defer Compose state and ViewModel/StateFlow implementation to their specific skills.
+- [**Compose**](android/android-compose/SKILL.md) (P0) - Build high-performance declarative UI with Jetpack Compose. Use when writing Composable functions, optimizing recomposition, hoisting state, or working with LazyColumn and side effects; defer deep-link and navigation routing to android-navigation.
+- [**Concurrency**](android/android-concurrency/SKILL.md) (P0) - Write correct coroutine scopes, lifecycle collection, and dispatcher injection in Android production code. Use for suspend functions, coroutine scopes, and dispatcher mechanics; defer ViewModel StateFlow/LiveData architecture, Fragment lifecycle recipes, persistence/notifications, and unit-test recipes to their specific skills.
+- [**Deployment**](android/android-deployment/SKILL.md) (P0) - Configure release signing, R8 obfuscation, and App Bundle publishing for Android. Use when setting up signing configs, enabling minification, adding ProGuard keep rules, or preparing for Play Store submission.
+- [**Di**](android/android-di/SKILL.md) (P0) - Configure Hilt dependency injection with proper scoping, modules, and constructor injection in Android. Use when changing the production Hilt graph; defer test overrides, Room wiring, navigation-specific scopes, and generic DI explanations to their specific skills.
+- [**Legacy Security**](android/android-legacy-security/SKILL.md) (P0) - Harden Intent handling, WebView configuration, and FileProvider access in Android apps. Use when securing Intent extras, configuring WebViews, or exposing files via FileProvider; defer manifest export flags and generic Bundle typing to focused Android security guidance.
+- [**Navigation Type Safe**](android/android-navigation-type-safe/SKILL.md) (P0) - Implement type-safe Jetpack Navigation Compose routes using Kotlin serialization. Use only when defining typed Compose destinations and arguments; defer XML navigation, deep links, animations, and generic auth or bottom-navigation work.
+- [**Networking**](android/android-networking/SKILL.md) (P0) - Integrate Retrofit, OkHttp, and Kotlinx Serialization for type-safe API communication in Android. Use when building API clients, adding interceptors, or configuring network security—not standalone MockWebServer or API-test setup.
+- [**Persistence**](android/android-persistence/SKILL.md) (P0) - Implement Room schemas and DataStore preferences with proper async patterns in Android. Use when the primary task is storage schema, DAO, migration, or preference isolation; defer auth-token/security storage, any CoroutineWorker/WorkManager task, Hilt graph wiring, and cache-policy design.
+- [**Security**](android/android-security/SKILL.md) (P0) - Secure Android data at rest and authentication secrets. Use for auth tokens, encrypted storage, and app-data isolation; defer WebView/Intent/FileProvider to android-legacy-security and TLS/certificate pinning to android-networking.
+- [**State**](android/android-state/SKILL.md) (P0) - Configure ViewModel state emission with StateFlow, SharedFlow, and sealed UiState classes in Android. Use for state modeling and sharing policies; defer generic lifecycle collection, navigation-event plumbing, Hilt injection, test code, and configuration-change recipes to their specific skills.
+- [**Testing**](android/android-testing/SKILL.md) (P0) - Write Android unit, Compose UI, and Hilt-integrated tests. Use when designing test behavior with MockK or coroutine test utilities; defer database/WorkManager-specific recipes to the owning feature skill.
+- [**Agp Upgrade**](android/android-agp-upgrade/SKILL.md) (P1) - Upgrade an Android project to Android Gradle Plugin (AGP) 9. Use when migrating to AGP 9, updating Gradle build files, migrating to built-in Kotlin, or adopting the new AGP DSL.
+- [**Background Work**](android/android-background-work/SKILL.md) (P1) - Implement WorkManager and background processing correctly on Android. Use when creating Worker classes, scheduling tasks, choosing between WorkManager and Foreground Services, or setting up Hilt in workers; defer FCM and notification delivery to android-notifications.
+- [**Compose Migration**](android/android-compose-migration/SKILL.md) (P1) - Migrate an Android XML View to Jetpack Compose following a structured 10-step workflow. Use when converting XML layouts to Compose, setting up Compose in an existing View-based project, or incrementally adopting Compose.
+- [**Edge To Edge**](android/android-edge-to-edge/SKILL.md) (P1) - Migrate a Jetpack Compose app to edge-to-edge display and fix system bar inset issues. Use when UI components are obscured by navigation/status bars, fixing IME insets, or enabling edge-to-edge for SDK 35+.
+- [**Legacy Navigation**](android/android-legacy-navigation/SKILL.md) (P1) - Implement Jetpack Navigation Component with XML graphs and SafeArgs for type-safe fragment navigation. Use when working with XML-based navigation or SafeArgs in legacy Android projects; defer drawer and other UI-chrome work to UI skills.
+- [**Legacy State**](android/android-legacy-state/SKILL.md) (P1) - Integrate ViewModel state with XML Views using Coroutines and Lifecycle on Android. Use when managing state with repeatOnLifecycle or lifecycle-aware coroutines in Fragment/Activity; defer Compose state and generic Flow design to their specific skills.
+- [**Navigation 3**](android/android-navigation-3/SKILL.md) (P1) - Install and migrate to Jetpack Navigation 3. Use when implementing Navigation 3 patterns including NavDisplay, NavKey routes, deep links, multiple backstacks, scenes (dialogs, bottom sheets), or migrating from Navigation 2.
+- [**Performance**](android/android-performance/SKILL.md) (P1) - Optimize Android app startup, UI rendering, frame stability, and benchmark performance with Baseline Profiles, Macrobenchmark, and lazy initialization. Use when reducing startup time, diagnosing jank, or measuring rendering; defer Compose state API and test-only questions.
+- [**Tooling**](android/android-tooling/SKILL.md) (P1) - Configure Android static analysis with Detekt, Ktlint, and Android Lint for CI/CD quality gates. Use for Android-specific lint and quality tooling; defer generic Java Checkstyle, SonarQube, and standalone CI configuration.
+- [**Xml Views**](android/android-xml-views/SKILL.md) (P1) - Implement ViewBinding, RecyclerView, and XML layouts correctly on Android. Use when changing XML view binding or RecyclerView behavior, including its item animations and layout managers; defer standalone animation or layout-manager questions unrelated to RecyclerView.
+- [**Design System**](android/android-design-system/SKILL.md) (P2) - Enforce Material Design 3 theming and design token usage in Jetpack Compose. Use when implementing M3 components, color schemes, typography, or design tokens.
+- [**Navigation**](android/android-navigation/SKILL.md) (P2) - Implement screen routes and deep-link/App Link routing with Jetpack Compose Navigation on Android. Use when the primary task is Compose route configuration or external URL routing; defer typed-route APIs, XML/fragments, generic back-stack, and transition questions to their specific navigation skills.
+- [**Notifications**](android/android-notifications/SKILL.md) (P2) - Integrate Android app notifications using Firebase Cloud Messaging and NotificationCompat. Use when setting up FCM, notification channels, or client-side notification taps; defer Flutter, server sends, WorkManager orchestration, and generic Intent handling.
+- [**Resources**](android/android-resources/SKILL.md) (P2) - Organize Android strings, drawables, fonts, themes, localization, and concrete resource-backed Compose values such as MaterialTheme colors. Use for resource declarations and their direct UI lookup; defer design-system token architecture, network image loading, lint-rule configuration, and general Compose implementation.
+
+### 🅰️ Angular (Framework)
+
+Modern Angular standards (Standalone components, Signals).
+
+- [**Architecture**](angular/angular-architecture/SKILL.md) (P0) - Standards for Angular project structure, feature modules, and lazy loading. Use when structuring Angular apps, defining feature modules, or configuring lazy loading.
+- [**Components**](angular/angular-components/SKILL.md) (P0) - Build standalone Angular components with Signals inputs, OnPush change detection, Control Flow, and Smart/Dumb patterns. Use when building standalone Angular components, implementing @if/@for control flow, applying OnPush change detection, or implementing Signals in Angular components.
+- [**Dependency Injection**](angular/angular-dependency-injection/SKILL.md) (P0) - Configure DI, inject() usage, and providers in Angular. Use when configuring Angular dependency injection, using inject(), or defining providers.
+- [**Routing**](angular/angular-routing/SKILL.md) (P0) - Configure Angular Router with lazy-loaded routes, functional guards, and component input binding. Use when defining routes, lazy-loading features, creating route guards, or setting up resolvers.
+- [**Security**](angular/angular-security/SKILL.md) (P0) - Harden Angular apps against XSS, CSP violations, and unauthorized access. Use when implementing XSS protection, Content Security Policy, or auth guards in Angular.
+- [**Style Guide**](angular/angular-style-guide/SKILL.md) (P0) - Naming conventions, file structure, and coding standards for Angular projects. Use for Angular-specific naming and organization; defer language-only TypeScript naming questions.
+- [**Http Client**](angular/angular-http-client/SKILL.md) (P1) - Integrate HttpClient, Interceptors, and API interactions in Angular. Use when integrating HttpClient, writing interceptors, or handling API calls in Angular.
+- [**Performance**](angular/angular-performance/SKILL.md) (P1) - Optimization techniques including OnPush, @defer, and Image Optimization. Use when optimizing Angular rendering, deferring blocks, or improving Core Web Vitals.
+- [**Rxjs Interop**](angular/angular-rxjs-interop/SKILL.md) (P1) - Bridge Observables and Signals using toSignal and toObservable in Angular. Use when converting between RxJS Observables and Angular Signals.
+- [**State Management**](angular/angular-state-management/SKILL.md) (P1) - Implement application state with Angular Signals, computed derivations, and NgRx Signal Store. Use when implementing reactive state with signal(), computed(), effect(), or @ngrx/signals in Angular.
+- [**Testing**](angular/angular-testing/SKILL.md) (P1) - Write Angular component tests using TestBed, ComponentHarness, and HttpTestingController with proper signal input handling. Use when writing component tests, mocking HTTP calls, or testing signal inputs.
+- [**Directives Pipes**](angular/angular-directives-pipes/SKILL.md) (P2) - Build custom Angular attribute directives, HostDirectives, and pure pipes. Use for Angular directive or pipe implementation, including custom attribute directives; defer React/CSS middleware and unrelated framework work.
+- [**Forms**](angular/angular-forms/SKILL.md) (P2) - Build typed reactive forms with strict FormGroup typing, custom validators, and nonNullable controls in Angular. Use when implementing typed reactive forms, custom validators, or form control patterns.
+- [**Ssr**](angular/angular-ssr/SKILL.md) (P2) - Implement Angular SSR with hydration, TransferState caching, and per-route render modes. Use when configuring Angular Universal SSR, client hydration, static prerendering, or preventing double-fetching.
+- [**Tooling**](angular/angular-tooling/SKILL.md) (P2) - Angular CLI usage, code generation, build configuration, and bundle optimization. Use for Angular CLI/build tasks; defer standalone webpack configuration and generic test-runner setup.
+
+### 🔷 Dart (Language)
+
+Core language idioms and patterns.
+
+- [**Language**](dart/dart-language/SKILL.md) (P0) - Dart 3.x language feature standards: null safety, records, sealed classes, switch pattern matching, extensions, and async/await. Use when using !, ?., ??, late, sealed classes, record types, switch expressions, or async patterns — and before introducing any new Dart 3.x construct to confirm the modern idiomatic approach.
+- [**Best Practices**](dart/dart-best-practices/SKILL.md) (P1) - Dart code quality conventions: naming, const/final/var hierarchy, single quotes, trailing commas, collection idioms, tear-offs, and import organization. Use only for Dart style-focused changes or reviews; never activate for configuration-only lint setup, unrelated feature work, or widget tests.
+- [**Tooling**](dart/dart-tooling/SKILL.md) (P1) - Dart static analysis, linting, formatting, and code-generation standards. Use only for analysis_options.yaml, build_runner, dart format, DCM, lefthook, or analyze/format CI failures; defer Dart language, null-safety, Flutter tests, and generic CI questions.
+
+### 🔷 TypeScript (Language)
+
+Modern TypeScript standards for type-safe development.
+
+- [**Language**](typescript/typescript-language/SKILL.md) (P0) - Apply modern TypeScript standards for type safety and maintainability. Use when working with types, interfaces, generics, enums, unions, or tsconfig settings.
+- [**Security**](typescript/typescript-security/SKILL.md) (P0) - Secure server-side TypeScript input, auth tokens, and injection boundaries. Use for API/request validation, sanitization, secrets, and sensitive configuration; defer client-only React form validation and generic linting.
+- [**Best Practices**](typescript/typescript-best-practices/SKILL.md) (P1) - Write idiomatic TypeScript patterns for clean, maintainable code. Use when writing or refactoring TypeScript classes, functions, modules, or async logic.
+- [**Tooling**](typescript/typescript-tooling/SKILL.md) (P1) - Development tools, linting, and build config for TypeScript. Use when configuring ESLint, Prettier, Jest, Vitest, tsconfig, or any TS build tooling.
+
+### 🟨 JavaScript (Language)
+
+Modern JavaScript (ES2022+) patterns.
+
+- [**Language**](javascript/javascript-language/SKILL.md) (P0) - Modern JavaScript (ES2022+) patterns for clean, maintainable code. Use when working with modern JavaScript features like optional chaining, nullish coalescing, or ESM.
+- [**Best Practices**](javascript/javascript-best-practices/SKILL.md) (P1) - Idiomatic JavaScript patterns and conventions for maintainable existing code. Use when reviewing or refactoring JavaScript language patterns; defer project scaffolding, dependency setup, and tool configuration.
+- [**Tooling**](javascript/javascript-tooling/SKILL.md) (P1) - Configure development tools, linting, formatting, and test runners for existing JavaScript projects. Use for ESLint, Prettier, Jest, or equivalent tool setup; defer application implementation and generic project scaffolding.
+
+### ⚛️ React (Framework)
+
+Modern React development patterns.
+
+- [**Component Patterns**](react/react-component-patterns/SKILL.md) (P0) - Build modern React component architecture with composition patterns. Use when designing reusable React components, applying composition patterns, or structuring component hierarchies.
+- [**Hooks**](react/react-hooks/SKILL.md) (P0) - Write React hooks with clean effect boundaries and measured memoization. Use when working with `useEffect`, custom hooks, refs, transitions, or hook dependency problems in React.
+- [**Performance**](react/react-performance/SKILL.md) (P0) - Optimize React rendering, bundle size, and data flow with profiler-led decisions. Use when reducing re-renders, fixing waterfalls, or deciding whether memoization is warranted in React.
+- [**Security**](react/react-security/SKILL.md) (P0) - Prevent XSS, secure auth flows, and harden React client-side applications. Use when preventing XSS, securing auth flows, or auditing third-party dependencies in React.
+- [**State Management**](react/react-state-management/SKILL.md) (P0) - Select and implement local, global, and server state patterns in React. Use when choosing or implementing state management (Context, Zustand, Redux, React Query) in React.
+- [**Testing**](react/react-testing/SKILL.md) (P1) - Test React components with RTL and Jest/Vitest. Use when writing React component tests with React Testing Library, Jest, or Vitest.
+- [**Typescript**](react/react-typescript/SKILL.md) (P1) - Type React components and hooks with TypeScript patterns. Use when typing React props, hooks, event handlers, or component generics in TypeScript.
+- [**Tooling**](react/react-tooling/SKILL.md) (P2) - Configure debugging, bundle analysis, and ecosystem tools for React applications. Use when setting up Vite/webpack build tooling, analyzing bundle size, debugging re-renders with React DevTools, or configuring ESLint and StrictMode for React projects.
+
+### 📱 React Native (Framework)
+
+Mobile app standards for iOS and Android.
+
+- [**Architecture**](react-native/react-native-architecture/SKILL.md) (P0) - Structure React Native projects with feature-first organization and separation of concerns. Use when structuring a React Native project or applying clean architecture patterns.
+- [**Components**](react-native/react-native-components/SKILL.md) (P0) - Build modern React Native components using function components and composition. Use when building or refactoring React Native function components and composable UI.
+- [**Navigation V6**](react-native/react-native-navigation-v6/SKILL.md) (P0) - Configure React Navigation 6+ stacks, tabs, and deep linking for React Native. Use when implementing React Navigation stacks, tabs, or deep linking in React Native.
+- [**Performance**](react-native/react-native-performance/SKILL.md) (P0) - Optimize React Native rendering for smooth 60fps mobile experiences. Use when optimizing React Native app performance, reducing re-renders, or fixing frame drops.
+- [**Security**](react-native/react-native-security/SKILL.md) (P0) - Secure storage, network traffic, and deep links in React Native mobile apps. Use when implementing secure storage, certificate pinning, or deep link validation in React Native.
+- [**Dls**](react-native/react-native-dls/SKILL.md) (P1) - Enforce design token usage in React Native. Use when enforcing a design system, preventing hardcoded styles, or implementing theme tokens in React Native.
+- [**Navigation**](react-native/react-native-navigation/SKILL.md) (P1) - Configure stack navigation, type-safe routes, deep linking, and URL-based routing with React Navigation in React Native. Use for React Navigation route configuration; defer unrelated performance, notification, build, and styling work.
+- [**Notifications**](react-native/react-native-notifications/SKILL.md) (P1) - Push notifications for React Native using Firebase or Expo Notifications. Use when integrating push notifications with Firebase or Expo in React Native.
+- [**Platform Specific**](react-native/react-native-platform-specific/SKILL.md) (P1) - Resolve iOS and Android differences using Platform API and native modules in React Native. Use when platform branching or native-module integration is the primary task; defer cross-platform feature implementation such as push notifications.
+- [**State Management**](react-native/react-native-state-management/SKILL.md) (P1) - Implement local and global state with Context, Zustand, and Redux Toolkit in React Native. Use when choosing or implementing state management in React Native with Context, Zustand, or Redux.
+- [**Styling**](react-native/react-native-styling/SKILL.md) (P1) - Style React Native apps with StyleSheet API, Flexbox, theming, and responsive design. Use when implementing React Native styles, theming, Flexbox layouts, or responsive design.
+- [**Testing**](react-native/react-native-testing/SKILL.md) (P1) - Test React Native components with Jest and React Native Testing Library. Use when writing Jest or React Native Testing Library tests for React Native components.
+- [**Deployment**](react-native/react-native-deployment/SKILL.md) (P2) - OTA updates with CodePush, EAS Build, and release configurations. Use when configuring OTA updates, EAS Build, or managing release configs for React Native.
+
+### 🦁 NestJS (Framework)
+
+Enterprise-grade Node.js backend development.
+
+- [**Architecture**](nestjs/nestjs-architecture/SKILL.md) (P0) - Design NestJS module boundaries and provider ownership. Use only when structuring feature/core/shared modules, controller-service boundaries, or provider lifetime; defer JWT/security, caching, and unrelated request-pipeline recipes.
+- [**Bullmq**](nestjs/nestjs-bullmq/SKILL.md) (P0) - Implement BullMQ job workflows in NestJS. Use when building queue processors, redis-throttler, Upstash limits, idle polling, stalled jobs, and retention policies.
+- [**Controllers Services**](nestjs/nestjs-controllers-services/SKILL.md) (P0) - Separate Controllers from Services and build Custom Decorators in NestJS. Use when defining NestJS controllers, services, or custom parameter decorators.
+- [**Database**](nestjs/nestjs-database/SKILL.md) (P0) - Implement data access patterns, Scaling, Migrations, and ORM selection in NestJS. Use when implementing TypeORM/Prisma repositories, migrations, or database patterns in NestJS.
+- [**File Uploads**](nestjs/nestjs-file-uploads/SKILL.md) (P0) - Validate and stream file uploads securely with Validation and S3 streaming in NestJS. Use when implementing secure file uploads, validation, or S3 streaming in NestJS.
+- [**Notification**](nestjs/nestjs-notification/SKILL.md) (P0) - Build dual-write notification services with database persistence and FCM push delivery in NestJS. Use when creating notification entities, sending push via FCM, or implementing in-app notification feeds.
+- [**Security Isolation**](nestjs/nestjs-security-isolation/SKILL.md) (P0) - Enforce multi-tenant isolation and PostgreSQL Row Level Security in NestJS. Use when enforcing tenant isolation or PostgreSQL RLS in NestJS multi-tenant apps.
+- [**Security**](nestjs/nestjs-security/SKILL.md) (P0) - Implement JWT authentication, RBAC guards, Helmet hardening, and Argon2 hashing in NestJS. Use when adding auth strategies, role-based access control, CSRF protection, or security headers.
+- [**Transport**](nestjs/nestjs-transport/SKILL.md) (P0) - Configure gRPC, RabbitMQ, and monorepo contract patterns for NestJS microservices. Use when setting up gRPC service-to-service calls, RabbitMQ event-driven messaging, shared contract libraries, or microservice exception handling in NestJS.
+- [**Api Standards**](nestjs/nestjs-api-standards/SKILL.md) (P1) - Create standardized API response envelopes, paginated endpoints, and error interceptors in NestJS. Use when implementing response wrappers, pagination DTOs, or global error formats.
+- [**Caching**](nestjs/nestjs-caching/SKILL.md) (P1) - Implement multi-level caching, invalidation patterns, and stampede protection in NestJS. Use when adding Redis caching layers, configuring cache-manager interceptors, implementing stale-while-revalidate, or preventing cache stampedes in NestJS services.
+- [**Configuration**](nestjs/nestjs-configuration/SKILL.md) (P1) - Environment variables validation and ConfigModule setup. Use when validating environment variables with Joi/Zod or configuring ConfigModule in NestJS.
+- [**Deployment**](nestjs/nestjs-deployment/SKILL.md) (P1) - Containerize NestJS apps with multi-stage Docker builds, tune Node.js memory, and implement graceful shutdown hooks. Use when writing Dockerfiles, configuring K8s deployments, or adding shutdown hooks for NestJS.
+- [**Error Handling**](nestjs/nestjs-error-handling/SKILL.md) (P1) - Implement Global Exception Filters and standard error formats in NestJS. Use when implementing global exception filters or standardizing error responses in NestJS.
+- [**Observability**](nestjs/nestjs-observability/SKILL.md) (P1) - Configure structured logging with Pino, Prometheus metrics, and health checks for NestJS services. Use when adding JSON logging, request tracing with correlation IDs, Prometheus metric endpoints, or liveness/readiness health checks.
+- [**Performance**](nestjs/nestjs-performance/SKILL.md) (P1) - Optimize NestJS throughput with Fastify adapter, singleton scope enforcement, compression, and query projections. Use when switching to Fastify, diagnosing request-scoped bottlenecks, or profiling API overhead.
+- [**Real Time**](nestjs/nestjs-real-time/SKILL.md) (P1) - Implement WebSocket gateways with Socket.io and Server-Sent Events endpoints in NestJS. Use when building chat features, live feeds, or choosing between WebSocket and SSE for real-time communication.
+- [**Scheduling**](nestjs/nestjs-scheduling/SKILL.md) (P1) - Implement distributed cron jobs with Redis-based locking and BullMQ offloading in NestJS. Use when adding @Cron scheduled tasks, preventing duplicate runs across pods, or delegating heavy work to queue workers.
+- [**Search**](nestjs/nestjs-search/SKILL.md) (P1) - Integrate Elasticsearch and implement search index Sync patterns in NestJS. Use when integrating Elasticsearch or implementing search index sync in NestJS.
+- [**Documentation**](nestjs/nestjs-documentation/SKILL.md) (P2) - Automate Swagger/OpenAPI documentation and standardize API response schemas in NestJS. Use when generating OpenAPI specs, documenting paginated or generic responses, configuring the Nest CLI Swagger plugin, or publishing versioned API docs.
+- [**Testing**](nestjs/nestjs-testing/SKILL.md) (P2) - Write Unit and E2E tests with Jest, mocking strategies, and database isolation in NestJS. Use when writing NestJS unit tests, E2E tests with supertest, or mock providers.
+
+### ▲ Next.js (Framework)
+
+Modern fullstack React framework standards (App Router).
+
+- [**App Router**](nextjs/nextjs-app-router/SKILL.md) (P0) - Configure file-system routing with nested layouts, route groups, parallel routes, and error boundaries in Next.js App Router. Use when creating page routes, adding loading/error states, or organizing routes with groups and dynamic segments.
+- [**Authentication**](nextjs/nextjs-authentication/SKILL.md) (P0) - Secure token storage (HttpOnly Cookies) and Middleware patterns. Use when implementing authentication, secure session storage, or auth middleware in Next.js.
+- [**Data Fetching**](nextjs/nextjs-data-fetching/SKILL.md) (P0) - Implement Fetch API, Caching, and Revalidation strategies in Next.js. Use when fetching data, configuring cache behavior, or implementing revalidation in Next.js.
+- [**Pages Router**](nextjs/nextjs-pages-router/SKILL.md) (P0) - Implement Pages Router data fetching with getServerSideProps, getStaticProps, and API routes in Next.js legacy projects. Use when working in a pages/ directory project, adding SSR/SSG data fetching, or creating API routes.
+- [**Rendering**](nextjs/nextjs-rendering/SKILL.md) (P0) - Select and implement SSG, SSR, ISR, Streaming, or Partial Prerendering strategies in Next.js App Router. Use when choosing a rendering mode for a page, configuring generateStaticParams, or enabling PPR.
+- [**Security**](nextjs/nextjs-security/SKILL.md) (P0) - Secure Next.js App Router with middleware auth, Server Action validation, CSP headers, and taint APIs. Use when adding authentication middleware, validating Server Action inputs with Zod, or preventing secret leakage to client bundles.
+- [**Server Components**](nextjs/nextjs-server-components/SKILL.md) (P0) - Build async React Server Components and place 'use client' boundaries at leaf nodes for interactivity in Next.js App Router. Use when deciding RSC vs Client Component, composing server data into client wrappers, or fixing hydration errors.
+- [**Caching**](nextjs/nextjs-caching/SKILL.md) (P1) - Configure Next.js cache layers, invalidation, and cache-component APIs. Use when choosing `fetch` caching, `use cache`, tags, or stale-data debugging in Next.js.
+- [**Data Access Layer**](nextjs/nextjs-data-access-layer/SKILL.md) (P1) - Build secure, reusable data access patterns with DTOs, taint checks, and colocated authorization in Next.js. Use when centralizing database queries, transforming raw data to DTOs, adding server-only guards, or preventing sensitive data from reaching Client Components.
+- [**Optimization**](nextjs/nextjs-optimization/SKILL.md) (P1) - Optimize images, fonts, scripts, and metadata for Next.js performance and Core Web Vitals. Use when configuring next/image for LCP, next/font for zero layout shift, next/script loading strategies, or generateMetadata for SEO.
+- [**Server Actions**](nextjs/nextjs-server-actions/SKILL.md) (P1) - Implement secure Next.js Server Actions for mutations, forms, and optimistic UI. Use when building actions, form flows, auth checks, or revalidation after writes.
+- [**Styling**](nextjs/nextjs-styling/SKILL.md) (P1) - Implement zero-runtime CSS with Tailwind, CSS Modules, and the cn() utility for RSC-compatible styling in Next.js. Use when choosing a styling library, creating dynamic class utilities, or optimizing fonts with next/font.
+- [**Testing**](nextjs/nextjs-testing/SKILL.md) (P1) - Write Jest or Vitest unit tests with React Testing Library and Playwright E2E tests for Next.js projects. Use when testing components with RTL, mocking APIs with MSW, or creating Playwright user flow tests.
+- [**Upgrade**](nextjs/nextjs-upgrade/SKILL.md) (P1) - Next.js version migrations using official guides and codemods. Use when migrating a Next.js project to a new major version using codemods.
+- [**Architecture**](nextjs/nextjs-architecture/SKILL.md) (P2) - Structure Next.js projects with Feature-Sliced Design layers, domain-grouped slices, and strict import hierarchy. Use when organizing features into FSD layers, enforcing slice boundaries, or keeping page.tsx thin.
+- [**I18n**](nextjs/nextjs-i18n/SKILL.md) (P2) - Best practices for multi-language handling, locale routing, and detection strategies across App and Pages Router. Use when adding i18n, locale routing, or language detection in Next.js.
+- [**State Management**](nextjs/nextjs-state-management/SKILL.md) (P2) - Apply best practices for managing URL, server, and client state in Next.js applications. Use when choosing between URL params, SWR/TanStack Query, Zustand, or Context for state, or when fixing hydration mismatches from localStorage.
+- [**Tooling**](nextjs/nextjs-tooling/SKILL.md) (P2) - Configure Next.js build tooling, deployment, and developer workflow. Use when setting up Turbopack, standalone Docker output, bundle analysis, CI caching, environment variable validation, or ESLint integration for Next.js projects.
+
+### 🐘 Laravel (Framework)
+
+Expert standards for scalable Laravel 11.x/12.x applications.
+
+- [**Architecture**](laravel/laravel-architecture/SKILL.md) (P0) - Enforce core architectural standards for scalable Laravel applications. Use when structuring controllers, service layers, action classes, Form Requests, or Service Container bindings in Laravel projects.
+- [**Eloquent**](laravel/laravel-eloquent/SKILL.md) (P0) - Write performant Eloquent queries with eager loading, reusable scopes, and strict lazy-loading prevention in Laravel. Use when defining model relationships, creating query scopes, or processing large datasets with chunk/cursor.
+- [**Security**](laravel/laravel-security/SKILL.md) (P0) - Harden Laravel apps with Policies for model authorization, Gate-based RBAC, validated mass assignment, and CSRF protection. Use when creating authorization policies, securing env config access, or preventing mass assignment vulnerabilities.
+- [**Api**](laravel/laravel-api/SKILL.md) (P1) - Build REST endpoints with API Resources, Sanctum authentication, and versioned route groups in Laravel. Use when creating JsonResource classes, adding token-based auth, or defining rate-limited API routes.
+- [**Background Processing**](laravel/laravel-background-processing/SKILL.md) (P1) - Build scalable asynchronous workflows using Queues, Jobs, and Events in Laravel. Use when implementing queued jobs, event-driven workflows, or async processing in Laravel.
+- [**Clean Architecture**](laravel/laravel-clean-architecture/SKILL.md) (P1) - Implement Domain-Driven Design with typed DTOs, repository interfaces, and single-responsibility Action classes in Laravel. Use when creating domain folders, binding repository contracts in providers, or passing DTOs between layers.
+- [**Database Expert**](laravel/laravel-database-expert/SKILL.md) (P1) - Optimize Laravel queries with subqueries, joinSub, Redis cache-aside patterns, and read/write connection splitting. Use when writing complex joins, implementing Cache::remember with tags, or configuring database read replicas.
+- [**Sessions Middleware**](laravel/laravel-sessions-middleware/SKILL.md) (P1) - Configure Redis session drivers, register security-header middleware, and prevent session fixation in Laravel. Use when switching session drivers, adding HSTS/CSP headers via middleware, or regenerating sessions after login.
+- [**Testing**](laravel/laravel-testing/SKILL.md) (P1) - Write Pest feature tests with RefreshDatabase, mock external services, and create test data with Eloquent Factories in Laravel. Use when adding HTTP tests, configuring SQLite in-memory test database, or mocking payment services.
+- [**Tooling**](laravel/laravel-tooling/SKILL.md) (P2) - Configure Laravel ecosystem with custom Artisan commands, Vite asset bundling, Pint code styling, and Horizon queue monitoring. Use when creating Artisan commands, migrating from Mix to Vite, or configuring Pint code standards.
+
+### 🐹 Golang (Language)
+
+High-performance system and backend development with Go.
+
+- [**Api Server**](golang/golang-api-server/SKILL.md) (P0) - Build HTTP services, REST APIs, and middleware in Go. Use when building Go HTTP servers, REST APIs, or custom middleware.
+- [**Architecture**](golang/golang-architecture/SKILL.md) (P0) - Structure Go code with package-first boundaries, `cmd/` and `internal/`, and explicit dependency wiring. Use when shaping project layout, package ownership, or service boundaries in Go; defer Redis/cache-specific implementation recipes to database skills.
+- [**Concurrency**](golang/golang-concurrency/SKILL.md) (P0) - Write safe concurrent Go code with goroutines, channels, and context. Use when implementing concurrency with goroutines, channels, or context in Go.
+- [**Database**](golang/golang-database/SKILL.md) (P0) - Implement Go database access with context, pool tuning, transaction boundaries, and repository seams. Use when building repositories, tuning `sql.DB` or `pgx`, or reviewing DB transaction flow in Go.
+- [**Error Handling**](golang/golang-error-handling/SKILL.md) (P0) - Standards for error wrapping, checking, and definition in Golang. Use when wrapping errors, defining sentinel errors, or handling errors idiomatically in Go.
+- [**Language**](golang/golang-language/SKILL.md) (P0) - Core idioms, style guides, and best practices for writing idiomatic Go code. Use when writing Go code following official style guides and idiomatic patterns.
+- [**Security**](golang/golang-security/SKILL.md) (P0) - Secure Go backend services against common vulnerabilities. Use when implementing input validation, crypto, or SQL injection prevention in Go.
+- [**Testing**](golang/golang-testing/SKILL.md) (P0) - Write unit tests with table-driven patterns and interface mocking in Go. Use when writing Go unit tests, table-driven tests, or using mock interfaces.
+- [**Configuration**](golang/golang-configuration/SKILL.md) (P1) - Load and validate application configuration from environment variables and config files. Use when managing Go application config with environment variables or viper.
+- [**Logging**](golang/golang-logging/SKILL.md) (P1) - Standards for structured logging and observability in Golang. Use when adding structured logging or tracing to Go services.
+- [**Tooling**](golang/golang-tooling/SKILL.md) (P1) - Go developer toolchain — gopls LSP diagnostics, linting, formatting, and vet. Use when setting up Go tooling, running linters, or integrating gopls with Claude Code.
+
+### 🍎 iOS (Framework)
+
+Modern iOS development with Swift, SwiftUI, and TCA/MVVM.
+
+- [**App Lifecycle**](ios/ios-app-lifecycle/SKILL.md) (P0) - Configure AppDelegate, SceneDelegate, deep linking, and background tasks. Use when configuring iOS app lifecycle, deep linking, or background task scheduling.
+- [**Architecture**](ios/ios-architecture/SKILL.md) (P0) - Apply MVVM, Coordinators, and Clean Architecture (VIP/VIPER) in iOS apps. Use when applying MVVM, Coordinators, or VIP/VIPER architecture in iOS apps.
+- [**Dependency Injection**](ios/ios-dependency-injection/SKILL.md) (P0) - Configure protocol-based DI with property wrappers and Factory/Swinject. Use when setting up dependency injection or factory patterns in iOS.
+- [**Networking**](ios/ios-networking/SKILL.md) (P0) - Build API clients with URLSession, Alamofire, and Codable. Use when implementing URLSession networking, Alamofire, or API clients in iOS.
+- [**Performance**](ios/ios-performance/SKILL.md) (P0) - Profile and optimize iOS apps with Instruments, memory management, and rendering techniques. Use when profiling iOS apps with Instruments or optimizing memory and rendering.
+- [**Persistence**](ios/ios-persistence/SKILL.md) (P0) - Implement local persistence with SwiftData, Core Data, and secure storage. Use when setting up SwiftData models, Core Data stacks, or local persistence in iOS.
+- [**Security**](ios/ios-security/SKILL.md) (P0) - Secure iOS apps with secure storage, biometrics, and data protection. Use when implementing secure storage, Face ID/Touch ID, or data protection in iOS.
+- [**State Management**](ios/ios-state-management/SKILL.md) (P0) - Implement reactive state with Combine, Observation framework, and UDF patterns. Use when implementing state management with Combine, @Observable, or reactive patterns in iOS.
+- [**Swiftui**](ios/ios-swiftui/SKILL.md) (P0) - Build declarative UI and manage data flow with SwiftUI in iOS. Use when building declarative SwiftUI views or managing data flow with property wrappers.
+- [**Ui Navigation**](ios/ios-ui-navigation/SKILL.md) (P0) - Implement UIKit navigation, Auto Layout, and Apple Human Interface Guidelines in iOS. Use when implementing UIKit navigation, Auto Layout constraints, or HIG compliance.
+- [**Deployment**](ios/ios-deployment/SKILL.md) (P1) - Automate provisioning, signing, and deployment with Fastlane. Use when provisioning iOS apps, managing code signing, or automating deployments with Fastlane.
+- [**Localization**](ios/ios-localization/SKILL.md) (P1) - Implement String Catalogs, L10n workflows, and asset management for iOS. Use when adding multi-language support using iOS String Catalogs or L10n workflows.
+- [**Design System**](ios/ios-design-system/SKILL.md) (P2) - Enforce design token usage in SwiftUI apps using iOS Human Interface Guidelines. Use when implementing design tokens, colors, or typography in SwiftUI.
+- [**Navigation**](ios/ios-navigation/SKILL.md) (P2) - SwiftUI navigation and deep linking using NavigationStack and Universal Links. Use when implementing NavigationStack or Universal Links deep linking in iOS.
+- [**Notifications**](ios/ios-notifications/SKILL.md) (P2) - Push notifications for iOS using UserNotifications framework and APNS. Use when integrating APNS push notifications in iOS applications.
+
+### ☕ Java (Language)
+
+Modern enterprise Java standards (17/21+).
+
+- [**Language**](java/java-language/SKILL.md) (P0) - Modern Java 21+ language standards including Records, Pattern Matching, and Virtual Threads. Use for Java language constructs or Java-to-Java upgrades; defer Kotlin, tests, formatting/build tools, CompletableFuture, builder patterns, and isolated null-handling questions.
+- [**Testing**](java/java-testing/SKILL.md) (P0) - Testing standards using JUnit 5, AssertJ, Mockito, Cucumber, and Spring Boot integration tests for Java. Use when writing or reviewing Java test behavior, including parallel execution and BDD; defer Kotlin-only tests, virtual-thread test infrastructure, and coverage-report/tooling configuration.
+- [**Best Practices**](java/java-best-practices/SKILL.md) (P1) - Apply core Effective Java patterns for robust, maintainable code. Use when applying SOLID principles, choosing between inheritance and composition, refactoring Java code smells, or reviewing class design.
+- [**Concurrency**](java/java-concurrency/SKILL.md) (P1) - Implement modern concurrency with Virtual Threads and Structured Concurrency in Java. Use when implementing Java Virtual Threads (Java 21), Structured Concurrency with StructuredTaskScope, CompletableFuture pipelines, or debugging race conditions.
+- [**Tooling**](java/java-tooling/SKILL.md) (P2) - Configure Maven, Gradle, and static analysis for Java projects. Use for Java-only build and quality tooling such as Spotless, Checkstyle, SpotBugs, SonarLint, JDK versions, and Java service Dockerfiles; defer Kotlin, Android, Flutter, and GitHub Actions-specific configuration.
+
+### 🐘 Kotlin (Language)
+
+Modern Kotlin for Android and Server-side.
+
+- [**Coroutines**](kotlin/kotlin-coroutines/SKILL.md) (P0) - Write safe, structured concurrent code with Kotlin Coroutines. Use for suspend functions, coroutine scopes, cancellation, and coroutine leaks; defer Java Virtual Threads, Android WorkManager/Fragment lifecycle, Compose state hoisting, and Detekt/tooling configuration.
+- [**Language**](kotlin/kotlin-language/SKILL.md) (P0) - Write idiomatic Kotlin 1.9+ with null safety, sealed classes, data classes, extension functions, delegates, collections, inline/reified generics, and expression syntax. Use for Kotlin language constructs, Java-to-Kotlin migration, lazy delegates, data classes, backing properties, or inline/reified generics; keep language constructs in scope even inside response models, and defer coroutine configuration, Android Context/framework, Retrofit/OkHttp client setup, and other library-specific recipes.
+- [**Best Practices**](kotlin/kotlin-best-practices/SKILL.md) (P1) - Core Kotlin patterns for scope functions, backing properties, and read-only collection interfaces. Use for let/apply/run/also/with choices or encapsulating mutable state; defer general language constructs, extension functions, coroutines/runCatching, Android/Room recipes, and testing/tooling setup.
+- [**Tooling**](kotlin/kotlin-tooling/SKILL.md) (P2) - Configure Kotlin build and quality tooling, including Gradle Kotlin DSL, Version Catalogs, KMP, ktlint, Detekt, MockK, coverage, and quality plugins. Use for Kotlin-specific build, lint, test-tool, or coverage setup; defer Java-only tooling and Spring test behavior.
+
+### 🐘 PHP (Language)
+
+Modern PHP standards (8.x+).
+
+- [**Error Handling**](php/php-error-handling/SKILL.md) (P0) - Implement modern PHP error and exception handling patterns. Use when implementing exception hierarchies, error handlers, or custom exceptions in PHP.
+- [**Language**](php/php-language/SKILL.md) (P0) - Apply core PHP language standards and modern 8.x features. Use when working with PHP 8.x features like enums, fibers, readonly properties, or named arguments.
+- [**Security**](php/php-security/SKILL.md) (P0) - PHP-only security standards for database access, password handling, and input validation. Use when securing PHP apps against SQL injection, XSS, or weak password storage; defer Laravel middleware and security questions in other languages.
+- [**Best Practices**](php/php-best-practices/SKILL.md) (P1) - Write PHP following PSR coding standards, SOLID principles, and code-quality guidelines. Use for PHP style, design, refactoring, naming, and guard clauses—not Composer/PSR-4 project configuration.
+- [**Testing**](php/php-testing/SKILL.md) (P1) - Write unit and integration tests for PHP applications with PHPUnit and Pest. Use when writing PHPUnit unit tests or integration tests for PHP applications.
+- [**Concurrency**](php/php-concurrency/SKILL.md) (P2) - Implement concurrency and non-blocking I/O in modern PHP. Use when implementing concurrent requests, async processing, or non-blocking I/O in PHP.
+- [**Tooling**](php/php-tooling/SKILL.md) (P2) - Configure PHP ecosystem tooling, dependency management, and static analysis. Use when managing Composer dependencies, running PHPStan, or configuring PHP build tools.
+
+### 📈 Quality Engineering (Process)
+
+Advanced standards for requirements, QA, and tool integration.
+
+- [**Api Fuzz Testing**](quality-engineering/quality-engineering-api-fuzz-testing/SKILL.md) (P0) - Author and execute structured API fuzzing, property-based robustness tests, and dynamic authorization checks. Use when fuzzing API payloads, testing schema boundaries, or verifying real-guard access controls.
+- [**Business Analysis**](quality-engineering/quality-engineering-business-analysis/SKILL.md) (P0) - Investigate requirements via atomic AC decomposition, actor/permission matrices, and truth-table edge cases; enforce User Story standards (scope fences, platform tags, toggles). Use when writing/reviewing Stories or AC with multi-condition logic, feature toggles, or market variants (VN/MY/SG).
+- [**Flaky Triage**](quality-engineering/quality-engineering-flaky-triage/SKILL.md) (P0) - Quarantines an intermittently failing test behind a ticket with an owner and expiry, assigns a root-cause bucket from isolated reruns, and defines when the test leaves quarantine. Use when a test is a QUARANTINE_CANDIDATE or fails without a code change; not for deterministic failures.
+- [**Selector Stability**](quality-engineering/quality-engineering-selector-stability/SKILL.md) (P0) - Cross-stack selector and test-id policy for web and mobile automation. Use when writing or reviewing E2E/UI test locators, or adding data-testid/accessibility identifiers to components.
+- [**Test Healing**](quality-engineering/quality-engineering-test-healing/SKILL.md) (P0) - Failure taxonomy and allowed/forbidden repairs for a failing E2E test. Use when a Playwright/Maestro/Detox/XCUITest/Espresso/Appium test fails and you must decide whether to repair the test or route to a real bug.
+- [**Api Performance Testing**](quality-engineering/quality-engineering-api-performance-testing/SKILL.md) (P1) - Specify tool-neutral API load, stress, and recovery testing with parameterized workload models, SLO percentiles, and finite overload bounds. Use when evaluating API latency, throughput, saturation, or recovery behavior under concurrent traffic.
+- [**Api Testing**](quality-engineering/quality-engineering-api-testing/SKILL.md) (P1) - Specify and execute API correctness testing across smoke, functional, contract, integration, and regression selection. Use when writing API test suites, validating API schemas/contracts, asserting business state, or selecting regression tests.
+- [**Appium Mcp**](quality-engineering/quality-engineering-appium-mcp/SKILL.md) (P1) - Drives iOS/Android mobile devices via Appium MCP. Runs a preflight, picks local emulator/simulator/USB or a device cloud, captures screenshots/page source into a named evidence dir. Use for verifying mobile bugs, E2E tests, and navigating real device clouds (LambdaTest/BrowserStack).
+- [**Automation Health**](quality-engineering/quality-engineering-automation-health/SKILL.md) (P1) - Measures whether an automation suite builds release confidence via feedback-loop length, suite reliability, release cadence, and production escape rate, and emits a release_confidence verdict. Use when judging suite value, ROI, or pre-release trust; not for writing or healing tests.
+- [**Jira Integration**](quality-engineering/quality-engineering-jira-integration/SKILL.md) (P1) - Trigger only when the user explicitly requests live Jira or Zephyr retrieval, existing-link inspection, linking authored test cases, label updates, or stale-link audits. Do not trigger for analysis-only prompts such as 'Analyze the acceptance criteria for TICK-4521', supplied acceptance criteria, test-case authoring, or AC-to-test generation.
+- [**Playwright Cli**](quality-engineering/quality-engineering-playwright-cli/SKILL.md) (P1) - Standardizes token-efficient browser automation via playwright-cli, with Playwright MCP as the fallback driver. Runs a preflight, picks the driver rung, captures aria snapshots/console/screenshots into a named evidence dir. Use for web verification, navigation, and capturing snapshots/logs.
+- [**Playwright Pom Generation**](quality-engineering/quality-engineering-playwright-pom-generation/SKILL.md) (P1) - Generates Playwright page objects from an executable test plan, one class per screen with ladder-compliant locators and no assertions, wired into a shared fixture. Use when a web scenario needs a page object that does not exist yet, or when locators drift and the page object must be rebuilt.
+- [**Quality Assurance**](quality-engineering/quality-engineering-quality-assurance/SKILL.md) (P1) - Write or review manual Zephyr test cases with 1-condition-per-TC granularity, Module_Action on Screen when Condition naming, platform prefix rules, and High/Normal/Low priority classification. Use for test-case authoring and review; defer Jira traceability, linking, and pushing cases to Zephyr.
+- [**Test Plan Authoring**](quality-engineering/quality-engineering-test-plan-authoring/SKILL.md) (P1) - Turn acceptance criteria into an executable test plan (scenarios, seed, selector gaps) before generating E2E code. Use when ACs exist but no runnable test plan does yet.
+- [**Visual Baseline**](quality-engineering/quality-engineering-visual-baseline/SKILL.md) (P1) - Captures, masks, compares, and updates screenshot baselines for web and mobile suites, with per-region thresholds and a reviewed-diff rule for every baseline change. Use when a screenshot assertion fails, a baseline needs updating, or visual checks are being added; not for deciding what to verify.
+- [**Zephyr Coverage Analysis**](quality-engineering/quality-engineering-zephyr-coverage-analysis/SKILL.md) (P1) - Audit test coverage health, gaps, and QE debt for Jira stories or epics. Produces coverage_analysis_report.md with AC-to-TC heatmap, risk scores, and prioritized action plan. Use when assessing coverage percentage, pre-release readiness, sprint readiness, or identifying missing test cases. Do NOT use for TC creation — use zephyr-test-generation instead.
+- [**Zephyr Test Generation**](quality-engineering/quality-engineering-zephyr-test-generation/SKILL.md) (P1) - Generate Zephyr test cases from Jira stories: parse acceptance criteria and business rules, impact-analyze existing TCs (update vs. create new), and draft correctly named test cases. Use for AC-to-test generation; defer post-generation Jira linking and manual test-case quality review.
+
+### 🍃 Spring Boot (Framework)
+
+Enterprise Java backend development with Spring Boot.
+
+- [**Api Design**](spring-boot/spring-boot-api-design/SKILL.md) (P0) - Design Spring Boot APIs with OpenAPI, Versioning, and Global Error Handling. Use when designing Spring Boot APIs with OpenAPI specs, versioning, or global error handling.
+- [**Architecture**](spring-boot/spring-boot-architecture/SKILL.md) (P0) - Structure Spring Boot 3+ projects with feature packaging and clean layering. Use when structuring Spring Boot 3 projects, defining layers, or applying architecture patterns.
+- [**Best Practices**](spring-boot/spring-boot-best-practices/SKILL.md) (P0) - Apply core coding standards, dependency injection, and configuration for Spring Boot 3. Use for Spring Boot application structure and DI/configuration; defer Spring Security hardening and test-specific setup to their focused skills.
+- [**Data Access**](spring-boot/spring-boot-data-access/SKILL.md) (P0) - Optimize JPA, Hibernate, and database interactions in Spring Boot. Use when implementing JPA entities, repositories, or database access in Spring Boot.
+- [**Deployment**](spring-boot/spring-boot-deployment/SKILL.md) (P0) - Deploy Spring Boot apps with Docker, GraalVM native images, and graceful shutdown. Use when deploying Spring Boot apps as GraalVM native images, containers, or configuring shutdown.
+- [**Microservices**](spring-boot/spring-boot-microservices/SKILL.md) (P0) - Standards for Feign clients and asynchronous messaging with Spring Cloud Stream. Use when implementing Feign HTTP clients or async event messaging in Spring Boot microservices.
+- [**Observability**](spring-boot/spring-boot-observability/SKILL.md) (P0) - Instrument Spring Boot with Micrometer metrics, distributed tracing, and structured logging. Use when adding Micrometer metrics, distributed tracing, or structured logging to Spring Boot.
+- [**Scheduling**](spring-boot/spring-boot-scheduling/SKILL.md) (P0) - Configure scheduled tasks and distributed locking with ShedLock in Spring Boot. Use when implementing @Scheduled tasks or distributed locking with ShedLock in Spring Boot.
+- [**Security**](spring-boot/spring-boot-security/SKILL.md) (P0) - Configure Spring Security 6+ with Lambda DSL, JWT, and hardening rules. Use when configuring Spring Security 6+, OAuth2, JWT, or security hardening in Spring Boot.
+- [**Testing**](spring-boot/spring-boot-testing/SKILL.md) (P0) - Write unit, integration, and slice tests for Spring Boot 3 applications. Use when writing unit tests, integration tests, or slice tests for Spring Boot 3 applications.
+
+### 🦅 Swift (Language)
+
+Modern Swift language standards (5.9+).
+
+- [**Best Practices**](swift/swift-best-practices/SKILL.md) (P0) - Apply Guard, Value Types, Immutability, and Naming conventions in Swift. Use when writing idiomatic Swift with guard, value types, immutability, or naming conventions—not Swift concurrency/actor-isolation, persistence, linting, or release tooling.
+- [**Concurrency**](swift/swift-concurrency/SKILL.md) (P0) - Implement async/await, Actors, and structured concurrency in Swift. Use when implementing Swift async/await, Actors, or structured concurrency in iOS/macOS.
+- [**Error Handling**](swift/swift-error-handling/SKILL.md) (P0) - Standards for throwing functions, Result type, and Never. Use when implementing Swift error throwing, designing error hierarchies, using Result types, or adding do-catch blocks.
+- [**Language**](swift/swift-language/SKILL.md) (P0) - Apply Optionals, Protocols, Extensions, and Type Safety patterns in Swift. Use when working with Swift Optionals, Protocols, Extensions, or type-safe APIs.
+- [**Memory Management**](swift/swift-memory-management/SKILL.md) (P0) - Prevent retain cycles via ARC, weak/unowned references, and Capture Lists in Swift. Use when managing Swift ARC, avoiding retain cycles, or configuring capture lists in closures.
+- [**Swiftui**](swift/swift-swiftui/SKILL.md) (P0) - Configure SwiftUI state, view lifecycle, and Property Wrappers correctly. Use when managing SwiftUI state, view lifecycle, or property wrappers like @State and @Binding.
+- [**Testing**](swift/swift-testing/SKILL.md) (P0) - Write XCTest cases, async tests, and organized test suites in Swift. Use when writing XCTest cases, async tests, or organizing test suites in Swift.
+- [**Tooling**](swift/swift-tooling/SKILL.md) (P0) - Configure SPM packages, SwiftLint, and build settings for Swift projects. Use when managing Swift packages with SPM, configuring build settings, or enforcing Swift code quality.
+
+### 🗄️ Database (Infra)
+
+Expert data access and optimization patterns.
+
+- [**Hana**](database/database-hana/SKILL.md) (P0) - Apply SAP HANA database standards for SQL parameterization, in-memory engine optimization, dynamic IN query chunking, column aliasing on joins, and datatype casting. Use when writing SQL for SAP HANA, optimizing HANA queries, or diagnosing HANA driver errors.
+- [**Migrations**](database/database-migrations/SKILL.md) (P0) - Plan additive, zero-downtime schema migrations with rollout, backfill, and rollback awareness. Use when renaming columns, backfilling data, or shipping risky database changes.
+- [**Mongodb**](database/database-mongodb/SKILL.md) (P0) - Apply MongoDB data-modeling, indexing, and query rules from access patterns. Use when designing schemas, choosing embed vs reference, or tuning MongoDB query behavior.
+- [**Postgresql**](database/database-postgresql/SKILL.md) (P0) - Apply PostgreSQL standards for migrations, indexing, transactions, and ORM boundaries. Use when editing entities, Prisma schema, migrations, RLS, or query-performance work for PostgreSQL.
+- [**Query Performance**](database/database-query-performance/SKILL.md) (P0) - Diagnose database latency with explain plans, index ownership, and query-shape review. Use when a query is slow, an index is missing, or scans and N+1 patterns appear.
+- [**Redis**](database/database-redis/SKILL.md) (P0) - Optimize Redis as cache and coordination infrastructure with TTL, eviction, and latency-aware key design. Use when implementing Redis caching, key invalidation, or Redis performance work.
+- [**Schema Design**](database/database-schema-design/SKILL.md) (P0) - Design relational or document schemas from access patterns, cardinality, and lifecycle. Use when modeling entities, choosing embed vs normalize, or shaping schema boundaries before implementation.
+- [**Transactions**](database/database-transactions/SKILL.md) (P0) - Define transaction boundaries, locking, and consistency guarantees for multi-step writes. Use when designing atomic operations, retries, idempotency, or concurrent write behavior.
+
+### Specialists
+
+Standards for specialists.
+
+- [**Specialist Tdd Implementer**](specialists/specialist-tdd-implementer/SKILL.md) (P0) - Strict quality-first TDD specialist. Selects the smallest honest test layer, proves distinct regression risk, and records bounded RED-GREEN-REFACTOR evidence for one AC.
+- [**Specialist Test Healer**](specialists/specialist-test-healer/SKILL.md) (P0) - Classifies one failing E2E test from its artifacts, applies at most one allowed repair from the test-healing catalog, proves it with three sequential reruns and an unchanged assertion set, and returns a verdict with a route. Use per failure inside test-loop; never for production code changes.
+- [**Specialist Ac Verifier**](specialists/specialist-ac-verifier/SKILL.md) (P1) - Maps acceptance criteria to implementation evidence, tests, and scope creep. Use during review when a diff, PR, ticket, or story includes numbered ACs.
+- [**Specialist Architecture Guard**](specialists/specialist-architecture-guard/SKILL.md) (P1) - Audits PR diffs for architecture boundary violations, design simplicity, dependency drift, and established-pattern mismatches. Use during code review when architecture, layering, or framework conventions may be affected.
+- [**Specialist Aspm Correlator**](specialists/specialist-aspm-correlator/SKILL.md) (P1) - Application Security Posture Management persona. Correlates findings from SAST, DAST, and SCA tools, deduplicates noise, maps vulnerabilities to specific code commits, and generates targeted remediation PRs.
+- [**Specialist Codebase Scout**](specialists/specialist-codebase-scout/SKILL.md) (P1) - Explores codebase structure, affected files, blast radius, related tests, and local conventions for a focused topic. Use when review or planning needs structural lookup without bloating main context.
+- [**Specialist Integration Test Generator**](specialists/specialist-integration-test-generator/SKILL.md) (P1) - Generates one integration/E2E test from an approved test case spec using existing project patterns. Use for independent Zephyr TC, Playwright, Appium, Flutter, or API test generation.
+- [**Specialist Jira Analyst**](specialists/specialist-jira-analyst/SKILL.md) (P1) - High-density JIRA analysis persona. Extracts reproduce steps, ACs, and market requirements with zero-hallucination rigor.
+- [**Specialist Logic Hacker**](specialists/specialist-logic-hacker/SKILL.md) (P1) - Red Team persona for Business Logic and Auth manipulation. Generates and executes stateful fuzzing scripts (Playwright/Python) to test RBAC bypasses, BOLA/IDOR, race conditions, and complex multi-step transaction flaws.
+- [**Specialist Mobile Reverser**](specialists/specialist-mobile-reverser/SKILL.md) (P1) - Deep Mobile Security Red Team persona. Executes OWASP MASTG procedures including APK/IPA decompilation, Frida dynamic hooking, biometric bypasses, and local database decryption.
+- [**Specialist Pr Commenter Batch**](specialists/specialist-pr-commenter-batch/SKILL.md) (P1) - Posts sanitized batches of PR review comments or replies through configured review tooling. Use after review-ticket when findings are approved for publication.
+- [**Specialist Pr Reviewer**](specialists/specialist-pr-reviewer/SKILL.md) (P1) - Summarizes GitHub PR, GitLab MR, or Azure DevOps PR metadata, review threads, changed files, and template completeness. Use during review-ticket or code-review workflows when PR/MR context exists.
+- [**Specialist Security Reviewer**](specialists/specialist-security-reviewer/SKILL.md) (P1) - High-density security audit persona. Enforces OWASP Top 10, Vibe Security, trust gating, and runtime hardening for code and agentic review flows.
+- [**Specialist Solution Diagrammer**](specialists/specialist-solution-diagrammer/SKILL.md) (P1) - Draws one evidence-grounded architecture diagram as an editable draw.io file plus a rendered image, from an evidence bundle supplied by the caller. Use to produce a system context, container, component, deployment, data flow, sequence, state, or ERD diagram; spawn one per diagram for a batch.
+- [**Specialist System Architect**](specialists/specialist-system-architect/SKILL.md) (P1) - Runs one bounded deep dive on a single risky component of a system design and returns options, failure modes, and a justified recommendation. Use during a design session when a component needs expert depth beyond the main thread's budget.
+- [**Specialist Tc Creator**](specialists/specialist-tc-creator/SKILL.md) (P1) - Creates one test case in Zephyr or another test-management system from an approved structured spec. Use for bulk TC creation by spawning one independent specialist per TC.
+- [**Specialist Test Gap Finder**](specialists/specialist-test-gap-finder/SKILL.md) (P1) - Finds missing, weak, or stale test coverage in a diff. Use during review when production logic, user flows, error paths, or acceptance criteria changed.
+- [**Specialist Test Planner**](specialists/specialist-test-planner/SKILL.md) (P1) - Turns approved AC/SRS into an executable test plan (scenarios, seed, selector gaps) for the test-loop workflow. Use for independent test-plan generation from stable requirements.
+- [**Specialist Testid Inserter**](specialists/specialist-testid-inserter/SKILL.md) (P1) - Inserts stable test ids into production components for each selector gap named by a test plan, following the per-framework insertion policy and never renaming existing ids. Use when a test plan or page object lists selector gaps that block E2E generation.
+- [**Specialist Zephyr Scanner**](specialists/specialist-zephyr-scanner/SKILL.md) (P1) - Finds Zephyr Scale test cases linked or relevant to Jira stories, ACs, modules, and release risks. Use for coverage analysis and traceability checks.
+- [**Specialist Confluence Searcher**](specialists/specialist-confluence-searcher/SKILL.md) (P2) - Searches Confluence and related tickets for product, architecture, rollout, and test-data context. Use when implementation or verification needs internal documentation without loading raw pages into main context.
+
+### Python
+
+Standards for python.
+
+- [**Architecture**](python/python-architecture/SKILL.md) (P0) - Structure Python backends with explicit dependency direction, ports/adapters, and runtime boundaries. Use when shaping project layout, clean architecture, service boundaries, dependency injection, report rendering boundaries, or transport separation in Python.
+- [**Language**](python/python-language/SKILL.md) (P0) - Core Python 3.11+ language standards for typing, dataclasses, imports, pathlib, and stdlib-first code. Use for idiomatic language constructs in Python modules or stubs; defer pytest fixtures, database/client configuration, subprocess security, and other specialized concerns.
+- [**Security**](python/python-security/SKILL.md) (P0) - Secure Python services against secret leakage, injection, unsafe subprocess calls, and dependency drift. Use when handling env vars, tokens, SQL, file paths, shell commands, auth flows, or Python security gates.
+- [**Testing**](python/python-testing/SKILL.md) (P0) - Test Python services with pytest, async coverage, monkeypatch, and boundary-focused fakes. Use when writing Python tests, fixtures, async tests, regression tests, or dependency-isolated verification.
+- [**Async Runtime**](python/python-async-runtime/SKILL.md) (P1) - Write correct async Python runtime code with explicit blocking-I/O boundaries, cancellation, and timeout handling. Use when editing `asyncio` workflows, background loops, async services, or mixed sync/async integrations.
+- [**Best Practices**](python/python-best-practices/SKILL.md) (P1) - Write maintainable Python with small functions, explicit boundaries, guard clauses, and readable state flow. Use when refactoring Python services, helpers, modules, or async logic for clarity—not generic test writing, tooling setup, or database transaction implementation.
+- [**Database**](python/python-database/SKILL.md) (P1) - Implement Python database access with parameterized SQL, transaction scope, connection helpers, and repository seams. Use when editing Postgres queries, repositories, transactions, pooling, or persistence boundaries in Python.
+- [**Error Handling**](python/python-error-handling/SKILL.md) (P1) - Design Python error paths with narrow exceptions, rollback, contextual logs, and preserved blocker truth. Use when handling retries, verifier outcomes, parser failures, or exception flow in Python services.
+- [**Tooling**](python/python-tooling/SKILL.md) (P1) - Configure Python tooling, dependency surfaces, static analysis, and verification gates. Use when editing `pyproject.toml`, `requirements.txt`, `pytest.ini`, `ruff`, `pyright`, CI, or Python release checks.
+
+### Cybersecurity
+
+Standards for cybersecurity.
+
+- [**Cyber Authorization**](cybersecurity/cyber-authorization/SKILL.md) (P0) - Validates cyber exercise authorization, scope, exclusions, runtime controls, expiry, stop and restart gates. Use when planning or reviewing authorized security activity, scope drift, or unsupported execution environments.
+- [**Cyber Detection Engineering**](cybersecurity/cyber-detection-engineering/SKILL.md) (P0) - Designs and reviews detections from telemetry prerequisites, correlation logic, Sigma metadata, severity, status, and benign cases. Use for detection rules, Sigma review, analytic coverage, or tuning; not generic logging advice or live deployment.
+- [**Cyber Detection Validation**](cybersecurity/cyber-detection-validation/SKILL.md) (P0) - Validates defensive controls with paired authorized action and observation evidence, distinguishing blocked, prevented, detected, responded, and telemetry-gap outcomes. Use for purple-team validation design or offline fixture review; not unsanctioned testing or production efficacy claims.
+- [**Cyber Engagement Planning**](cybersecurity/cyber-engagement-planning/SKILL.md) (P0) - Drafts bounded cybersecurity engagement plans with objectives, scope, exclusions, roles, authorization, runtime controls, evidence, stop criteria, and restart gates. Use when preparing an exercise or assessment plan before execution.
+- [**Cyber Evidence**](cybersecurity/cyber-evidence/SKILL.md) (P0) - Captures redacted, provenance-aware cybersecurity observations with shared status fields, independent ground truth, and honest limitations. Use when recording exercise evidence, findings, validation results, or security-review handoffs.
+- [**Cyber Exercise Adjudication**](cybersecurity/cyber-exercise-adjudication/SKILL.md) (P0) - Adjudicates authorized exercise outcomes against independently held ground truth, redacted evidence, and explicit status boundaries. Use when comparing observations, resolving discrepancies, or preparing evidence-led security-review handoffs.
+- [**Cyber Exercise Control**](cybersecurity/cyber-exercise-control/SKILL.md) (P0) - Controls authorized cybersecurity exercises through inject scheduling, safety gates, stop and restart decisions, communications, and synthetic-data boundaries. Use when serving as exercise control or white-team coordinator, not as compliance assessor or whitehat operator.
+- [**Cyber Incident Triage**](cybersecurity/cyber-incident-triage/SKILL.md) (P0) - NIST SP 800-61r3-aligned incident triage that preserves evidence, separates analysis from authorization, and records status. Use for incident intake, severity assessment, containment readiness, or evidence preservation; not generic debugging or unscoped response.
+- [**Cyber Lab Validation**](cybersecurity/cyber-lab-validation/SKILL.md) (P0) - Governs bounded cybersecurity validation in isolated disposable lab environments with explicit per-action gates, synthetic-data boundaries, paired evidence, and teardown verification. Use when validating authorized security claims in disposable labs; not for operational attacks or production testing.
+- [**Cyber Scoped Validation**](cybersecurity/cyber-scoped-validation/SKILL.md) (P0) - Validates bounded cybersecurity exercise observations against approved scope, expected behavior, runtime controls, and redacted evidence. Use when performing safe offline validation or authorized runtime checks with explicit stop and status gates.
+- [**Cyber Threat Hunting**](cybersecurity/cyber-threat-hunting/SKILL.md) (P0) - Conducts hypothesis-driven, evidence-preserving threat hunts with bounded negative conclusions and telemetry-gap handling. Use for hunt hypotheses, scoped offline analysis, or analytic follow-up; not unscoped scanning, malware execution, or generic intelligence summaries.
+- [**Cyber Framework Mapping**](cybersecurity/cyber-framework-mapping/SKILL.md) (P1) - Maintains sparse, reviewable cybersecurity framework edges with versioned IDs, relation, rationale, source, and review status. Use when mapping exercise observations or procedures to NIST, ATT&CK, or another named framework.
+
+### Product-management
+
+Standards for product-management.
+
+- [**Product Business Requirements**](product-management/product-business-requirements/SKILL.md) (P0) - Standardize BRD and BRD-lite discovery for business goals, stakeholder impact, current-to-future state, and measurable value outcomes. Use for business analysis or elicitation results and stakeholder elicitation without requiring BRD intake.
+- [**Product Customer Discovery**](product-management/product-customer-discovery/SKILL.md) (P0) - Guide ethical customer discovery and research synthesis, distinguishing direct observations from inferences, preventing leading interview questions, and tracking quote-to-insight provenance. (triggers: `product customer discovery`, `product research synthesis`)
+- [**Product Evidence**](product-management/product-evidence/SKILL.md) (P0) - Ground and validate SDLC product decisions with canonical evidence ledgers, immutable recorded decisions, typed provenance, and scoped action gates. Use when inspecting, maintaining, or validating product evidence ledgers.
+- [**Product Experimentation**](product-management/product-experimentation/SKILL.md) (P0) - Design and validate bounded product experiments with falsifiable hypotheses, precommitted thresholds, guardrail metrics, ethical eligibility, and stop rules; use for product hypothesis validation / product experiment design. (triggers: `product hypothesis validation`, `product experiment design`)
+- [**Product Investment**](product-management/product-investment/SKILL.md) (P0) - Evaluate product investment options across build, buy, partner, defer, and do-nothing paths, setting incremental accounting boundaries and cash-versus-capacity rules without fabricated ROI. Use for product investment analysis / product ROI scenario. (triggers: `product investment analysis`, `product ROI scenario`)
+- [**Product Market Research**](product-management/product-market-research/SKILL.md) (P0) - Conduct evidence-backed product market research and competitive analysis with explicit provenance, substitute identification, and counterevidence tracking. Use when evaluating market dynamics, competitor positioning, direct or indirect substitutes, or buyer alternatives. (triggers: `product market research`, `product competitive analysis`)
+- [**Product Metrics**](product-management/product-metrics/SKILL.md) (P0) - Define explicit outcome measurement contracts, baseline evidence, query revisions, guardrails, and post-release product value reviews without confusing correlation with causal ROI. (triggers: `product measurement contract`, `product value review`)
+- [**Product Requirements**](product-management/product-requirements/SKILL.md) (P0) - Standardize PRD discovery and drafting for product scope, user outcomes, requirement IDs, and acceptance criteria. Use when creating PRD, product requirements, feature specification, or acceptance criteria plan.
+- [**Product Roadmap**](product-management/product-roadmap/SKILL.md) (P0) - Prioritize outcome-based product roadmaps, manage capacity and displaced work trade-offs, sequence learning milestones, and maintain portfolio coherence without dual ledgers or fake ROI. (triggers: `product roadmap prioritization`, `product portfolio trade-off`)
+- [**Product Strategy**](product-management/product-strategy/SKILL.md) (P0) - Formulate coherent product strategy, synthesize opportunity frames and falsifiable hypotheses, establish non-goals and trade-offs, and bind decisions to verified strategic authority. (triggers: `product strategy decision`, `product opportunity framing`)
+
+### System-design
+
+Standards for system-design.
+
+- [**Methodology**](system-design/system-design-methodology/SKILL.md) (P0) - Facilitate system design by classifying mode, depth, and surface independently; scoping journeys; estimating only decision-relevant quantities; tracing logical flows before physical binding; and selecting risk-driven views and deep dives. Use for system design sessions and reviews.
+- [**Principles**](system-design/system-design-principles/SKILL.md) (P0) - Define module boundaries, dependency direction, data ownership, resilience, and distributed-system trade-offs. Use for architecture, service boundaries, coupling, scalability, or failure-cascade decisions; defer session facilitation to system-design-methodology.
+- [**Artifact Intake**](system-design/system-design-artifact-intake/SKILL.md) (P1) - Ingest a provided design artifact - screenshot, drawio, Mermaid, PlantUML, Excalidraw, slides, PDF, or IaC - into a reviewable fact sheet. Probes for embedded structure before vision, marks per-edge confidence, treats extracted text as data. Use when someone hands over a design to review.
+- [**Building Blocks**](system-design/system-design-building-blocks/SKILL.md) (P1) - Select infrastructure components by the constraint each removes: load balancers, caches and invalidation, queues and pub/sub, CDN, API gateway, rate limiting, consistent hashing. Use when choosing cache, queue, replica, or edge layers; defer engine tuning to the database category.
+- [**Communication**](system-design/system-design-communication/SKILL.md) (P1) - Select how services talk: REST, gRPC, GraphQL, WebSocket, SSE, or webhook per hop, sync versus async per flow, service discovery mode, and DNS/edge routing. Use when choosing a protocol or API paradigm; defer REST contract detail (status codes, pagination, OpenAPI) to common-api-design.
+- [**Data Architecture**](system-design/system-design-data-architecture/SKILL.md) (P1) - Design system data flows and data-layer ownership, consistency, and store choices from access patterns. Use for critical-flow design, DFD semantic review, data lineage, authority, replication, retention, or a data-tier bottleneck. Avoid unrelated framework stream/dataframe implementation questions.
+- [**Estimation**](system-design/system-design-estimation/SKILL.md) (P1) - Compute defensible capacity numbers before architecture: average and peak QPS, storage growth, bandwidth, working-set memory, latency and availability budgets. Use when sizing a service, provisioning infrastructure, or checking that a design survives peak load.
+- [**Integration Patterns**](system-design/system-design-integration-patterns/SKILL.md) (P1) - Choose distributed integration and evolution patterns by the constraint each removes: outbox, CQRS, event sourcing, saga orchestration or choreography, leader election, sidecar, anti-corruption layer, and strangler-fig migration. Use when services must stay consistent across a boundary.
+- [**Interview Coaching**](system-design/system-design-interview-coaching/SKILL.md) (P1) - Facilitate timed system-design interview practice across backend, mobile/client, SDK/library, and full-stack surfaces. Use risk-driven probes, an adverse timeline, mechanism revision, one changed constraint, and the existing six-criterion evidence-based debrief.
+- [**Mobile Client**](system-design/system-design-mobile-client/SKILL.md) (P1) - Design mobile/client and SDK/library systems where offline behavior, client authority, lifecycle, device constraints, or host compatibility affect correctness. Use for mobile-client system design, offline sync, client lifecycle, device resource limits, or SDK contracts; not framework coding or backend-only sharding.
+- [**Resilience Ops**](system-design/system-design-resilience-ops/SKILL.md) (P1) - Design failure behavior and operability for a declared scope: evaluate journey SLOs, resilience, recovery, and rollout evidence. Use when reviewing availability, planning recovery, or deciding rollout mechanics.
+- [**Review**](system-design/system-design-review/SKILL.md) (P1) - Audit an existing or proposed architecture and return a scored verdict across nine axes, from requirements and capacity evidence to observability and rollout, then convert gaps into a prioritized roadmap. Use when reviewing a design doc, auditing a running system, or gating a design.
+- [**Case Catalog**](system-design/system-design-case-catalog/SKILL.md) (P2) - Answer classic system design problems as constraint-to-solution sketches and coach interview practice: URL shortener, rate limiter, news feed, chat, notification, autocomplete, crawler, unique id. Use for interview practice or naming the closest known shape for a new problem.
+<!-- SKILLS_INDEX_END -->
+
+---
+
+## 🧪 Verify Live Skill Evals
+
+The canonical v2.6.0 catalog is `all-v2.6.0`. Verification is local: it
+re-scores the immutable transcripts and does not start model workers or use
+paid quota.
+
+```bash
+pnpm evals:verify -- --run all-v2.6.0
+# Verify every retained run:
+pnpm evals:verify -- --all
+```
+
+For future `SKILL.md` or eval-contract changes, run the no-cost checks first,
+then prepare an incremental plan. Only run workers after reviewing the number
+of fresh answers:
+
+```bash
+pnpm evals:preflight -- --skills-file <changed-skills-file>
+pnpm evals:baseline -- --plan
+pnpm evals:baseline
+pnpm evals:baseline -- --execute
+pnpm evals:report
+pnpm evals:verify -- --run <new-run-id>
+```
+
+Do not run a full paid catalog evaluation for ordinary skill changes. Use a
+full run only when the model, protocol, scorer, or generation environment
+changes.
+
+---
+
+## ✍️ Contribution Guide
+
+To add or update a skill:
+
+1. **Token Efficiency**: `SKILL.md` must be **≤ 100 lines**. This is a strict limit to maximize agent context.
+2. **Progressive Disclosure**: Move all code samples > 10 lines to `references/REFERENCE.md` or specialized reference files.
+3. **Imperative Standards**: Use "Compressed Syntax" (starting with verbs, minimal articles) for 40% higher density.
+4. **Format Verification**: Ensure YAML frontmatter triggers are precise and categories are lowercase kebab-case.
+5. **Validation Checklist**:
+   - [ ] SKILL.md ≤ 100 lines (Ideal: 60-80)
+   - [ ] No inline code blocks > 10 lines
+   - [ ] No redundant frontmatter context in body
+   - [ ] Triggers verified for all supported agents
+6. **Priority Matrix**:
+   - **P0**: Foundational (Architecture, Types, Security).
+   - **P1**: Operational (Performance, Idioms, UI).
+   - **P2**: Maintenance (Testing, Tooling, Docs).
